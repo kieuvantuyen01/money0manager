@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Category.dart';
-import 'CategoryIconBig.dart';
+import 'BigCategoryIconWidget.dart';
 import 'helpers/transform/transform.dart';
 
 class CategoryV extends StatelessWidget {
