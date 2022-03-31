@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Category.dart';
-import 'BigCategoryIconWidget.dart';
+import 'CategoryIconWidget.dart';
 import '../helpers/transform/transform.dart';
 
 class CategoryV extends StatelessWidget {
@@ -40,7 +40,7 @@ class CategoryV extends StatelessWidget {
                       child: Container(
                         width: width,
                         height: height,
-                        child: CategoryIconBig(
+                        child: CategoryIconWidget(
                             icon: this.category.icon,
                             bgColor: this.category.bgColor),
                       ))
