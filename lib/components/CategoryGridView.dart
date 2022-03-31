@@ -23,7 +23,7 @@ class CategoryGridView extends StatelessWidget {
                     crossAxisCount: 4, crossAxisSpacing: 4.0, mainAxisSpacing: 4.0),
                 itemBuilder: (context, index) {
                   return GestureDetector(
-                    child: CategoryV(category: snapshot.data![index],),
+                    child: CategoryVWidget(category: snapshot.data![index],),
                     onTap: () {
 
                     },

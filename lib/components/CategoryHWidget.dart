@@ -3,11 +3,11 @@ import 'Category.dart';
 import 'CategoryIconWidget.dart';
 import '../helpers/transform/transform.dart';
 
-class CategoryH extends StatelessWidget {
-  Category category;
+class CategoryHWidget extends StatelessWidget {
+  CategoryWidget category;
   bool hasImage;
 
-  CategoryH({Key? key, required this.category, this.hasImage = false}) : super(key: key);
+  CategoryHWidget({Key? key, required this.category, this.hasImage = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

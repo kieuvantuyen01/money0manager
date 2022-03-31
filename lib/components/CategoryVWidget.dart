@@ -3,10 +3,10 @@ import 'Category.dart';
 import 'CategoryIconWidget.dart';
 import '../helpers/transform/transform.dart';
 
-class CategoryV extends StatelessWidget {
+class CategoryVWidget extends StatelessWidget {
   Category category;
 
-  CategoryV({Key? key, required this.category}): super(key: key);
+  CategoryVWidget({Key? key, required this.category}): super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,12 @@ class CategoryV extends StatelessWidget {
                         height: height,
                         child: CategoryIconWidget(
                             icon: this.category.icon,
-                            bgColor: this.category.bgColor),
+                            bgColor: this.category.bgColor,
+                            iconColor: this.iconColor,
+                            size: this.iconSize,
+                            borderRadius: this.iconBorderRadius,
+
+                        ),
                       ))
                 ]);
               }),
