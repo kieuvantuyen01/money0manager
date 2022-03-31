@@ -4,7 +4,7 @@ import 'CategoryIconWidget.dart';
 import '../helpers/transform/transform.dart';
 
 class CategoryHWidget extends StatelessWidget {
-  CategoryWidget category;
+  Category category;
   bool hasImage;
 
   CategoryHWidget({Key? key, required this.category, this.hasImage = false}) : super(key: key);
