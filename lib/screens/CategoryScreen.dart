@@ -1,8 +1,30 @@
-import 'package:flutter/material.dart';
-import '../components/TitleText1.dart';
+import 'dart:convert';
 
-class Category extends StatelessWidget {
-  Category({Key? key, required this.title}) : super(key: key);
+import 'package:flutter/material.dart';
+import '../components/CategoryGridView.dart';
+import '../components/TitleText1.dart';
+import '../components/Category.dart';
+import 'package:http/http.dart' as http;
+
+List<Category> parseCategories(String responseBody) {
+  final parsed = json.decode(responseBody).cast<Map<dynamic, dynamic>>();
+  return parsed.map<Category>((json) => Category.fromMap(json)).toList();
+}
+
+Future<List<Category>> fetchCategories() async {
+  final response =
+  await http.get(Uri.parse('http://192.168.1.2:8000/categories.json'));
+  if (response.statusCode == 200) {
+    print(response.statusCode);
+    return parseCategories(response.body);
+  } else {
+    print(response.statusCode);
+    throw Exception('Unable to fetch products from the REST API');
+  }
+}
+
+class CategoryScreen extends StatelessWidget {
+  CategoryScreen({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
@@ -58,8 +80,12 @@ class Category extends StatelessWidget {
         ),
         body: TabBarView (
           children: [
-            Center(child: TitleText1(text: 'Chi phí', fontFamily: 'Inter', fontSize: 18, fontWeight: FontWeight.normal, r: 0, g: 0, b: 0)),
-            Center(child: TitleText1(text: 'Thu nhập', fontFamily: 'Inter', fontSize: 18, fontWeight: FontWeight.normal, r: 0, g: 0, b: 0)),
+            CategoryGridView(
+              categories: fetchCategories(),
+            ),
+            CategoryGridView(
+              categories: fetchCategories(),
+            ),
           ],
         ),
       ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/Category.dart';
+import 'screens/CategoryScreen.dart';
 import 'screens/CreateReminder.dart';
 import 'screens/ExchangeMoney.dart';
 import 'screens/Account.dart';
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Money Manager',
-      home: ExchangeMoney(title: 'title'),
+      home: CategoryScreen(title: 'title'),
     );
   }
 }
