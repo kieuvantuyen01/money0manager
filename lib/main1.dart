@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'Category.dart';
-import 'CategoryGridView.dart';
+import 'components/Category.dart';
+import 'components/CategoryGridView.dart';
 import 'package:http/http.dart' as http;
 
 List<Category> parseCategories(String responseBody) {

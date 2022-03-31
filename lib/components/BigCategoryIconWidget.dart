@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'helpers/transform/transform.dart';
+import '../helpers/transform/transform.dart';
 
 
 class CategoryIconBig extends StatelessWidget {
