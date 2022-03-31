@@ -7,6 +7,7 @@ class CategoryIconBig extends StatelessWidget {
   String icon;
   String bgColor;
 
+
   CategoryIconBig({Key? key, required this.icon, required this.bgColor}): super(key: key);
 
   @override
@@ -41,15 +42,15 @@ class CategoryIconBig extends StatelessWidget {
                             width: width,
                             height: height,
                             child: Opacity(
-                              opacity: 0.30000001192092896,
+                              opacity: 1.0,
                               child: Container(
                                 width: 48.0,
                                 height: 48.0,
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(28.0),
+                                  borderRadius: BorderRadius.circular(15.0),
                                 ),
                                 child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(28.0),
+                                  borderRadius: BorderRadius.circular(15.0),
                                   child: Container(
                                     color: Color(int.parse(this.bgColor)),
                                   ),

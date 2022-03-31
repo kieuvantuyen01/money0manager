@@ -13,7 +13,7 @@ List<Category> parseCategories(String responseBody) {
 
 Future<List<Category>> fetchCategories() async {
   final response =
-  await http.get(Uri.parse('http://192.168.1.2:8000/categories.json'));
+  await http.get(Uri.parse('http://192.168.138.1:8080/Json/categories.json'));
   if (response.statusCode == 200) {
     print(response.statusCode);
     return parseCategories(response.body);
@@ -78,15 +78,18 @@ class CategoryScreen extends StatelessWidget {
               ],
             ),
         ),
-        body: TabBarView (
-          children: [
-            CategoryGridView(
-              categories: fetchCategories(),
-            ),
-            CategoryGridView(
-              categories: fetchCategories(),
-            ),
-          ],
+        body: Padding(
+          padding: EdgeInsets.only(top: 30),
+          child: TabBarView (
+            children: [
+              CategoryGridView(
+                categories: fetchCategories(),
+              ),
+              CategoryGridView(
+                categories: fetchCategories(),
+              ),
+            ],
+          ),
         ),
       ),
     );
