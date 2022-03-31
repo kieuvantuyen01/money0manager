@@ -31,7 +31,7 @@ class CategoryH extends StatelessWidget {
                 child: CategoryIconWidget(
                   icon: this.category.icon,
                   bgColor: this.category.bgColor,
-                  size: CategoryIconWidget.MEDIUM,
+                  buttonSize: CategoryIconWidget.MEDIUM,
                 ),
               ),
               Positioned(
@@ -73,7 +73,7 @@ class CategoryH extends StatelessWidget {
                   child: CategoryIconWidget(
                     icon: '📷',
                     bgColor: '0xFFE0E0E0',
-                    size: CategoryIconWidget.SMALL,
+                    buttonSize: CategoryIconWidget.SMALL,
                   ),
                 ),
               )

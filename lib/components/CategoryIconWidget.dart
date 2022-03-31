@@ -6,7 +6,7 @@ class CategoryIconWidget extends StatelessWidget {
   String icon;
   String iconColor;
   String bgColor;
-  double size;
+  double buttonSize;
   double borderRadius;
   static const double BIG = 48.0;
   static const double MEDIUM = 30.0;
@@ -16,7 +16,7 @@ class CategoryIconWidget extends StatelessWidget {
       {Key? key,
       required this.icon,
       required this.bgColor,
-      this.size = BIG,
+      this.buttonSize = BIG,
       this.iconColor = '0xFF000000',
       this.borderRadius = 28.0})
       : super(key: key);
@@ -24,8 +24,8 @@ class CategoryIconWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: this.size,
-      height: this.size,
+      width: this.buttonSize,
+      height: this.buttonSize,
       child: Stack(
           fit: StackFit.expand,
           alignment: Alignment.center,
@@ -55,8 +55,8 @@ class CategoryIconWidget extends StatelessWidget {
                         child: Opacity(
                           opacity: 1.0,
                           child: Container(
-                            width: this.size,
-                            height: this.size,
+                            width: this.buttonSize,
+                            height: this.buttonSize,
                             decoration: BoxDecoration(
                               borderRadius:
                                   BorderRadius.circular(this.borderRadius),
