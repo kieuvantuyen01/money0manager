@@ -59,13 +59,13 @@ class Account extends StatelessWidget {
             Center(
               child: Padding(
                 padding: EdgeInsets.only(left: 80, top: 15),
-                child: CategoryVWidget(category: Category('⟲', 'Lịch sử', '0xFF46BF8C')),
+                child: CategoryVWidget(category: Category('⟲', 'Lịch sử', '0xFF46BF8C'), iconColor: '0xFFFFFFFF'),
               ),
             ),
             Center(
               child: Padding(
                 padding: EdgeInsets.only(left: 80, top: 15),
-                child: CategoryVWidget(category: Category('⇄', 'Chuyển tiền', '0xFF46BF8C')),
+                child: CategoryVWidget(category: Category('⇄', 'Chuyển tiền', '0xFF46BF8C'), iconColor: '0xFFFFFFFF'),
               ),
             ),
           ]),
