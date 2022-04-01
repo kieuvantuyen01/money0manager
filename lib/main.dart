@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'helpers/mask.dart';
 import 'helpers/svg.dart';
 import 'helpers/transform.dart';
+import 'screen/Reminder.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,8 +29,9 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const GeneratedLeftNavigationPaneWidget(
-          title: 'Flutter Demo Home Page'),
+      /*home: const GeneratedLeftNavigationPaneWidget(
+          title: 'Flutter Demo Home Page'),*/
+      home: Reminder(),
     );
   }
 }
