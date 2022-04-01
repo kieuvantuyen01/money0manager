@@ -5,8 +5,17 @@ import '../helpers/transform/transform.dart';
 
 class CategoryVWidget extends StatelessWidget {
   Category category;
+  String iconColor;
+  double iconSize;
+  double iconBorderRadius;
 
-  CategoryVWidget({Key? key, required this.category}): super(key: key);
+  CategoryVWidget(
+      {Key? key,
+      required this.category,
+      this.iconColor = '0xFF000000',
+      this.iconSize = CategoryIconWidget.BIG,
+      this.iconBorderRadius = 28.0})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +50,12 @@ class CategoryVWidget extends StatelessWidget {
                         width: width,
                         height: height,
                         child: CategoryIconWidget(
-                            icon: this.category.icon,
-                            bgColor: this.category.bgColor),
+                          icon: this.category.icon,
+                          bgColor: this.category.bgColor,
+                          iconColor: this.iconColor,
+                          size: this.iconSize,
+                          borderRadius: this.iconBorderRadius,
+                        ),
                       ))
                 ]);
               }),
