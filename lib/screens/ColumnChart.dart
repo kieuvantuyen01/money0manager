@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:money_manager/components/DatePicker.dart';
 import '../components/TitleText1.dart';
 
 class ColumnChart extends StatelessWidget {
@@ -61,7 +62,7 @@ class ColumnChart extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            Center(child: TitleText1(text: 'Chung', fontFamily: 'Inter', fontSize: 18, fontWeight: FontWeight.normal, r: 0, g: 0, b: 0)),
+            Center(child: DatePicker()),
             Center(child: TitleText1(text: 'Chi phí', fontFamily: 'Inter', fontSize: 18, fontWeight: FontWeight.normal, r: 0, g: 0, b: 0)),
             Center(child: TitleText1(text: 'Thu nhập', fontFamily: 'Inter', fontSize: 18, fontWeight: FontWeight.normal, r: 0, g: 0, b: 0)),
           ],

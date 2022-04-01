@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'TitleText1.dart';
 
 class ButtonPrimary extends StatelessWidget {
   ButtonPrimary(
@@ -27,11 +28,7 @@ class ButtonPrimary extends StatelessWidget {
         onPressed: () {
           print('Raise button');
         },
-        child: Text(
-          this.text,
-          style:
-              TextStyle(fontFamily: 'Inter', fontSize: 18, color: Colors.white),
-        ),
+        child: TitleText1(text: this.text, fontFamily: 'Inter', fontSize: 18, fontWeight: FontWeight.bold, r: 255, g: 255, b: 255),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(this.radius)),
         ),
