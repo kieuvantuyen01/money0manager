@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'ButtonPrimary.dart';
 import 'DatePicker.dart';
 import 'DateRangePicker.dart';
+import 'InputText1.dart';
 import 'TitleText1.dart';
 
 class ExpenseTabBar extends StatelessWidget {
@@ -20,7 +22,7 @@ class ExpenseTabBar extends StatelessWidget {
             indicatorColor: Color.fromARGB(255, 35, 111, 87),
             padding: EdgeInsets.only(top: 10),
             indicatorPadding: EdgeInsets.only(left: 25.0, bottom: 5.0, right: 0.0),
-            labelPadding: EdgeInsets.only(left: 25),
+            labelPadding: EdgeInsets.only(left: 23.0),
             isScrollable: true,
             tabs: [
               Tab(text: 'Ngày'),
@@ -41,6 +43,15 @@ class ExpenseTabBar extends StatelessWidget {
                   child: Column(
                     children: <Widget>[
                       DatePicker(),
+                      TitleText1(text: 'Tổng cộng: 2,000,000 đ', fontFamily: 'Inter', fontSize: 15, fontWeight: FontWeight.bold, r: 0, g: 0, b: 0),
+                      Padding(
+                        padding: EdgeInsets.only(top: 280),
+                        child: SizedBox (
+                          width: 93,
+                          height: 51,
+                          child: ButtonPrimary(text: 'Thêm', r: 35, g: 111, b: 87, radius: 30, weight: 109, height: 51,),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -51,7 +62,17 @@ class ExpenseTabBar extends StatelessWidget {
                   child: Column(
                     children: <Widget>[
                       DateRangePicker(),
+                      TitleText1(text: 'Tổng cộng: 2,000,000 đ', fontFamily: 'Inter', fontSize: 15, fontWeight: FontWeight.bold, r: 0, g: 0, b: 0),
+                      Padding(
+                        padding: EdgeInsets.only(top: 280),
+                        child: SizedBox (
+                          width: 93,
+                          height: 51,
+                          child: ButtonPrimary(text: 'Thêm', r: 35, g: 111, b: 87, radius: 30, weight: 109, height: 51,),
+                        ),
+                      ),
                     ],
+
                   ),
                 ),
               ]
