@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'TitleText1.dart';
+
 class DatePicker extends StatefulWidget {
   @override
   DatePickerState createState() => DatePickerState();
@@ -14,8 +14,8 @@ class DatePickerState extends State<DatePicker> {
     final newDate = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
-      firstDate: DateTime(DateTime.now().year - 5),
-      lastDate: DateTime(DateTime.now().year + 5),
+      firstDate: DateTime(DateTime.now().year - 20),
+      lastDate: DateTime(DateTime.now().year + 1),
       builder: (context, child) => Theme(
         data: ThemeData.light().copyWith(
           colorScheme: ColorScheme.light(primary: Color.fromARGB(255, 35, 111, 87)),
@@ -30,8 +30,7 @@ class DatePickerState extends State<DatePicker> {
   }
 
   String getText() {
-    if (this.isFirstTime == true) {
-      this.isFirstTime = false;
+    if (dateTime == null) {
       return 'Chọn ngày';
     }
     return '${dateTime.day}/${dateTime.month}/${dateTime.year}';
@@ -43,7 +42,7 @@ class DatePickerState extends State<DatePicker> {
       onPressed: () {
        pickDate(context);
       },
-      child: TitleText1(text: getText(), fontFamily: 'Inter', fontSize: 18, fontWeight: FontWeight.bold, r: 0, g: 0, b: 0),
+      child: TitleText1(text: getText(), fontFamily: 'Inter', fontSize: 16, fontWeight: FontWeight.bold, r: 0, g: 0, b: 0),
       color: Color.fromARGB(255, 250, 250, 250),
       elevation: 0,
     );
