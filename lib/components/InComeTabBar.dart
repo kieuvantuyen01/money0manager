@@ -4,7 +4,7 @@ import 'DatePicker.dart';
 import 'DateRangePicker.dart';
 import 'TitleText1.dart';
 
-class IncomeTabBar extends StatelessWidget {
+class InComeTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {

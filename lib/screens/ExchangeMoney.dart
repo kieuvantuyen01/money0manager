@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../components/ExpenseTabBar.dart';
-import '../components/IncomeTabBar.dart';
+import '../components/InComeTabBar.dart';
 import '../components/PopUpNotification1.dart';
 import '../components/SearchItem.dart';
 import '../components/TitleText1.dart';
@@ -99,7 +99,7 @@ class ExchangeMoney extends StatelessWidget {
               child: ExpenseTabBar(),
             ),
             Center(
-              child: IncomeTabBar(),
+              child: InComeTabBar(),
             ),
           ],
         ),

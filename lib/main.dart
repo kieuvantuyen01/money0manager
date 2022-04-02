@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         const Locale('en', ''),
         const Locale('vi', ''),
       ],
-      home: ExchangeMoney(title: 'title'),
+      home: ColumnChart(title: 'title'),
     );
   }
 }
