@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../components/DateRangePicker.dart';
 import '../components/DatePicker.dart';
 import '../components/PopUpNotification1.dart';
 import '../components/SearchItem.dart';
@@ -134,7 +135,13 @@ class ExchangeMoney extends StatelessWidget {
                         Center(child: TitleText1(text: 'Tab 2', fontFamily: 'Inter', fontSize: 25, fontWeight: FontWeight.normal, r: 0, g: 0, b: 0)),
                         Center(child: TitleText1(text: 'Tab 3', fontFamily: 'Inter', fontSize: 25, fontWeight: FontWeight.normal, r: 0, g: 0, b: 0)),
                         Center(child: TitleText1(text: 'Tab 4', fontFamily: 'Inter', fontSize: 25, fontWeight: FontWeight.normal, r: 0, g: 0, b: 0)),
-                        Center(child: TitleText1(text: 'Tab 5', fontFamily: 'Inter', fontSize: 25, fontWeight: FontWeight.normal, r: 0, g: 0, b: 0)),
+                        Center(
+                          child: Column(
+                            children: <Widget>[
+                              DateRangePicker(),
+                            ],
+                          ),
+                        ),
                       ]
                     ),
                   ),

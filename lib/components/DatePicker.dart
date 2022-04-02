@@ -30,7 +30,8 @@ class DatePickerState extends State<DatePicker> {
   }
 
   String getText() {
-    if (dateTime == null) {
+    if (isFirstTime == true) {
+      isFirstTime = false;
       return 'Chọn ngày';
     }
     return '${dateTime.day}/${dateTime.month}/${dateTime.year}';
