@@ -22,6 +22,7 @@ class ExchangeMoney extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           centerTitle: true,
           title: Padding(
@@ -100,8 +101,9 @@ class ExchangeMoney extends StatelessWidget {
                   Container(
                     child: TabBar(
                       labelColor: Color.fromARGB(255, 35, 111, 87),
+                      labelStyle: TextStyle(fontSize: 15, fontFamily: 'Inter', fontWeight: FontWeight.bold),
                       unselectedLabelColor: Colors.black,
-                      indicatorWeight: 3,
+                      indicatorWeight: 2.2,
                       indicatorColor: Color.fromARGB(255, 35, 111, 87),
                       padding: EdgeInsets.only(top: 10),
                       indicatorPadding: EdgeInsets.only(left: 25.0, bottom: 5.0, right: 0.0),

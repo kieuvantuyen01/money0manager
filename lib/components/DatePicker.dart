@@ -42,7 +42,7 @@ class DatePickerState extends State<DatePicker> {
       onPressed: () {
        pickDate(context);
       },
-      child: TitleText1(text: getText(), fontFamily: 'Inter', fontSize: 16, fontWeight: FontWeight.bold, r: 0, g: 0, b: 0),
+      child: TitleText1(text: getText(), fontFamily: 'Inter', fontSize: 15, fontWeight: FontWeight.bold, r: 0, g: 0, b: 0),
       color: Color.fromARGB(255, 250, 250, 250),
       elevation: 0,
     );
