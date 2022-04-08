@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'screens/ContactScreen.dart';
+import 'screens/Reminder.dart';
 import 'helpers/ChangeLanguage.dart';
 import 'screens/CategoryScreen.dart';
 import 'screens/CreateReminder.dart';
@@ -25,7 +27,7 @@ class MyApp extends StatelessWidget {
         const Locale('en', ''),
         const Locale('vi', ''),
       ],
-      home: ColumnChart(title: 'title'),
+      home: ContactScreen(title: 'title'),
     );
   }
 }

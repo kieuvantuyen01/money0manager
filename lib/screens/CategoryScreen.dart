@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import '../components/CategoryGridView.dart';
 import '../components/TitleText1.dart';
