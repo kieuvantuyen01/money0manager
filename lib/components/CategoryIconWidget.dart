@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../helpers/transform/transform.dart';
 
 class CategoryIconWidget extends StatelessWidget {
