@@ -45,7 +45,7 @@ class SmallHeader extends StatelessWidget with PreferredSizeWidget{
           if (this.icon.toString() == 'Icon(IconData(U+0E793))') {
             Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => Reminder(title: 'Tạo lời nhắc'))),
+            MaterialPageRoute(builder: (context) => Reminder(title: 'Nhắc nhở'))),
           }
           // Trường hợp là icon menu
           else if (this.icon.toString() == 'Icon(IconData(U+0E3DC))') {

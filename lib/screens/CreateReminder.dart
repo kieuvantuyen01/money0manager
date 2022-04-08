@@ -39,7 +39,7 @@ class CreateReminder extends StatelessWidget {
             child: SizedBox (
               width: 93,
               height: 51,
-              child: ButtonPrimary(text: 'Tạo', r: 35, g: 111, b: 87, radius: 30, weight: 93, height: 51,),
+              child: ButtonPrimary(text: 'Tạo', r: 35, g: 111, b: 87, radius: 30, weight: 93, height: 51, screenName: 'CreateReminder'),
             ),
           ),
         ],

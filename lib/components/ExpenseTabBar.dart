@@ -48,7 +48,7 @@ class ExpenseTabBar extends StatelessWidget {
                         child: SizedBox (
                           width: 93,
                           height: 51,
-                          child: ButtonPrimary(text: 'Thêm', r: 35, g: 111, b: 87, radius: 30, weight: 109, height: 51,),
+                          child: ButtonPrimary(text: 'Thêm', r: 35, g: 111, b: 87, radius: 30, weight: 109, height: 51, screenName: 'ExpenseTabBar'),
                         ),
                       ),
                     ],
@@ -67,7 +67,7 @@ class ExpenseTabBar extends StatelessWidget {
                         child: SizedBox (
                           width: 93,
                           height: 51,
-                          child: ButtonPrimary(text: 'Thêm', r: 35, g: 111, b: 87, radius: 30, weight: 109, height: 51),
+                          child: ButtonPrimary(text: 'Thêm', r: 35, g: 111, b: 87, radius: 30, weight: 109, height: 51, screenName: 'ExpenseTabBar'),
                         ),
                       ),
                     ],

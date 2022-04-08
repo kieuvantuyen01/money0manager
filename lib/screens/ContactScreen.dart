@@ -34,7 +34,7 @@ class ContactScreen extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.only(left: 16, right: 16, top: 90),
-            child: ButtonPrimary(text: 'Gửi', r: 35, g: 111, b: 87, radius: 30, weight: 343, height: 51),
+            child: ButtonPrimary(text: 'Gửi', r: 35, g: 111, b: 87, radius: 30, weight: 343, height: 51, screenName: 'ContactScreen'),
           ),
         ],
       ),
