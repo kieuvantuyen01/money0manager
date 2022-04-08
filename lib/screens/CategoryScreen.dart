@@ -12,7 +12,7 @@ List<Category> parseCategories(String responseBody) {
 
 Future<List<Category>> fetchCategories() async {
   final response =
-  await http.get(Uri.parse('http://192.168.138.1:8080/Json/categories.json'));
+  await http.get(Uri.parse('http://192.168.138.1:8000/Json/categories.json'));
   if (response.statusCode == 200) {
     print(response.statusCode);
     return parseCategories(response.body);

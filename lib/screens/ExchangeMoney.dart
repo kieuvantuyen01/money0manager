@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../components/PopUpRatingApp.dart';
 import '../components/ExpenseTabBar.dart';
 import '../components/InComeTabBar.dart';
 import '../components/PopUpNotification1.dart';
@@ -12,9 +13,19 @@ class ExchangeMoney extends StatelessWidget {
   void _showDialog(BuildContext context) {
     showDialog(
       context: context,
-      builder: (BuildContext context) {
+      builder: (context) {
         return PopUpNotification1();
       },
+    );
+  }
+
+  void _showRatingDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: true, // set to false if you want to force a rating
+      builder: (context) {
+        return PopUpRatingApp();
+      }
     );
   }
 
@@ -38,7 +49,7 @@ class ExchangeMoney extends StatelessWidget {
             iconSize: 30,
             icon: Icon(Icons.menu),
             tooltip: 'Menu',
-            onPressed: () => {},
+            onPressed: () => {_showRatingDialog(context)},
           ),
           actions: <Widget>[
             IconButton(

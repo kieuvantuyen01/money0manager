@@ -12,7 +12,7 @@ class ContactScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: SmallHeader(title: 'Nhắc nhở', icon: Icon(Icons.menu)),
+      appBar: SmallHeader(title: 'Liên hệ', icon: Icon(Icons.menu)),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
@@ -30,7 +30,7 @@ class ContactScreen extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.only(left: 16, right: 16, top: 60),
-            child: InputText1(hintText: 'Nội dung thư', labelText: 'Nội dung', maxLines: 1),
+            child: InputText1(hintText: 'Nội dung thư', labelText: 'Nội dung', maxLines: 2),
           ),
           Padding(
             padding: EdgeInsets.only(left: 16, right: 16, top: 90),
