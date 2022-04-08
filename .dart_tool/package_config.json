@@ -206,6 +206,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "mime",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/mime-1.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "package_config",
       "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/package_config-2.0.2",
       "packageUri": "lib/",
@@ -232,6 +238,12 @@
     {
       "name": "rating_dialog",
       "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/rating_dialog-2.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "share",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/share-2.0.4",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -308,7 +320,7 @@
       "languageVersion": "2.16"
     }
   ],
-  "generated": "2022-04-08T17:11:08.109018Z",
+  "generated": "2022-04-08T17:34:12.950219Z",
   "generator": "pub",
   "generatorVersion": "2.16.1"
 }

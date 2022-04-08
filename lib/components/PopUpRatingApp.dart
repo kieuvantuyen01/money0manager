@@ -26,7 +26,7 @@ class PopUpRatingApp extends StatelessWidget {
       ),
       // your app's logo?
       // image: const FlutterLogo(size: 100),
-      image: Image.asset("assets/appIcon1.png", ),
+      image: Image.asset("assets/appIcon.png", ),
       submitButtonText: 'Gửi',
       submitButtonTextStyle: TextStyle(
         fontFamily: 'Inter',
@@ -35,6 +35,7 @@ class PopUpRatingApp extends StatelessWidget {
         color: Color.fromARGB(255, 35, 111, 87),
       ),
       commentHint: 'Mô tả trải nghiệm của bạn',
+      onCancelled: () => print('cancelled'),
       onSubmitted: (response) {
         print('rating: ${response.rating}, comment: ${response.comment}');
         LaunchReview.launch(

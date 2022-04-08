@@ -5,6 +5,7 @@ import '../components/InComeTabBar.dart';
 import '../components/PopUpNotification1.dart';
 import '../components/SearchItem.dart';
 import '../components/TitleText1.dart';
+import 'package:share/share.dart';
 
 class ExchangeMoney extends StatelessWidget {
   ExchangeMoney({Key? key, required this.title}) : super(key: key);
@@ -49,7 +50,9 @@ class ExchangeMoney extends StatelessWidget {
             iconSize: 30,
             icon: Icon(Icons.menu),
             tooltip: 'Menu',
-            onPressed: () => {_showRatingDialog(context)},
+            onPressed: () => {
+              Share.share('https://play.google.com/store/apps/details?id=ru.innim.my_finance')
+            },
           ),
           actions: <Widget>[
             IconButton(
