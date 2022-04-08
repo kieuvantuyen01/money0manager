@@ -4,6 +4,7 @@ import 'helpers/mask.dart';
 import 'helpers/svg.dart';
 import 'helpers/transform.dart';
 import 'screen/Reminder.dart';
+import 'screen/Contact.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
       ),
       /*home: const GeneratedLeftNavigationPaneWidget(
           title: 'Flutter Demo Home Page'),*/
-      home: Reminder(),
+      home: Contact(),
     );
   }
 }

@@ -4,9 +4,8 @@ import '../components/SmallHeader.dart';
 import '../components/InputText1.dart';
 import '../components/ButtonPrimary.dart';
 
-class CreateReminder extends StatelessWidget {
-  CreateReminder({Key? key, required this.title}) : super(key: key);
-  final String title;
+class Contact extends StatelessWidget {
+  Contact({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
