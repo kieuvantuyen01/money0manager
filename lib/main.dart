@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:left_pane/components/ButtonWidget.dart';
+import 'package:left_pane/components/NavigationDrawerWidget.dart';
 
 import 'helpers/mask.dart';
 import 'helpers/svg.dart';
@@ -6,11 +8,13 @@ import 'helpers/transform.dart';
 import 'screen/Reminder.dart';
 import 'screen/Contact.dart';
 
+
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  static final String title = 'Navigation Drawer';
   const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
@@ -32,9 +36,39 @@ class MyApp extends StatelessWidget {
       ),
       /*home: const GeneratedLeftNavigationPaneWidget(
           title: 'Flutter Demo Home Page'),*/
-      home: Contact(),
+      home: MainPage(),
     );
   }
+}
+
+class MainPage extends StatefulWidget {
+  @override
+  _MainPageState createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  @override
+  Widget build(BuildContext context) => Scaffold(
+    drawer: NavigationDrawerWidget(),
+    // endDrawer: NavigationDrawerWidget(),
+    appBar: AppBar(
+      title: Text(MyApp.title),
+    ),
+    body: Builder(
+      builder: (context) => Container(
+        alignment: Alignment.center,
+        padding: EdgeInsets.symmetric(horizontal: 32),
+        child: ButtonWidget(
+          icon: Icons.open_in_new,
+          text: 'Open Drawer',
+          onClicked: () {
+            Scaffold.of(context).openDrawer();
+            // Scaffold.of(context).openEndDrawer();
+          },
+        ),
+      ),
+    ),
+  );
 }
 
 class GeneratedLeftNavigationPaneWidget extends StatelessWidget {
