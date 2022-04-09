@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import 'widgets.dart';
 
@@ -58,6 +60,16 @@ class Authentication extends StatelessWidget {
                 child: const Text('RSVP'),
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.only(left: 24, bottom: 8),
+              child: StyledButton(
+                onPressed: () {
+                  signInWithGoogle();
+                  FirebaseAuth.instance.signOut();
+                },
+                child: const Text('Google'),
+              ),
+            ),
           ],
         );
       case ApplicationLoginState.emailAddress:
@@ -114,6 +126,24 @@ class Authentication extends StatelessWidget {
     }
   }
 
+  Future<UserCredential> signInWithGoogle() async {
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    // Once signed in, return the UserCredential
+    return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
+
   void _showErrorDialog(BuildContext context, String title, Exception e) {
     showDialog<void>(
       context: context,
@@ -152,7 +182,9 @@ class Authentication extends StatelessWidget {
 
 class EmailForm extends StatefulWidget {
   const EmailForm({required this.callback});
+
   final void Function(String email) callback;
+
   @override
   _EmailFormState createState() => _EmailFormState();
 }
@@ -220,10 +252,12 @@ class RegisterForm extends StatefulWidget {
     required this.cancel,
     required this.email,
   });
+
   final String email;
   final void Function(String email, String displayName, String password)
       registerAccount;
   final void Function() cancel;
+
   @override
   _RegisterFormState createState() => _RegisterFormState();
 }
@@ -338,8 +372,10 @@ class PasswordForm extends StatefulWidget {
     required this.login,
     required this.email,
   });
+
   final String email;
   final void Function(String email, String password) login;
+
   @override
   _PasswordFormState createState() => _PasswordFormState();
 }
