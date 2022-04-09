@@ -26,7 +26,7 @@ class PopUpRatingApp extends StatelessWidget {
       ),
       // your app's logo?
       // image: const FlutterLogo(size: 100),
-      image: Image.asset("assets/appIcon.png", ),
+      image: Image.asset("assets/appIcon.png"),
       submitButtonText: 'Gửi',
       submitButtonTextStyle: TextStyle(
         fontFamily: 'Inter',

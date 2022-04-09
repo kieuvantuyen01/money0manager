@@ -35,6 +35,12 @@ class InputText1 extends StatelessWidget {
               width: 1.0
           ),
         ),
+        focusedBorder: const OutlineInputBorder(
+          borderSide: const BorderSide(
+              color: Color.fromARGB(255, 35, 111, 87),
+              width: 2.0
+          ),
+        ),
         fillColor: Color.fromARGB(255, 232, 232, 232),
         filled: true,
       ),

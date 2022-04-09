@@ -15,7 +15,7 @@ class CreateButton extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => CreateReminder(title: 'Tạo lời nhắc')));
-    },
+      },
       child: Row(
         children: <Widget> [
           Padding(
