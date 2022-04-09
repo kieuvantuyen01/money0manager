@@ -22,14 +22,14 @@ class RegisterScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         toolbarHeight: 100,
         elevation: 0.0,
-        leading: IconButton(
-          padding: EdgeInsets.only(left: 16, top: 55),
-          iconSize: 20,
-          color: Color.fromARGB(255, 189, 189, 189),
-          alignment: Alignment.center,
-          icon: Icon(Icons.close),
-          onPressed: () => {},
-        ),
+        // leading: IconButton(
+        //   padding: EdgeInsets.only(left: 16, top: 55),
+        //   iconSize: 20,
+        //   color: Color.fromARGB(255, 189, 189, 189),
+        //   alignment: Alignment.center,
+        //   icon: Icon(Icons.close),
+        //   onPressed: () => {},
+        // ),
         actions: <Widget>[
           GestureDetector(
             onTap: () {

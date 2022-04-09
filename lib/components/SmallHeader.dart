@@ -17,7 +17,6 @@ class SmallHeader extends StatelessWidget with PreferredSizeWidget{
         child: TitleText1(text: this.title, fontFamily: 'Inter', fontSize: 25, fontWeight: FontWeight.bold, r: 255, g: 255, b: 255),
       ),
       backgroundColor: Colors.transparent,
-      // toolbarHeight: 500,
       elevation: 0.0,
       flexibleSpace: Container(
         decoration: BoxDecoration(
