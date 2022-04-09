@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
@@ -28,8 +29,8 @@ class App extends StatelessWidget {
       title: 'Firebase Meetup',
       theme: ThemeData(
         buttonTheme: Theme.of(context).buttonTheme.copyWith(
-          highlightColor: Colors.deepPurple,
-        ),
+              highlightColor: Colors.deepPurple,
+            ),
         primarySwatch: Colors.deepPurple,
         textTheme: GoogleFonts.robotoTextTheme(
           Theme.of(context).textTheme,
@@ -174,21 +175,27 @@ class ApplicationState extends ChangeNotifier {
   }
 
   ApplicationLoginState _loginState = ApplicationLoginState.loggedOut;
+
   ApplicationLoginState get loginState => _loginState;
 
   String? _email;
+
   String? get email => _email;
 
   StreamSubscription<QuerySnapshot>? _guestBookSubscription;
   List<GuestBookMessage> _guestBookMessages = [];
+
   List<GuestBookMessage> get guestBookMessages => _guestBookMessages;
 
   int _attendees = 0;
+
   int get attendees => _attendees;
 
   Attending _attending = Attending.unknown;
   StreamSubscription<DocumentSnapshot>? _attendingSubscription;
+
   Attending get attending => _attending;
+
   set attending(Attending attending) {
     final userDoc = FirebaseFirestore.instance
         .collection('attendees')
@@ -206,12 +213,12 @@ class ApplicationState extends ChangeNotifier {
   }
 
   Future<void> verifyEmail(
-      String email,
-      void Function(FirebaseAuthException e) errorCallback,
-      ) async {
+    String email,
+    void Function(FirebaseAuthException e) errorCallback,
+  ) async {
     try {
       var methods =
-      await FirebaseAuth.instance.fetchSignInMethodsForEmail(email);
+          await FirebaseAuth.instance.fetchSignInMethodsForEmail(email);
       if (methods.contains('password')) {
         _loginState = ApplicationLoginState.password;
       } else {
@@ -225,10 +232,10 @@ class ApplicationState extends ChangeNotifier {
   }
 
   Future<void> signInWithEmailAndPassword(
-      String email,
-      String password,
-      void Function(FirebaseAuthException e) errorCallback,
-      ) async {
+    String email,
+    String password,
+    void Function(FirebaseAuthException e) errorCallback,
+  ) async {
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
@@ -261,6 +268,7 @@ class ApplicationState extends ChangeNotifier {
   void signOut() {
     FirebaseAuth.instance.signOut();
     GoogleSignIn().signOut();
+    FacebookAuth.instance.logOut();
   }
 
   Future<DocumentReference> addMessageToGuestBook(String message) {
@@ -281,6 +289,7 @@ class ApplicationState extends ChangeNotifier {
 
 class GuestBookMessage {
   GuestBookMessage({required this.name, required this.message});
+
   final String name;
   final String message;
 }
@@ -289,6 +298,7 @@ enum Attending { yes, no, unknown }
 
 class GuestBook extends StatefulWidget {
   const GuestBook({required this.addMessage, required this.messages});
+
   final FutureOr<void> Function(String message) addMessage;
   final List<GuestBookMessage> messages;
 
@@ -356,6 +366,7 @@ class _GuestBookState extends State<GuestBook> {
 
 class YesNoSelection extends StatelessWidget {
   const YesNoSelection({required this.state, required this.onSelection});
+
   final Attending state;
   final void Function(Attending selection) onSelection;
 
