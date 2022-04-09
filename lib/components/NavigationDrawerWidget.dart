@@ -2,15 +2,16 @@ import 'dart:ui';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:left_pane/components/TitleText1.dart';
 import 'package:left_pane/screen/People.dart';
 import 'package:left_pane/screen/User.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
-  final padding = EdgeInsets.symmetric(horizontal: 20);
+  final padding = EdgeInsets.symmetric(horizontal: 16);
 
   @override
   Widget build(BuildContext context) {
-    final name = 'Kiều Văn';
+    final name = 'Kiều Văn Tuyên';
     final balance = 'Số dư: 1000.000 đ';
     final urlImage = 'assets/images/header_icon.png';
     return Drawer(
@@ -25,34 +26,68 @@ class NavigationDrawerWidget extends StatelessWidget {
                 onClicked: () => Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) =>
                         UserPage(name: name, urlImage: urlImage)))),
-            Divider(
+            const Divider(
               color: Colors.white70,
-            ),
-            const SizedBox(
-              height: 24,
             ),
             buildMenuItem(
               text: 'Ngân sách',
-              icon: Icons.people,
+              icon: Icons.account_balance_wallet,
               onClicked: () => selectedItem(context, 0),
             ),
-            const SizedBox(height: 16),
             buildMenuItem(
               text: 'Tài khoản',
-              icon: Icons.people,
+              icon: Icons.account_balance,
               onClicked: () => selectedItem(context, 1),
             ),
-            const SizedBox(height: 16),
             buildMenuItem(
               text: 'Biểu đồ',
-              icon: Icons.people,
+              icon: Icons.bar_chart,
               onClicked: () => selectedItem(context, 2),
             ),
-            const SizedBox(height: 16),
             buildMenuItem(
               text: 'Danh mục',
-              icon: Icons.people,
+              icon: Icons.view_list,
               onClicked: () => selectedItem(context, 3),
+            ),
+            buildMenuItem(
+              text: 'Thanh toán thông thường',
+              icon: Icons.paid,
+              onClicked: () => selectedItem(context, 4),
+            ),
+            buildMenuItem(
+              text: 'Nhắc nhở',
+              icon: Icons.notifications,
+              onClicked: () => selectedItem(context, 5),
+            ),
+            buildMenuItem(
+              text: 'Tiền tệ',
+              icon: Icons.euro,
+              onClicked: () => selectedItem(context, 6),
+            ),
+            buildMenuItem(
+              text: 'Cài đặt',
+              icon: Icons.settings,
+              onClicked: () => selectedItem(context, 7),
+            ),
+            buildMenuItem(
+              text: 'Tắt quảng cáo',
+              icon: Icons.app_blocking,
+              onClicked: () => selectedItem(context, 8),
+            ),
+            buildMenuItem(
+              text: 'Chia sẻ với bạn bè',
+              icon: Icons.share,
+              onClicked: () => selectedItem(context, 9),
+            ),
+            buildMenuItem(
+              text: 'Đánh giá ứng dụng',
+              icon: Icons.star,
+              onClicked: () => selectedItem(context, 10),
+            ),
+            buildMenuItem(
+              text: 'Liên hệ với nhóm hỗ trợ',
+              icon: Icons.contact_mail,
+              onClicked: () => selectedItem(context, 11),
             ),
           ],
         ),
@@ -68,40 +103,39 @@ class NavigationDrawerWidget extends StatelessWidget {
       InkWell(
         onTap: onClicked,
         child: Container(
-          padding: padding.add(EdgeInsets.symmetric(vertical: 40)),
+          padding: padding.add(const EdgeInsets.symmetric(vertical: 16)),
           child: Row(children: [
             CircleAvatar(
               radius: 30,
               backgroundImage: AssetImage(urlImage),
             ),
-            SizedBox(
-              width: 20,
+            const SizedBox(
+              width: 16,
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  name,
-                  style: TextStyle(fontSize: 20, color: Colors.white),
-                ),
+                TitleText1(
+                    text: name,
+                    fontFamily: 'Inter',
+                    fontSize: 16,
+                    fontWeight: FontWeight.normal,
+                    r: 255,
+                    g: 255,
+                    b: 255),
                 const SizedBox(
                   height: 4,
                 ),
-                Text(
-                  balance,
-                  style: TextStyle(fontSize: 14, color: Colors.white),
-                )
+                TitleText1(
+                    text: balance,
+                    fontFamily: 'Inter',
+                    fontSize: 16,
+                    fontWeight: FontWeight.normal,
+                    r: 255,
+                    g: 255,
+                    b: 255),
               ],
             ),
-            Spacer(),
-            CircleAvatar(
-              radius: 24,
-              backgroundColor: Color.fromRGBO(30, 60, 168, 1),
-              child: Icon(
-                Icons.add_comment_outlined,
-                color: Colors.white,
-              ),
-            )
           ]),
         ),
       );
@@ -119,7 +153,12 @@ class NavigationDrawerWidget extends StatelessWidget {
         icon,
         color: color,
       ),
-      title: Text(text, style: TextStyle(color: color)),
+      title: Text(text,
+          style: TextStyle(
+              color: color,
+              fontFamily: 'Inter',
+              fontWeight: FontWeight.normal,
+              fontSize: 16)),
       hoverColor: hoverColor,
       onTap: onClicked,
     );
@@ -129,6 +168,61 @@ class NavigationDrawerWidget extends StatelessWidget {
     Navigator.of(context).pop();
     switch (index) {
       case 0:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => PeoplePage(),
+        ));
+        break;
+      case 1:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => PeoplePage(),
+        ));
+        break;
+      case 2:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => PeoplePage(),
+        ));
+        break;
+      case 3:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => PeoplePage(),
+        ));
+        break;
+      case 4:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => PeoplePage(),
+        ));
+        break;
+      case 5:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => PeoplePage(),
+        ));
+        break;
+      case 6:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => PeoplePage(),
+        ));
+        break;
+      case 7:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => PeoplePage(),
+        ));
+        break;
+      case 8:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => PeoplePage(),
+        ));
+        break;
+      case 9:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => PeoplePage(),
+        ));
+        break;
+      case 10:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => PeoplePage(),
+        ));
+        break;
+      case 11:
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => PeoplePage(),
         ));
