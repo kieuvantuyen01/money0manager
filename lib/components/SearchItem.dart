@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CustomSearchDelegate extends SearchDelegate {
   List<String> searchItem = [
-    'King doanh',
+    'Kinh doanh',
     'Giải trí',
     'Đi lại',
     'Học tập',

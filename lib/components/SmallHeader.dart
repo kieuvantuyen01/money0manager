@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../screens/Reminder.dart';
 import 'TitleText1.dart';
 
 class SmallHeader extends StatelessWidget with PreferredSizeWidget{
@@ -16,7 +17,6 @@ class SmallHeader extends StatelessWidget with PreferredSizeWidget{
         child: TitleText1(text: this.title, fontFamily: 'Inter', fontSize: 25, fontWeight: FontWeight.bold, r: 255, g: 255, b: 255),
       ),
       backgroundColor: Colors.transparent,
-      // toolbarHeight: 500,
       elevation: 0.0,
       flexibleSpace: Container(
         decoration: BoxDecoration(
@@ -33,12 +33,26 @@ class SmallHeader extends StatelessWidget with PreferredSizeWidget{
           ),
         ),
       ),
+
       leading: IconButton(
         padding: EdgeInsets.only(left: 32, top: 10),
         iconSize: 30,
         alignment: Alignment.center,
         icon: this.icon,
-        onPressed: () => {},
+        onPressed: () => {
+          // Trường hợp là icon back
+          if (this.icon.toString() == 'Icon(IconData(U+0E793))') {
+            Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => Reminder(title: 'Nhắc nhở'))),
+          }
+          // Trường hợp là icon menu
+          else if (this.icon.toString() == 'Icon(IconData(U+0E3DC))') {
+            Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Reminder(title: 'Tạo lời nhắc'))),
+          }
+        },
       ),
     );
   }

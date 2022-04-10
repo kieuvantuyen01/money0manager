@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import '../components/PopUpRatingApp.dart';
+import '../components/ExpenseTabBar.dart';
+import '../components/InComeTabBar.dart';
 import '../components/PopUpNotification1.dart';
 import '../components/SearchItem.dart';
 import '../components/TitleText1.dart';
+import 'package:share/share.dart';
 
 class ExchangeMoney extends StatelessWidget {
   ExchangeMoney({Key? key, required this.title}) : super(key: key);
@@ -10,9 +14,19 @@ class ExchangeMoney extends StatelessWidget {
   void _showDialog(BuildContext context) {
     showDialog(
       context: context,
-      builder: (BuildContext context) {
+      builder: (context) {
         return PopUpNotification1();
       },
+    );
+  }
+
+  void _showRatingDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: true, // set to false if you want to force a rating
+      builder: (context) {
+        return PopUpRatingApp();
+      }
     );
   }
 
@@ -21,6 +35,7 @@ class ExchangeMoney extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           centerTitle: true,
           title: Padding(
@@ -35,7 +50,9 @@ class ExchangeMoney extends StatelessWidget {
             iconSize: 30,
             icon: Icon(Icons.menu),
             tooltip: 'Menu',
-            onPressed: () => {},
+            onPressed: () => {
+              Share.share('https://play.google.com/store/apps/details?id=ru.innim.my_finance')
+            },
           ),
           actions: <Widget>[
             IconButton(
@@ -78,8 +95,7 @@ class ExchangeMoney extends StatelessWidget {
           bottom: TabBar(
             indicatorColor: Colors.white,
             indicatorWeight: 3,
-            indicatorPadding:
-                EdgeInsets.only(left: 50.0, right: 50.0, bottom: 2.0),
+            indicatorPadding: EdgeInsets.only(left: 50.0, right: 50.0, bottom: 2.0),
             padding: EdgeInsets.only(bottom: 20.0),
             tabs: [
               Tab(
@@ -93,8 +109,12 @@ class ExchangeMoney extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            Center(child: TitleText1(text: 'Chi phí', fontFamily: 'Inter', fontSize: 18, fontWeight: FontWeight.normal, r: 0, g: 0, b: 0)),
-            Center(child: TitleText1(text: 'Thu nhập', fontFamily: 'Inter', fontSize: 18, fontWeight: FontWeight.normal, r: 0, g: 0, b: 0)),
+            Center(
+              child: ExpenseTabBar(),
+            ),
+            Center(
+              child: InComeTabBar(),
+            ),
           ],
         ),
       ),

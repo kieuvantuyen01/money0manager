@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../screens/Reminder.dart';
+import 'TitleText1.dart';
 
 class ButtonPrimary extends StatelessWidget {
   ButtonPrimary(
@@ -9,13 +11,15 @@ class ButtonPrimary extends StatelessWidget {
       required this.b,
       required this.radius,
       required this.weight,
-      required this.height})
+      required this.height,
+        required this.screenName})
       : super(key: key);
 
   String text;
   int r, g, b;
   double radius;
   double height, weight;
+  String screenName;
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +29,13 @@ class ButtonPrimary extends StatelessWidget {
       height: this.height,
       child: RaisedButton(
         onPressed: () {
-          print('Raise button');
+          if (this.screenName == 'CreateReminder') {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Reminder(title: 'Nhắc nhở')));
+          }
         },
-        child: Text(
-          this.text,
-          style:
-              TextStyle(fontFamily: 'Inter', fontSize: 18, color: Colors.white),
-        ),
+        child: TitleText1(text: this.text, fontFamily: 'Inter', fontSize: 18, fontWeight: FontWeight.bold, r: 255, g: 255, b: 255),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(this.radius)),
         ),

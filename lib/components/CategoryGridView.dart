@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'CategoryVWidget.dart';
-
 import 'Category.dart';
 
 class CategoryGridView extends StatelessWidget {

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../components/ButtonPrimary.dart';
+import '../components/Category.dart';
+import '../components/CategoryVWidget.dart';
 import '../components/TitleText1.dart';
 
 class Account extends StatelessWidget {
@@ -54,54 +56,22 @@ class Account extends StatelessWidget {
             ),
           ),
           Row(children: [
-            Flexible(
+            Center(
               child: Padding(
                 padding: EdgeInsets.only(left: 80, top: 15),
-                child: SizedBox(
-                  width: 55,
-                  height: 55,
-                  child: RaisedButton(
-                    onPressed: () {
-                      print('Raise button');
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.only(right: 1000),
-                      child: Icon(Icons.history, size: 30),
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                    ),
-                    color: Color.fromARGB(255, 70, 191, 140),
-                  ),
-                ),
+                child: CategoryVWidget(category: Category('⟲', 'Lịch sử', '0xFF46BF8C'), iconColor: '0xFFFFFFFF'),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(left: 100, top: 15),
-              child: SizedBox(
-                width: 52,
-                height: 52,
-                child: RaisedButton(
-                  onPressed: () {
-                    print('Raise button');
-                  },
-                  child: Text(
-                    '⇄',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontFamily: 'Inter', fontSize: 35, color: Colors.white),
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                  ),
-                  color: Color.fromARGB(255, 70, 191, 140),
-                ),
+            Center(
+              child: Padding(
+                padding: EdgeInsets.only(left: 80, top: 15),
+                child: CategoryVWidget(category: Category('⇄', 'Chuyển tiền', '0xFF46BF8C'), iconColor: '0xFFFFFFFF'),
               ),
             ),
           ]),
           Center(
             child: Padding(
-              padding: EdgeInsets.only(top: 50),
+              padding: EdgeInsets.only(top: 30),
               child: SizedBox(
                 width: 344,
                 height: 53,
@@ -126,7 +96,7 @@ class Account extends StatelessWidget {
               child: SizedBox (
                 width: 93,
                 height: 51,
-                child: ButtonPrimary(text: 'Thêm', r: 35, g: 111, b: 87, radius: 30, weight: 109, height: 51,),
+                child: ButtonPrimary(text: 'Thêm', r: 35, g: 111, b: 87, radius: 30, weight: 109, height: 51, screenName: 'Account'),
               ),
             ),
           ),

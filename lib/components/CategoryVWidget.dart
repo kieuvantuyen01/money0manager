@@ -53,7 +53,7 @@ class CategoryVWidget extends StatelessWidget {
                           icon: this.category.icon,
                           bgColor: this.category.bgColor,
                           iconColor: this.iconColor,
-                          size: this.iconSize,
+                          buttonSize: this.iconSize,
                           borderRadius: this.iconBorderRadius,
                         ),
                       ))
