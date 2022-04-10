@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:left_pane/components/TitleText1.dart';
+import 'package:money_manager/components/TitleText1.dart';
 
 class CreateButton extends StatelessWidget {
   final String title;

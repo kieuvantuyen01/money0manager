@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:left_pane/components/SmallHeader.dart';
-import 'package:left_pane/components/TitleText1.dart';
+import 'package:money_manager/components/SmallHeader.dart';
+import 'package:money_manager/components/TitleText1.dart';
 
 import '../components/CreateButton.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:left_pane/components/TitleText1.dart';
+import 'package:money_manager/components/TitleText1.dart';
 import '../components/SmallHeader.dart';
 import '../components/InputText1.dart';
 import '../components/ButtonPrimary.dart';

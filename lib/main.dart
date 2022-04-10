@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:left_pane/components/ButtonWidget.dart';
-import 'package:left_pane/components/NavigationDrawerWidget.dart';
+import 'package:money_manager/components/ButtonWidget.dart';
+import 'package:money_manager/components/NavigationDrawerWidget.dart';
 
 void main() {
   runApp(const MyApp());

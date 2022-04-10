@@ -2,9 +2,9 @@ import 'dart:ui';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:left_pane/components/TitleText1.dart';
-import 'package:left_pane/screen/People.dart';
-import 'package:left_pane/screen/User.dart';
+import 'package:money_manager/components/TitleText1.dart';
+import 'package:money_manager/screen/People.dart';
+import 'package:money_manager/screen/User.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
   final padding = EdgeInsets.symmetric(horizontal: 16);
