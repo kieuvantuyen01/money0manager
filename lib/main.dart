@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
 import 'package:money_manager/components/ButtonWidget.dart';
 import 'package:money_manager/components/NavigationDrawerWidget.dart';
+import 'package:money_manager/screens/HomeScreen.dart';
+import 'components/Category.dart';
+import 'screens/Currency.dart';
+import 'screens/RegisterScreen.dart';
+import 'screens/ContactScreen.dart';
+import 'screens/Reminder.dart';
+import 'helpers/ChangeLanguage.dart';
+import 'screens/CategoryScreen.dart';
+import 'screens/CreateReminder.dart';
+import 'screens/ExchangeMoney.dart';
+import 'screens/Account.dart';
+import 'screens/ColumnChart.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   runApp(const MyApp());
@@ -64,21 +76,8 @@ class _MainPageState extends State<MainPage> {
         ),
       );
 }
-=======
-import 'package:money_manager/screens/HomeScreen.dart';
-import 'components/Category.dart';
-import 'screens/Currency.dart';
-import 'screens/RegisterScreen.dart';
-import 'screens/ContactScreen.dart';
-import 'screens/Reminder.dart';
-import 'helpers/ChangeLanguage.dart';
-import 'screens/CategoryScreen.dart';
-import 'screens/CreateReminder.dart';
-import 'screens/ExchangeMoney.dart';
-import 'screens/Account.dart';
-import 'screens/ColumnChart.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
+/*
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -101,4 +100,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
->>>>>>> 52092fb06b347e91ccc14dcf5cce0439e4a6f6fc
+*/

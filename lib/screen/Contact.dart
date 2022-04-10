@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:money_manager/components/TitleText1.dart';
 import '../components/SmallHeader.dart';
 import '../components/InputText1.dart';
 import '../components/ButtonPrimary.dart';
+import '../components/TitleText1.dart';
 
 class Contact extends StatelessWidget {
   Contact({Key? key}) : super(key: key);
@@ -17,7 +17,7 @@ class Contact extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(left: 16, right: 16, top: 60),
             child:
-            InputText1(hintText: '', labelText: 'Chủ đề thư', maxLines: 1),
+                InputText1(hintText: '', labelText: 'Chủ đề thư', maxLines: 1),
           ),
           Padding(
             padding: EdgeInsets.only(left: 16, right: 16, top: 20),
@@ -36,8 +36,7 @@ class Contact extends StatelessWidget {
                     r: 0,
                     g: 0,
                     b: 0),
-              )
-          ),
+              )),
           Padding(
             padding: EdgeInsets.only(left: 16, right: 16, top: 20),
             child: InputText1(
@@ -56,6 +55,7 @@ class Contact extends StatelessWidget {
                 radius: 30,
                 weight: 343,
                 height: 51,
+                screenName: 'ContactScreen',
               ),
             ),
           ),

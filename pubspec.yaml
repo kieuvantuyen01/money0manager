@@ -43,6 +43,7 @@ dependencies:
   rating_dialog: ^2.0.3
   launch_review: ^3.0.1
   share: ^2.0.4
+  path_drawing: ^1.0.0
 
 dev_dependencies:
   flutter_test:
