@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:money_manager/screens/HomeScreen.dart';
+import 'package:money_manager/screens/LoginScreen.dart';
 import 'components/Category.dart';
 import 'screens/Currency.dart';
 import 'screens/RegisterScreen.dart';
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         const Locale('en', ''),
         const Locale('vi', ''),
       ],
-      home: HomeScreen(title: 'title'),
+      home: LoginScreen(title: 'title'),
     );
   }
 }

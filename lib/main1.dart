@@ -9,8 +9,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 
+import 'components/TitleText1.dart';
 import 'firebase_options.dart';
-import 'src/authentication.dart';
+import 'screens/Authentication.dart';
 import 'src/widgets.dart';
 
 void main() {
@@ -29,9 +30,9 @@ class App extends StatelessWidget {
       title: 'Firebase Meetup',
       theme: ThemeData(
         buttonTheme: Theme.of(context).buttonTheme.copyWith(
-              highlightColor: Colors.deepPurple,
+              highlightColor: Color.fromARGB(255, 35, 111, 87),
             ),
-        primarySwatch: Colors.deepPurple,
+        primarySwatch: Colors.teal,
         textTheme: GoogleFonts.robotoTextTheme(
           Theme.of(context).textTheme,
         ),
@@ -47,64 +48,15 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Firebase Meetup'),
-      ),
-      body: ListView(
-        children: <Widget>[
-          const SizedBox(height: 8),
-          const IconAndDetail(Icons.calendar_today, 'October 30'),
-          const IconAndDetail(Icons.location_city, 'San Francisco'),
-          Consumer<ApplicationState>(
-            builder: (context, appState, _) => Authentication(
-              email: appState.email,
-              loginState: appState.loginState,
-              startLoginFlow: appState.startLoginFlow,
-              verifyEmail: appState.verifyEmail,
-              signInWithEmailAndPassword: appState.signInWithEmailAndPassword,
-              cancelRegistration: appState.cancelRegistration,
-              registerAccount: appState.registerAccount,
-              signOut: appState.signOut,
-            ),
-          ),
-          const Divider(
-            height: 8,
-            thickness: 1,
-            indent: 8,
-            endIndent: 8,
-            color: Colors.grey,
-          ),
-          const Header("What we'll be doing"),
-          const Paragraph(
-            'Join us for a day full of Firebase Workshops and Pizza!',
-          ),
-          Consumer<ApplicationState>(
-            builder: (context, appState, _) => Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (appState.attendees >= 2)
-                  Paragraph('${appState.attendees} people going')
-                else if (appState.attendees == 1)
-                  const Paragraph('1 person going')
-                else
-                  const Paragraph('No one going'),
-                if (appState.loginState == ApplicationLoginState.loggedIn) ...[
-                  YesNoSelection(
-                    state: appState.attending,
-                    onSelection: (attending) => appState.attending = attending,
-                  ),
-                  const Header('Discussion'),
-                  GuestBook(
-                    addMessage: (message) =>
-                        appState.addMessageToGuestBook(message),
-                    messages: appState.guestBookMessages,
-                  ),
-                ],
-              ],
-            ),
-          ),
-        ],
+    return Consumer<ApplicationState>(
+      builder: (context, appState, _) => Authentication(
+        email: appState.email,
+        loginState: appState.loginState,
+        verifyEmail: appState.verifyEmail,
+        signInWithEmailAndPassword: appState.signInWithEmailAndPassword,
+        cancelRegistration: appState.cancelRegistration,
+        registerAccount: appState.registerAccount,
+        signOut: appState.signOut,
       ),
     );
   }
@@ -207,11 +159,6 @@ class ApplicationState extends ChangeNotifier {
     }
   }
 
-  void startLoginFlow() {
-    _loginState = ApplicationLoginState.emailAddress;
-    notifyListeners();
-  }
-
   Future<void> verifyEmail(
     String email,
     void Function(FirebaseAuthException e) errorCallback,
@@ -247,7 +194,7 @@ class ApplicationState extends ChangeNotifier {
   }
 
   void cancelRegistration() {
-    _loginState = ApplicationLoginState.emailAddress;
+    _loginState = ApplicationLoginState.loggedOut;
     notifyListeners();
   }
 
@@ -336,21 +283,21 @@ class _GuestBookState extends State<GuestBook> {
                   ),
                 ),
                 const SizedBox(width: 8),
-                StyledButton(
-                  onPressed: () async {
-                    if (_formKey.currentState!.validate()) {
-                      await widget.addMessage(_controller.text);
-                      _controller.clear();
-                    }
-                  },
-                  child: Row(
-                    children: const [
-                      Icon(Icons.send),
-                      SizedBox(width: 4),
-                      Text('SEND'),
-                    ],
-                  ),
-                ),
+                // StyledButton(
+                //   onPressed: () async {
+                //     if (_formKey.currentState!.validate()) {
+                //       await widget.addMessage(_controller.text);
+                //       _controller.clear();
+                //     }
+                //   },
+                //   child: Row(
+                //     children: const [
+                //       Icon(Icons.send),
+                //       SizedBox(width: 4),
+                //       Text('SEND'),
+                //     ],
+                //   ),
+                // ),
               ],
             ),
           ),
@@ -414,15 +361,15 @@ class YesNoSelection extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Row(
             children: [
-              StyledButton(
-                onPressed: () => onSelection(Attending.yes),
-                child: const Text('YES'),
-              ),
-              const SizedBox(width: 8),
-              StyledButton(
-                onPressed: () => onSelection(Attending.no),
-                child: const Text('NO'),
-              ),
+              // StyledButton(
+              //   onPressed: () => onSelection(Attending.yes),
+              //   child: const Text('YES'),
+              // ),
+              // const SizedBox(width: 8),
+              // StyledButton(
+              //   onPressed: () => onSelection(Attending.no),
+              //   child: const Text('NO'),
+              // ),
             ],
           ),
         );

@@ -45,6 +45,7 @@ class InputText1 extends StatelessWidget {
         filled: true,
       ),
       maxLines: this.maxLines,
+
     );
   }
 }

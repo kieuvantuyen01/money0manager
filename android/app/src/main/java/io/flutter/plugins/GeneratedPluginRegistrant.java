@@ -51,9 +51,19 @@ public final class GeneratedPluginRegistrant {
       Log.e(TAG, "Error registering plugin google_sign_in, io.flutter.plugins.googlesignin.GoogleSignInPlugin", e);
     }
     try {
+      flutterEngine.getPlugins().add(new com.iyaffle.launchreview.LaunchReviewPlugin());
+    } catch(Exception e) {
+      Log.e(TAG, "Error registering plugin launch_review, com.iyaffle.launchreview.LaunchReviewPlugin", e);
+    }
+    try {
       flutterEngine.getPlugins().add(new io.flutter.plugins.pathprovider.PathProviderPlugin());
     } catch(Exception e) {
       Log.e(TAG, "Error registering plugin path_provider_android, io.flutter.plugins.pathprovider.PathProviderPlugin", e);
+    }
+    try {
+      flutterEngine.getPlugins().add(new io.flutter.plugins.share.SharePlugin());
+    } catch(Exception e) {
+      Log.e(TAG, "Error registering plugin share, io.flutter.plugins.share.SharePlugin", e);
     }
     try {
       flutterEngine.getPlugins().add(new com.aboutyou.dart_packages.sign_in_with_apple.SignInWithApplePlugin());

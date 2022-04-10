@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class Header extends StatelessWidget {
   const Header(this.heading);
+
   final String heading;
 
   @override
@@ -16,7 +17,9 @@ class Header extends StatelessWidget {
 
 class Paragraph extends StatelessWidget {
   const Paragraph(this.content);
+
   final String content;
+
   @override
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -29,6 +32,7 @@ class Paragraph extends StatelessWidget {
 
 class IconAndDetail extends StatelessWidget {
   const IconAndDetail(this.icon, this.detail);
+
   final IconData icon;
   final String detail;
 
@@ -48,16 +52,92 @@ class IconAndDetail extends StatelessWidget {
       );
 }
 
-class StyledButton extends StatelessWidget {
-  const StyledButton({required this.child, required this.onPressed});
+class CommonStyle {
+  static InputDecoration textFieldStyle(
+      {required String labelText, required String hintText}) {
+    return InputDecoration(
+      hintText: hintText,
+      labelText: labelText,
+      // labelStyle: TextStyle(
+      //   fontSize: 18,
+      //   fontFamily: 'Inter',
+      //   color: Colors.black,
+      // ),
+      // hintStyle: TextStyle(
+      //   fontSize: 18,
+      //   fontFamily: 'Inter',
+      //   color: Color.fromARGB(255, 189, 189, 189),
+      // ),
+      border: OutlineInputBorder(),
+      enabledBorder: const OutlineInputBorder(
+        borderSide: const BorderSide(
+            color: Color.fromARGB(255, 189, 189, 189), width: 1.0),
+      ),
+      focusedBorder: const OutlineInputBorder(
+        borderSide: const BorderSide(
+            color: Color.fromARGB(255, 35, 111, 87), width: 2.0),
+      ),
+      // fillColor: Color.fromARGB(255, 232, 232, 232),
+      // filled: true,
+    );
+  }
+
+  static InputDecoration passwordFieldStyle(
+      {required String labelText,
+      required String hintText,
+      required Function() iconVisibilityOnPressed}) {
+    return InputDecoration(
+      hintText: hintText,
+      labelText: labelText,
+      suffixIcon: IconButton(
+        // iconSize: 30,
+        icon: Icon(Icons.visibility),
+        color: Color.fromARGB(255, 35, 111, 87),
+        onPressed: iconVisibilityOnPressed,
+      ),
+      border: OutlineInputBorder(),
+      enabledBorder: const OutlineInputBorder(
+        borderSide: const BorderSide(
+            color: Color.fromARGB(255, 189, 189, 189), width: 1.0),
+      ),
+      focusedBorder: const OutlineInputBorder(
+        borderSide: const BorderSide(
+            color: Color.fromARGB(255, 35, 111, 87), width: 2.0),
+      ),
+    );
+  }
+}
+
+class StyledTextButton extends StatelessWidget {
+  final Widget child;
+  final void Function() onPressed;
+
+  const StyledTextButton(
+      {Key? key, required this.onPressed, required this.child})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) =>
+      TextButton(onPressed: onPressed, child: child);
+}
+
+class StyledElevatedButton extends StatelessWidget {
+  const StyledElevatedButton(
+      {required this.child,
+      required this.onPressed,
+      required this.width,
+      required this.height});
+
+  final double width, height;
   final Widget child;
   final void Function() onPressed;
 
   @override
-  Widget build(BuildContext context) => OutlinedButton(
-        style: OutlinedButton.styleFrom(
-            side: const BorderSide(color: Colors.deepPurple)),
-        onPressed: onPressed,
-        child: child,
-      );
+  Widget build(BuildContext context) => ElevatedButton(
+      style: ElevatedButton.styleFrom(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+          minimumSize: Size(width, height)),
+      onPressed: onPressed,
+      child: child);
 }
