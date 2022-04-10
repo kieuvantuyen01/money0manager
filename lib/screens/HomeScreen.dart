@@ -1,24 +1,29 @@
 import 'package:flutter/material.dart';
 import '../components/BudgetTaskBar.dart';
-import '../components/PopUpRatingApp.dart';
-import '../components/ExpenseTabBar.dart';
-import '../components/InComeTabBar.dart';
-import '../components/PopUpNotification1.dart';
-import '../components/SearchItem.dart';
+import '../components/NavigationDrawerWidget.dart';
 import '../components/TitleText1.dart';
-import 'package:share/share.dart';
-
 import 'ExchangeMoney.dart';
 
-class HomeScreen extends StatelessWidget {
-  HomeScreen({Key? key, required this.title}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  final String title;
+  HomeScreen(
+      {Key? key, required this.title,}) : super(key: key);
+
+  @override
+  HomeScreenState createState() => HomeScreenState(this.title);
+}
+class HomeScreenState extends State<HomeScreen> {
+  HomeScreenState(this.title);
   final String title;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      drawer: NavigationDrawerWidget(),
+      // drawer: NavigationDrawerWidget(),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         centerTitle: true,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -26,12 +31,16 @@ class HomeScreen extends StatelessWidget {
             Row(
               // mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                IconButton(
-                  padding: EdgeInsets.only(left: 10, bottom: 10),
-                  iconSize: 30,
-                  icon: Icon(Icons.menu),
-                  tooltip: 'Menu',
-                  onPressed: () => {},
+                Builder(
+                  builder: (context) => Container(
+                    child: IconButton(
+                      padding: EdgeInsets.only(left: 10, bottom: 10),
+                      iconSize: 30,
+                      icon: Icon(Icons.menu),
+                      tooltip: 'Menu',
+                      onPressed: () => {Scaffold.of(context).openDrawer()},
+                    ),
+                  ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(left: 80, bottom: 10),
