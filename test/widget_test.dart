@@ -8,12 +8,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+<<<<<<< HEAD
 import 'package:money_manager/main.dart';
+=======
+import 'package:money_manager/main1.dart';
+>>>>>>> 52092fb06b347e91ccc14dcf5cce0439e4a6f6fc
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
+<<<<<<< HEAD
     await tester.pumpWidget(const MyApp());
+=======
+    // await tester.pumpWidget();
+>>>>>>> 52092fb06b347e91ccc14dcf5cce0439e4a6f6fc
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

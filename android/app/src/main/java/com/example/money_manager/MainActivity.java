@@ -1,4 +1,4 @@
-package com.example.left_pane;
+package com.example.money_manager;
 
 import io.flutter.embedding.android.FlutterActivity;
 

@@ -1,29 +1,54 @@
 import 'package:flutter/material.dart';
 
-class InputText1 extends StatelessWidget {
-  InputText1(
+class  PasswordTextField extends StatefulWidget {
+
+  PasswordTextField(
       {Key? key,
-<<<<<<< HEAD
         required this.hintText,
         required this.labelText,
-        required this.maxLines})
-=======
-      required this.hintText,
-      required this.labelText,
-      required this.maxLines})
->>>>>>> 52092fb06b347e91ccc14dcf5cce0439e4a6f6fc
+        required this.maxLines,
+        this.isHiddenPassword = true})
       : super(key: key);
 
   String hintText, labelText;
   int maxLines;
+  bool isHiddenPassword;
+  @override
+  PasswordTextFieldState createState() =>  PasswordTextFieldState(this.hintText, this.labelText, this.maxLines, this.isHiddenPassword);
+}
+
+class  PasswordTextFieldState extends State< PasswordTextField> {
+  PasswordTextFieldState(this.hintText, this.labelText, this.maxLines, this.isHiddenPassword);
+
+  String hintText, labelText;
+  int maxLines;
+  bool isHiddenPassword;
+
+  void _tooglePasswordView() {
+    if (this.isHiddenPassword == true) {
+      this.isHiddenPassword = false;
+    } else {
+      this.isHiddenPassword = true;
+    }
+   setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return TextField(
+      obscureText: this.isHiddenPassword,
       decoration: InputDecoration(
         hintText: this.hintText,
         labelText: this.labelText,
+        suffixIcon: IconButton(
+          // iconSize: 30,
+          icon: Icon(Icons.visibility),
+          color: Color.fromARGB(255, 35, 111, 87),
+          onPressed: () => {
+            _tooglePasswordView(),
+          },
+        ),
         labelStyle: TextStyle(
           fontSize: 18,
           fontFamily: 'Inter',
@@ -41,15 +66,12 @@ class InputText1 extends StatelessWidget {
               width: 1.0
           ),
         ),
-<<<<<<< HEAD
-=======
         focusedBorder: const OutlineInputBorder(
           borderSide: const BorderSide(
-              color: Color.fromARGB(255, 35, 111, 87),
-              width: 2.0
+            color: Color.fromARGB(255, 35, 111, 87),
+            width: 2.0
           ),
         ),
->>>>>>> 52092fb06b347e91ccc14dcf5cce0439e4a6f6fc
         fillColor: Color.fromARGB(255, 232, 232, 232),
         filled: true,
       ),
