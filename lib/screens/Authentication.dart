@@ -241,7 +241,7 @@ class _EmailFormState extends State<EmailForm> {
                           widget.callback(_controller.text);
                         }
                       },
-                      child: const Text('Đăng nhập'),
+                      child: const Text('Tiếp tục'),
                     ),
                   ),
                 ],
@@ -319,102 +319,163 @@ class _RegisterFormState extends State<RegisterForm> {
   final _emailController = TextEditingController();
   final _displayNameController = TextEditingController();
   final _passwordController = TextEditingController();
+  late bool _passwordVisible;
 
   @override
   void initState() {
     super.initState();
     _emailController.text = widget.email;
+    _passwordVisible = false;
+  }
+
+  void _setVisible() {
+    setState(() {
+      _passwordVisible = !_passwordVisible;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Header('Create account'),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: TextFormField(
-                    controller: _emailController,
-                    decoration: CommonStyle.textFieldStyle(
-                        labelText: 'Email', hintText: 'Nhập email của bạn'),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Enter your email address to continue';
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: TextFormField(
-                    controller: _displayNameController,
-                    decoration: CommonStyle.textFieldStyle(
-                        labelText: 'Họ và tên', hintText: 'Nhập tên hiển thị'),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Enter your account name';
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: TextFormField(
-                    controller: _passwordController,
-                    decoration: const InputDecoration(
-                      hintText: 'Password',
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        centerTitle: true,
+        title: Padding(
+          padding: EdgeInsets.only(top: 50),
+          child: TitleText1(
+              text: 'Đăng ký',
+              fontFamily: 'Inter',
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+              r: 0,
+              g: 0,
+              b: 0),
+        ),
+        backgroundColor: Colors.transparent,
+        toolbarHeight: 100,
+        elevation: 0.0,
+      ),
+      body: Column(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    child: TextFormField(
+                      controller: _emailController,
+                      decoration: CommonStyle.textFieldStyle(
+                          labelText: 'Email', hintText: 'Nhập email của bạn'),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Nhập địa chỉ email của bạn để tiếp tục';
+                        }
+                        return null;
+                      },
                     ),
-                    obscureText: true,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Enter your password';
-                      }
-                      return null;
-                    },
                   ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    child: TextFormField(
+                      controller: _displayNameController,
+                      decoration: CommonStyle.textFieldStyle(
+                          labelText: 'Họ và tên', hintText: 'Nhập họ và tên'),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return null;
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    child: TextFormField(
+                      controller: _passwordController,
+                      decoration: CommonStyle.passwordFieldStyle(
+                          labelText: 'Mật khẩu',
+                          hintText: 'Nhập mật khẩu',
+                          iconVisibilityOnPressed: _setVisible),
+                      obscureText: !_passwordVisible,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Enter your password';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 24),
+                    child: StyledElevatedButton(
+                      width: 343,
+                      height: 51,
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate()) {
+                          widget.registerAccount(
+                            _emailController.text,
+                            _displayNameController.text,
+                            _passwordController.text,
+                          );
+                        }
+                      },
+                      child: const Text('Đăng ký'),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Padding(
+              padding: EdgeInsets.only(top: 15),
+              child: StyledTextButton(
+                  onPressed: () async {},
+                  child: Text(
+                    'Quên mật khẩu?',
+                    style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontSize: 17,
+                      fontWeight: FontWeight.normal,
+                      // color: Color.fromARGB(255, 35, 111, 87),
+                    ),
+                  ))),
+          Padding(
+            padding: EdgeInsets.only(top: 80),
+            child: TitleText1(
+                text: 'Đăng nhập với',
+                fontFamily: 'Inter',
+                fontSize: 18,
+                fontWeight: FontWeight.normal,
+                r: 0,
+                g: 0,
+                b: 0),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                IconButton(
+                  padding: EdgeInsets.only(top: 10),
+                  iconSize: 60,
+                  icon: Image.asset("assets/fb.png"),
+                  onPressed: () => {},
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      TextButton(
-                        onPressed: widget.cancel,
-                        child: const Text('CANCEL'),
-                      ),
-                      const SizedBox(width: 16),
-                      StyledElevatedButton(
-                        width: 343,
-                        height: 51,
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            widget.registerAccount(
-                              _emailController.text,
-                              _displayNameController.text,
-                              _passwordController.text,
-                            );
-                          }
-                        },
-                        child: const Text('SAVE'),
-                      ),
-                      const SizedBox(width: 30),
-                    ],
-                  ),
+                IconButton(
+                  padding: EdgeInsets.only(left: 30, top: 10),
+                  iconSize: 60,
+                  icon: Image.asset("assets/google.png"),
+                  onPressed: () => {},
                 ),
               ],
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
