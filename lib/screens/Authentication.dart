@@ -30,21 +30,21 @@ class Authentication extends StatelessWidget {
   final ApplicationLoginState loginState;
   final String? email;
   final void Function(
-    String email,
-    void Function(Exception e) error,
-  ) verifyEmail;
+      String email,
+      void Function(Exception e) error,
+      ) verifyEmail;
   final void Function(
-    String email,
-    String password,
-    void Function(Exception e) error,
-  ) signInWithEmailAndPassword;
+      String email,
+      String password,
+      void Function(Exception e) error,
+      ) signInWithEmailAndPassword;
   final void Function() cancelRegistration;
   final void Function(
-    String email,
-    String displayName,
-    String password,
-    void Function(Exception e) error,
-  ) registerAccount;
+      String email,
+      String displayName,
+      String password,
+      void Function(Exception e) error,
+      ) registerAccount;
   final void Function() signOut;
 
   @override
@@ -52,14 +52,19 @@ class Authentication extends StatelessWidget {
     switch (loginState) {
       case ApplicationLoginState.loggedOut:
         return EmailForm(
-            callback: (email) => verifyEmail(
-                email, (e) => _showErrorDialog(context, 'Invalid email', e)));
+            callback: (email) =>
+                verifyEmail(
+                    email, (e) =>
+                    _showErrorDialog(context, 'Invalid email', e)));
       case ApplicationLoginState.password:
         return PasswordForm(
           email: email!,
+          cancel: () {
+            cancelRegistration();
+          },
           login: (email, password) {
             signInWithEmailAndPassword(email, password,
-                (e) => _showErrorDialog(context, 'Failed to sign in', e));
+                    (e) => _showErrorDialog(context, 'Failed to sign in', e));
           },
         );
       case ApplicationLoginState.register:
@@ -68,16 +73,14 @@ class Authentication extends StatelessWidget {
           cancel: () {
             cancelRegistration();
           },
-          registerAccount: (
-            email,
-            displayName,
-            password,
-          ) {
+          registerAccount: (email,
+              displayName,
+              password,) {
             registerAccount(
                 email,
                 displayName,
                 password,
-                (e) =>
+                    (e) =>
                     _showErrorDialog(context, 'Failed to create account', e));
           },
         );
@@ -112,7 +115,7 @@ class Authentication extends StatelessWidget {
 
     // Obtain the auth details from the request
     final GoogleSignInAuthentication? googleAuth =
-        await googleUser?.authentication;
+    await googleUser?.authentication;
 
     // Create a new credential
     final credential = GoogleAuthProvider.credential(
@@ -130,7 +133,7 @@ class Authentication extends StatelessWidget {
 
     // Create a credential from the access token
     final OAuthCredential facebookAuthCredential =
-        FacebookAuthProvider.credential(loginResult.accessToken!.token);
+    FacebookAuthProvider.credential(loginResult.accessToken!.token);
 
     // Once signed in, return the UserCredential
     return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
@@ -218,7 +221,8 @@ class _EmailFormState extends State<EmailForm> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
+                    padding:
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
                     child: TextFormField(
                       controller: _controller,
                       decoration: CommonStyle.textFieldStyle(
@@ -309,7 +313,7 @@ class RegisterForm extends StatefulWidget {
 
   final String email;
   final void Function(String email, String displayName, String password)
-      registerAccount;
+  registerAccount;
   final void Function() cancel;
 
   @override
@@ -343,7 +347,7 @@ class _RegisterFormState extends State<RegisterForm> {
       appBar: AppBar(
         centerTitle: true,
         title: Padding(
-          padding: EdgeInsets.only(top: 50),
+          padding: EdgeInsets.zero,
           child: TitleText1(
               text: 'Đăng ký',
               fontFamily: 'Inter',
@@ -356,6 +360,9 @@ class _RegisterFormState extends State<RegisterForm> {
         backgroundColor: Colors.transparent,
         toolbarHeight: 100,
         elevation: 0.0,
+        actions: [
+          StyledTextButton(onPressed: widget.cancel, child: Text('Quay lại'))
+        ],
       ),
       body: Column(
         children: <Widget>[
@@ -367,7 +374,8 @@ class _RegisterFormState extends State<RegisterForm> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
+                    padding:
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
                     child: TextFormField(
                       controller: _emailController,
                       decoration: CommonStyle.textFieldStyle(
@@ -381,7 +389,8 @@ class _RegisterFormState extends State<RegisterForm> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
+                    padding:
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
                     child: TextFormField(
                       controller: _displayNameController,
                       decoration: CommonStyle.textFieldStyle(
@@ -395,7 +404,8 @@ class _RegisterFormState extends State<RegisterForm> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
+                    padding:
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
                     child: TextFormField(
                       controller: _passwordController,
                       decoration: CommonStyle.passwordFieldStyle(
@@ -485,13 +495,12 @@ class _RegisterFormState extends State<RegisterForm> {
 }
 
 class PasswordForm extends StatefulWidget {
-  const PasswordForm({
-    required this.login,
-    required this.email,
-  });
+  const PasswordForm(
+      {required this.login, required this.email, required this.cancel});
 
   final String email;
   final void Function(String email, String password) login;
+  final void Function() cancel;
 
   @override
   _PasswordFormState createState() => _PasswordFormState();
@@ -523,7 +532,7 @@ class _PasswordFormState extends State<PasswordForm> {
       appBar: AppBar(
         centerTitle: true,
         title: Padding(
-          padding: EdgeInsets.only(top: 50),
+          padding: EdgeInsets.zero,
           child: TitleText1(
               text: 'Đăng nhập',
               fontFamily: 'Inter',
@@ -536,6 +545,9 @@ class _PasswordFormState extends State<PasswordForm> {
         backgroundColor: Colors.transparent,
         toolbarHeight: 100,
         elevation: 0.0,
+        actions: [
+          StyledTextButton(onPressed: widget.cancel, child: Text('Quay lại'))
+        ],
       ),
       body: Column(
         children: <Widget>[
@@ -547,7 +559,8 @@ class _PasswordFormState extends State<PasswordForm> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
+                    padding:
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
                     child: TextFormField(
                       controller: _emailController,
                       decoration: CommonStyle.textFieldStyle(
@@ -561,7 +574,8 @@ class _PasswordFormState extends State<PasswordForm> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
+                    padding:
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
                     child: TextFormField(
                       controller: _passwordController,
                       decoration: CommonStyle.passwordFieldStyle(
