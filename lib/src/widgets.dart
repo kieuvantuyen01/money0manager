@@ -121,6 +121,17 @@ class StyledTextButton extends StatelessWidget {
       TextButton(onPressed: onPressed, child: child);
 }
 
+class MyIconButton {
+  static IconButton icon({required String url, required Function() onPressed}) {
+    return IconButton(
+      padding: EdgeInsets.all(0),
+      iconSize: 60,
+      icon: Image.asset(url),
+      onPressed: onPressed,
+    );
+  }
+}
+
 class StyledElevatedButton extends StatelessWidget {
   const StyledElevatedButton(
       {required this.child,

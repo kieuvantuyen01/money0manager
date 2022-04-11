@@ -106,7 +106,7 @@ class Authentication extends StatelessWidget {
     }
   }
 
-  Future<UserCredential> signInWithGoogle() async {
+  static Future<UserCredential> signInWithGoogle() async {
     // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
@@ -124,7 +124,7 @@ class Authentication extends StatelessWidget {
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
-  Future<UserCredential> signInWithFacebook() async {
+  static Future<UserCredential> signInWithFacebook() async {
     // Trigger the sign-in flow
     final LoginResult loginResult = await FacebookAuth.instance.login();
 
@@ -218,7 +218,7 @@ class _EmailFormState extends State<EmailForm> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
                     child: TextFormField(
                       controller: _controller,
                       decoration: CommonStyle.textFieldStyle(
@@ -273,22 +273,24 @@ class _EmailFormState extends State<EmailForm> {
                 b: 0),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 10),
+            padding: EdgeInsets.only(top: 15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                IconButton(
-                  padding: EdgeInsets.only(top: 10),
-                  iconSize: 60,
-                  icon: Image.asset("assets/fb.png"),
-                  onPressed: () => {},
-                ),
-                IconButton(
-                  padding: EdgeInsets.only(left: 30, top: 10),
-                  iconSize: 60,
-                  icon: Image.asset("assets/google.png"),
-                  onPressed: () => {},
-                ),
+                Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: MyIconButton.icon(
+                        url: 'assets/fb.png',
+                        onPressed: () {
+                          Authentication.signInWithFacebook();
+                        })),
+                Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: MyIconButton.icon(
+                        url: 'assets/google.png',
+                        onPressed: () {
+                          Authentication.signInWithGoogle();
+                        }))
               ],
             ),
           ),
@@ -365,7 +367,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
                     child: TextFormField(
                       controller: _emailController,
                       decoration: CommonStyle.textFieldStyle(
@@ -379,7 +381,7 @@ class _RegisterFormState extends State<RegisterForm> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
                     child: TextFormField(
                       controller: _displayNameController,
                       decoration: CommonStyle.textFieldStyle(
@@ -393,7 +395,7 @@ class _RegisterFormState extends State<RegisterForm> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
                     child: TextFormField(
                       controller: _passwordController,
                       decoration: CommonStyle.passwordFieldStyle(
@@ -459,18 +461,20 @@ class _RegisterFormState extends State<RegisterForm> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                IconButton(
-                  padding: EdgeInsets.only(top: 10),
-                  iconSize: 60,
-                  icon: Image.asset("assets/fb.png"),
-                  onPressed: () => {},
-                ),
-                IconButton(
-                  padding: EdgeInsets.only(left: 30, top: 10),
-                  iconSize: 60,
-                  icon: Image.asset("assets/google.png"),
-                  onPressed: () => {},
-                ),
+                Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: MyIconButton.icon(
+                        url: 'assets/fb.png',
+                        onPressed: () {
+                          Authentication.signInWithFacebook();
+                        })),
+                Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: MyIconButton.icon(
+                        url: 'assets/google.png',
+                        onPressed: () {
+                          Authentication.signInWithGoogle();
+                        }))
               ],
             ),
           ),
@@ -543,7 +547,7 @@ class _PasswordFormState extends State<PasswordForm> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
                     child: TextFormField(
                       controller: _emailController,
                       decoration: CommonStyle.textFieldStyle(
@@ -557,7 +561,7 @@ class _PasswordFormState extends State<PasswordForm> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
                     child: TextFormField(
                       controller: _passwordController,
                       decoration: CommonStyle.passwordFieldStyle(
@@ -622,18 +626,20 @@ class _PasswordFormState extends State<PasswordForm> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                IconButton(
-                  padding: EdgeInsets.only(top: 10),
-                  iconSize: 60,
-                  icon: Image.asset("assets/fb.png"),
-                  onPressed: () => {},
-                ),
-                IconButton(
-                  padding: EdgeInsets.only(left: 30, top: 10),
-                  iconSize: 60,
-                  icon: Image.asset("assets/google.png"),
-                  onPressed: () => {},
-                ),
+                Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: MyIconButton.icon(
+                        url: 'assets/fb.png',
+                        onPressed: () {
+                          Authentication.signInWithFacebook();
+                        })),
+                Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: MyIconButton.icon(
+                        url: 'assets/google.png',
+                        onPressed: () {
+                          Authentication.signInWithGoogle();
+                        }))
               ],
             ),
           ),
