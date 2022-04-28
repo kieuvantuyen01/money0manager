@@ -202,7 +202,7 @@ class ReminderState extends State<Reminder> {
                       Padding(
                         padding: EdgeInsets.only(top: 15),
                         child: InputTextField(
-                          hintText: '$_selectedRemind',
+                          hintText: _selectedRemind,
                           labelText: 'Tần suất',
                           maxline: 1,
                           widget: DropdownButton(
@@ -396,7 +396,10 @@ class ReminderState extends State<Reminder> {
         body: ListView(
           scrollDirection: Axis.vertical,
           children: [
-            DateBar(),
+            Padding(
+                padding: EdgeInsets.only(top: 20),
+                child: DateBar(),
+            ),
             ListSchedule(
               listSchedule: listAccount,
             )

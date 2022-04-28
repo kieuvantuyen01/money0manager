@@ -28,7 +28,7 @@ class DoctorInfo extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(left: 18, top: 26),
+              padding: EdgeInsets.only(left: 25, top: 26),
               child: TitleText1(
                   text: this.time,
                   fontFamily: 'Nunito Sans',
@@ -39,7 +39,7 @@ class DoctorInfo extends StatelessWidget {
                   b: 255),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 18, top: 5),
+              padding: EdgeInsets.only(left: 25, top: 5),
               child: TitleText1(
                   text: this.reminderName,
                   fontFamily: 'Nunito Sans',
@@ -50,7 +50,7 @@ class DoctorInfo extends StatelessWidget {
                   b: 255),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 18, top: 5),
+              padding: EdgeInsets.only(left: 25, top: 5),
               child: TitleText1(
                 text: this.note,
                 fontFamily: 'Nunito Sans',
