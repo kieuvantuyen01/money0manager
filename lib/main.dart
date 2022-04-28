@@ -1,17 +1,6 @@
 import 'package:flutter/material.dart';
-import 'screens/HomeScreen.dart';
 import 'screens/LoginScreen.dart';
-import 'components/Category.dart';
-import 'screens/Currency.dart';
-import 'screens/RegisterScreen.dart';
-import 'screens/ContactScreen.dart';
-import 'screens/Reminder.dart';
 import 'helpers/ChangeLanguage.dart';
-import 'screens/CategoryScreen.dart';
-import 'screens/CreateReminder.dart';
-import 'screens/ExchangeMoney.dart';
-import 'screens/Account.dart';
-import 'screens/ColumnChart.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() => runApp(MyApp());
