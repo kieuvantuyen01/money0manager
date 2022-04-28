@@ -23,10 +23,10 @@ class TitleText1 extends StatelessWidget {
     return Text(
       this.text,
       style: TextStyle(
-          fontFamily: this.fontFamily,
-          fontSize: this.fontSize,
-          fontWeight: this.fontWeight,
-          color: Color.fromARGB(255, this.r, this.g, this.b),
+        fontFamily: this.fontFamily,
+        fontSize: this.fontSize,
+        fontWeight: this.fontWeight,
+        color: Color.fromARGB(255, this.r, this.g, this.b),
       ),
     );
   }
