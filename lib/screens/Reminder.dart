@@ -362,7 +362,6 @@ class ReminderState extends State<Reminder> {
                                   onTap: () {
                                     setState(() {
                                       saveSchedule();
-                                      Reminder();
                                     });
                                     Navigator.of(context).pop();
                                   }),
