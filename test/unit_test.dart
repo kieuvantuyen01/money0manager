@@ -8,6 +8,8 @@ void main() {
     test('AppLoginState start with loggedOut', () {
       WidgetsFlutterBinding.ensureInitialized();
       expect(ApplicationState().loginState, ApplicationLoginState.loggedOut);
+      expect(ApplicationState().email, null);
+      expect(ApplicationState().categories, []);
     });
 
   });
