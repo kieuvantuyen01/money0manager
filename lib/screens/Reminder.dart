@@ -34,7 +34,7 @@ class ReminderState extends State<Reminder> {
   List<IndexSchedule> listAccount = <IndexSchedule>[];
   String reminderName = '';
   String note = '';
-  static DateTime selectedDate = DateTime.now();
+  DateTime selectedDate = DateTime.now();
   TimeOfDay startTime =
       TimeOfDay(hour: DateTime.now().hour, minute: DateTime.now().minute);
 
@@ -362,6 +362,7 @@ class ReminderState extends State<Reminder> {
                                   onTap: () {
                                     setState(() {
                                       saveSchedule();
+                                      Reminder();
                                     });
                                     Navigator.of(context).pop();
                                   }),
