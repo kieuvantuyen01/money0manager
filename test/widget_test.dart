@@ -20,14 +20,14 @@ import 'package:money_manager/screens/HomeScreen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  testWidgets('HomeScreen', (WidgetTester tester) async {
-    Widget testWidget = new MediaQuery(
-        data: new MediaQueryData(),
-        child: new MaterialApp(
-          home: new HomeScreen(title: 'Ngân sách'),
-        ));
-    await tester.pumpWidget(testWidget);
-  });
+  // testWidgets('HomeScreen', (WidgetTester tester) async {
+  //   Widget testWidget = new MediaQuery(
+  //       data: new MediaQueryData(),
+  //       child: new MaterialApp(
+  //         home: new HomeScreen(title: 'Ngân sách'),
+  //       ));
+  //   await tester.pumpWidget(testWidget);
+  // });
 
   testWidgets('CategoryScreen', (WidgetTester tester) async {
     Widget testWidget = new MediaQuery(
