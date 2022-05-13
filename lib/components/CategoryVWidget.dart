@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
 import 'Category.dart';
-import 'BigCategoryIconWidget.dart';
+import 'CategoryIconWidget.dart';
 import '../helpers/transform/transform.dart';
 
-class CategoryV extends StatelessWidget {
+class CategoryVWidget extends StatelessWidget {
   Category category;
+  String iconColor;
+  double iconSize;
+  double iconBorderRadius;
 
-  CategoryV({Key? key, required this.category}): super(key: key);
+  CategoryVWidget(
+      {Key? key,
+      required this.category,
+      this.iconColor = '0xFF000000',
+      this.iconSize = CategoryIconWidget.BIG,
+      this.iconBorderRadius = 28.0})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +49,13 @@ class CategoryV extends StatelessWidget {
                       child: Container(
                         width: width,
                         height: height,
-                        child: CategoryIconBig(
-                            icon: this.category.icon,
-                            bgColor: this.category.bgColor),
+                        child: CategoryIconWidget(
+                          icon: this.category.icon,
+                          bgColor: this.category.color,
+                          iconColor: this.iconColor,
+                          buttonSize: this.iconSize,
+                          borderRadius: this.iconBorderRadius,
+                        ),
                       ))
                 ]);
               }),
@@ -70,7 +83,7 @@ class CategoryV extends StatelessWidget {
                         width: width,
                         height: height,
                         child: Text(
-                          this.category.title,
+                          this.category.description,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.center,
                           style: TextStyle(

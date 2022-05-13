@@ -1,96 +1,183 @@
-import 'dart:convert';
-
-import 'package:flutter/material.dart';
-import 'components/Category.dart';
-import 'components/CategoryGridView.dart';
-import 'package:http/http.dart' as http;
-
-List<Category> parseCategories(String responseBody) {
-  final parsed = json.decode(responseBody).cast<Map<dynamic, dynamic>>();
-  return parsed.map<Category>((json) => Category.fromMap(json)).toList();
-}
-
-Future<List<Category>> fetchCategories() async {
-  final response =
-      await http.get(Uri.parse('http://192.168.1.2:8000/categories.json'));
-  if (response.statusCode == 200) {
-    print(response.statusCode);
-    return parseCategories(response.body);
-  } else {
-    print(response.statusCode);
-    throw Exception('Unable to fetch products from the REST API');
-  }
-}
-
-void main() {
-  runApp(MyApp(
-    categories: fetchCategories(),
-  ));
-}
-
-class MyApp extends StatelessWidget {
-  final Future<List<Category>> categories;
-
-  const MyApp({Key? key, required this.categories}) : super(key: key);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(
-        title: 'Flutter Demo Home Page',
-        categories: this.categories,
-      ),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key, required this.title, required this.categories})
-      : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-  final Future<List<Category>> categories;
-
-  @override
-  @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-        appBar: AppBar(
-          // Here we take the value from the MyHomePage object that was created by
-          // the App.build method, and use it to set our appbar title.
-          title: Text(this.title),
-        ),
-        body: CategoryGridView(
-          categories: this.categories,
-        ));
-  }
-}
+// import 'dart:async';
+//
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_core/firebase_core.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+// import 'package:google_fonts/google_fonts.dart';
+// import 'package:google_sign_in/google_sign_in.dart';
+// import 'package:money_manager/components/Category.dart';
+// import 'package:money_manager/screens/CategoryScreen.dart';
+// import 'package:provider/provider.dart';
+//
+// import 'components/TitleText1.dart';
+// import 'firebase_options.dart';
+// import 'screens/Authentication.dart';
+// import 'src/widgets.dart';
+//
+// void main() {
+//   runApp(
+//     ChangeNotifierProvider(
+//       create: (context) => ApplicationState(),
+//       builder: (context, _) => App(),
+//     ),
+//   );
+// }
+//
+// class App extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Firebase Meetup',
+//       theme: ThemeData(
+//         buttonTheme: Theme.of(context).buttonTheme.copyWith(
+//               highlightColor: Color.fromARGB(255, 35, 111, 87),
+//             ),
+//         primarySwatch: Colors.teal,
+//         textTheme: GoogleFonts.robotoTextTheme(
+//           Theme.of(context).textTheme,
+//         ),
+//         visualDensity: VisualDensity.adaptivePlatformDensity,
+//       ),
+//       home: const HomePage(),
+//     );
+//   }
+// }
+//
+// class HomePage extends StatelessWidget {
+//   const HomePage({Key? key}) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Consumer<ApplicationState>(
+//       builder: (context, appState, _) => Authentication(
+//         email: appState.email,
+//         loginState: appState.loginState,
+//         verifyEmail: appState.verifyEmail,
+//         signInWithEmailAndPassword: appState.signInWithEmailAndPassword,
+//         cancelRegistration: appState.cancelRegistration,
+//         registerAccount: appState.registerAccount,
+//         signOut: appState.signOut,
+//       ),
+//     );
+//   }
+// }
+//
+// class ApplicationState extends ChangeNotifier {
+//   ApplicationState() {
+//     init();
+//   }
+//
+//   Future<void> init() async {
+//     await Firebase.initializeApp(
+//       options: DefaultFirebaseOptions.currentPlatform,
+//     );
+//
+//     FirebaseAuth.instance.userChanges().listen((user) {
+//       if (user != null) {
+//         _loginState = ApplicationLoginState.loggedIn;
+//       }
+//     });
+//
+//     FirebaseAuth.instance.userChanges().listen((user) {
+//       if (user != null) {
+//         _loginState = ApplicationLoginState.loggedIn;
+//
+//         _categorySubscription = FirebaseFirestore.instance
+//             .collection('userData/${user.uid}/categories')
+//             .snapshots()
+//             .listen((snapshot) {
+//           for (final document in snapshot.docs) {
+//             _categories.add(Category(
+//                 index: document.data()['index'] as int,
+//                 icon: document.data()['icon'] as String,
+//                 color: document.data()['color'] as String,
+//                 description: document.data()['description'] as String));
+//           }
+//           notifyListeners();
+//         });
+//
+//       } else {
+//         _loginState = ApplicationLoginState.loggedOut;
+//         _categorySubscription?.cancel();
+//       }
+//       notifyListeners();
+//     });
+//   }
+//
+//   ApplicationLoginState _loginState = ApplicationLoginState.loggedOut;
+//
+//   ApplicationLoginState get loginState => _loginState;
+//
+//   String? _email;
+//
+//   String? get email => _email;
+//
+//   StreamSubscription<QuerySnapshot>? _categorySubscription;
+//
+//   List<Category> _categories = [];
+//
+//   List<Category> get categories => _categories;
+//
+//   Future<void> verifyEmail(
+//     String email,
+//     void Function(FirebaseAuthException e) errorCallback,
+//   ) async {
+//     try {
+//       var methods =
+//           await FirebaseAuth.instance.fetchSignInMethodsForEmail(email);
+//       if (methods.contains('password')) {
+//         _loginState = ApplicationLoginState.password;
+//       } else {
+//         _loginState = ApplicationLoginState.register;
+//       }
+//       _email = email;
+//       notifyListeners();
+//     } on FirebaseAuthException catch (e) {
+//       errorCallback(e);
+//     }
+//   }
+//
+//   Future<void> signInWithEmailAndPassword(
+//     String email,
+//     String password,
+//     void Function(FirebaseAuthException e) errorCallback,
+//   ) async {
+//     try {
+//       await FirebaseAuth.instance.signInWithEmailAndPassword(
+//         email: email,
+//         password: password,
+//       );
+//     } on FirebaseAuthException catch (e) {
+//       errorCallback(e);
+//     }
+//   }
+//
+//   void cancelRegistration() {
+//     _loginState = ApplicationLoginState.loggedOut;
+//     notifyListeners();
+//   }
+//
+//   Future<void> registerAccount(
+//       String email,
+//       String displayName,
+//       String password,
+//       void Function(FirebaseAuthException e) errorCallback) async {
+//     try {
+//       var credential = await FirebaseAuth.instance
+//           .createUserWithEmailAndPassword(email: email, password: password);
+//       await credential.user!.updateDisplayName(displayName);
+//     } on FirebaseAuthException catch (e) {
+//       errorCallback(e);
+//     }
+//   }
+//
+//   void signOut() {
+//     FirebaseAuth.instance.signOut();
+//     GoogleSignIn().signOut();
+//     FacebookAuth.instance.logOut();
+//   }
+//
+// }
+//

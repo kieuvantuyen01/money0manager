@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import '../components/ColumnChartExpenseTabBar.dart';
+import '../components/ColumnChartGeneralTabBar.dart';
+import '../components/ColumnChartInComeTabBar.dart';
+import '../components/NavigationDrawerWidget.dart';
 import '../components/TitleText1.dart';
 
 class ColumnChart extends StatelessWidget {
@@ -10,7 +14,9 @@ class ColumnChart extends StatelessWidget {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
+        drawer: NavigationDrawerWidget(),
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           centerTitle: true,
           title: Padding(
             padding: EdgeInsets.only(top: 10),
@@ -19,12 +25,16 @@ class ColumnChart extends StatelessWidget {
           backgroundColor: Colors.transparent,
           toolbarHeight: 100,
           elevation: 0.0,
-          leading: IconButton(
-            padding: EdgeInsets.only(left: 32, top: 10),
-            iconSize: 30,
-            icon: Icon(Icons.menu),
-            tooltip: 'Menu',
-            onPressed: () => {},
+          leading: Builder(
+            builder: (context) => Container(
+              child: IconButton(
+                padding: EdgeInsets.only(left: 32, top: 10),
+                iconSize: 30,
+                icon: Icon(Icons.menu),
+                tooltip: 'Menu',
+                onPressed: () => {Scaffold.of(context).openDrawer()},
+              ),
+            ),
           ),
           flexibleSpace: Container(
             decoration: BoxDecoration(
@@ -61,9 +71,9 @@ class ColumnChart extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            Center(child: TitleText1(text: 'Chung', fontFamily: 'Inter', fontSize: 18, fontWeight: FontWeight.normal, r: 0, g: 0, b: 0)),
-            Center(child: TitleText1(text: 'Chi phí', fontFamily: 'Inter', fontSize: 18, fontWeight: FontWeight.normal, r: 0, g: 0, b: 0)),
-            Center(child: TitleText1(text: 'Thu nhập', fontFamily: 'Inter', fontSize: 18, fontWeight: FontWeight.normal, r: 0, g: 0, b: 0)),
+            ColumnChartGeneralTabBar(),
+            ColumnChartExpenseTabBar(),
+            ColumnChartInComeTabBar(),
           ],
         ),
       ),
