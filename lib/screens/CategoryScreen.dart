@@ -1,27 +1,29 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:money_manager/main1.dart';
+import 'package:money_manager/screens/Authentication.dart';
 import '../components/CategoryGridView.dart';
 import '../components/NavigationDrawerWidget.dart';
 import '../components/TitleText1.dart';
 import '../components/Category.dart';
 import 'package:http/http.dart' as http;
 
-List<Category> parseCategories(String responseBody) {
-  final parsed = json.decode(responseBody).cast<Map<dynamic, dynamic>>();
-  return parsed.map<Category>((json) => Category.fromMap(json)).toList();
-}
-
-Future<List<Category>> fetchCategories() async {
-  final response =
-  await http.get(Uri.parse('http://192.168.138.1:8000/Json/categories.json'));
-  if (response.statusCode == 200) {
-    print(response.statusCode);
-    return parseCategories(response.body);
-  } else {
-    print(response.statusCode);
-    throw Exception('Unable to fetch products from the REST API');
-  }
-}
+// List<Category> parseCategories(String responseBody) {
+//   final parsed = json.decode(responseBody).cast<Map<dynamic, dynamic>>();
+//   return parsed.map<Category>((json) => Category.fromMap(json)).toList();
+// }
+//
+// Future<List<Category>> fetchCategories() async {
+//   final response =
+//   await http.get(Uri.parse('http://192.168.138.1:8000/Json/categories.json'));
+//   if (response.statusCode == 200) {
+//     print(response.statusCode);
+//     return parseCategories(response.body);
+//   } else {
+//     print(response.statusCode);
+//     throw Exception('Unable to fetch products from the REST API');
+//   }
+// }
 
 class CategoryScreen extends StatelessWidget {
   CategoryScreen({Key? key, required this.title}) : super(key: key);
@@ -86,14 +88,14 @@ class CategoryScreen extends StatelessWidget {
         ),
         body: Padding(
           padding: EdgeInsets.only(top: 30),
-          child: TabBarView (
+          child: TabBarView(
             children: [
               CategoryGridView(
-                categories: fetchCategories(),
+                categories: ApplicationState().categories,
               ),
               CategoryGridView(
-                categories: fetchCategories(),
-              ),
+                categories: ApplicationState().categories,
+              )
             ],
           ),
         ),

@@ -5,28 +5,47 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:money_manager/components/Category.dart';
 
 import 'package:money_manager/main.dart';
 import 'package:money_manager/main1.dart';
+import 'package:money_manager/screens/CategoryScreen.dart';
+import 'package:money_manager/screens/ContactScreen.dart';
+import 'package:money_manager/screens/ExchangeMoney.dart';
+import 'package:money_manager/screens/HomeScreen.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    // await tester.pumpWidget(const MyApp());
-    // await tester.pumpWidget();
+  // testWidgets('HomeScreen', (WidgetTester tester) async {
+  //   Widget testWidget = new MediaQuery(
+  //       data: new MediaQueryData(),
+  //       child: new MaterialApp(
+  //         home: new HomeScreen(title: 'Ngân sách'),
+  //       ));
+  //   await tester.pumpWidget(testWidget);
+  // });
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+  testWidgets('CategoryScreen', (WidgetTester tester) async {
+    Widget testWidget = new MediaQuery(
+        data: new MediaQueryData(),
+        child: new MaterialApp(
+          home: new CategoryScreen(title: 'Danh mục'),
+        ));
+    await tester.pumpWidget(testWidget);
+    expect(find.text('Chi phí'), findsOneWidget);
+  });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+  testWidgets('CategoryScreen', (WidgetTester tester) async {
+    Widget testWidget = new MediaQuery(
+        data: new MediaQueryData(),
+        child: new MaterialApp(
+          home: new ContactScreen(title: 'Liên hệ'),
+        ));
+    await tester.pumpWidget(testWidget);
+    expect(find.text('Liên hệ'), findsOneWidget);
   });
 }
