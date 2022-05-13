@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:money_manager/data.dart';
 import 'package:money_manager/main1.dart';
 import 'package:money_manager/screens/Authentication.dart';
 import '../components/CategoryGridView.dart';
@@ -91,10 +92,10 @@ class CategoryScreen extends StatelessWidget {
           child: TabBarView(
             children: [
               CategoryGridView(
-                categories: ApplicationState().categories,
+                categories: ApplicationState().expenseCategories,
               ),
               CategoryGridView(
-                categories: ApplicationState().categories,
+                categories: ApplicationState().incomeCategories,
               )
             ],
           ),

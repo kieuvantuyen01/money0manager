@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:money_manager/screens/AddAccount.dart';
+import 'package:money_manager/src/widgets.dart';
 import '../components/ButtonPrimary.dart';
 import '../components/Category.dart';
 import '../components/CategoryVWidget.dart';
@@ -140,15 +142,13 @@ class Account extends StatelessWidget {
               child: SizedBox(
                 width: 93,
                 height: 51,
-                child: ButtonPrimary(
-                    text: 'Thêm',
-                    r: 35,
-                    g: 111,
-                    b: 87,
-                    radius: 30,
-                    weight: 109,
-                    height: 51,
-                    screenName: 'Account'),
+                child: StyledElevatedButton(
+                  child: Text('Thêm'),
+                  width: 109,
+                  height: 51,
+                  onPressed: () => Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => AddAccount())),
+                ),
               ),
             ),
           ),

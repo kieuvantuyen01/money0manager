@@ -9,7 +9,6 @@ class PeoplePage extends StatelessWidget {
     appBar: AppBar(
       title: Text('People'),
       centerTitle: true,
-      backgroundColor: Colors.green,
     ),
   );
 }
