@@ -590,6 +590,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "toggle_switch",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/toggle_switch-2.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "twitter_login",
       "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/twitter_login-4.1.0",
       "packageUri": "lib/",
@@ -644,7 +650,7 @@
       "languageVersion": "2.16"
     }
   ],
-  "generated": "2022-05-06T08:46:41.260438Z",
+  "generated": "2022-05-13T08:33:14.884749Z",
   "generator": "pub",
   "generatorVersion": "2.16.2"
 }
