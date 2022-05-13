@@ -13,10 +13,12 @@ import 'screens/Authentication.dart';
 import 'helpers/ChangeLanguage.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main() => runApp(ChangeNotifierProvider(
-  create: (context) => ApplicationState(),
-  builder: (context, _) => MyApp(),
-),);
+void main() => runApp(
+      ChangeNotifierProvider(
+        create: (context) => ApplicationState(),
+        builder: (context, _) => MyApp(),
+      ),
+    );
 
 class MyApp extends StatelessWidget {
 // This widget is the root of your application.
@@ -68,11 +70,52 @@ class ApplicationState extends ChangeNotifier {
       options: DefaultFirebaseOptions.currentPlatform,
     );
 
+    // var collection = FirebaseFirestore.instance.collection('expenseCategories');
+    // var myData = {'color': "0x1FB07553", 'description': "Kinh doanh", 'icon': "💼", 'index': 1};
+    // collection.doc('kinhdoanh').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+    // myData = {'color': "0x5FFF5342", 'description': "Giải trí", 'icon': "🕹", 'index': 2};
+    // collection.doc('giaitri').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+    // myData = {'color': "0x5FFFCF33", 'description': "Đi lại", 'icon': "🚖", 'index': 3};
+    // collection.doc('dilai').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+    // myData = {'color': "0x5FFF5342", 'description': "Học tập", 'icon': "🎓", 'index': 4};
+    // collection.doc('hoctap').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+    // myData = {'color': "0x5FFF5342", 'description': "Thực phẩm", 'icon': "🥕", 'index': 5};
+    // collection.doc('thucpham').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+    // myData = {'color': "0x5FB07553", 'description': "Chuyển khoản", 'icon': "💳", 'index': 6};
+    // collection.doc('chuyenkhoan').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+    // myData = {'color': "0x5FFF5342", 'description': "Quà tặng", 'icon': "🎁", 'index': 7};
+    // collection.doc('quatang').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+    // myData = {'color': "0x5FFFA325", 'description': "Đồ ăn", 'icon': "🍔", 'index': 8};
+    // collection.doc('doan').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+    // myData = {'color': "0x5FFFCF33", 'description': "Sức khoẻ", 'icon': "❤", 'index': 9};
+    // collection.doc('suckhoe').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+    // myData = {'color': "0x5FFF5342", 'description': "Nhà ở", 'icon': "🏠", 'index': 10};
+    // collection.doc('nhao').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+    // myData = {'color': "0x5FB07553", 'description': "Cà phê", 'icon': "☕", 'index': 11};
+    // collection.doc('caphe').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+    // myData = {'color': "0x5FFFA325", 'description': "Mua sắm", 'icon': "🛒", 'index': 12};
+    // collection.doc('muasam').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+    // myData = {'color': "0x5FB07553", 'description': "Thêm", 'icon': "➕", 'index': 13};
+    // collection.doc('them').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+
+    // var collection = FirebaseFirestore.instance.collection('incomeCategories');
+    // var myData = {'color': "0x1FB07553", 'description': "Phiếu lương", 'icon': "💼", 'index': 1};
+    // collection.doc('phieuluong').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+    // myData = {'color': "0x5FFF5342", 'description': "Quà tặng", 'icon': "🎁", 'index': 2};
+    // collection.doc('quatang').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+    // myData = {'color': "0x5FFFCF33", 'description': "Chuyển khoản", 'icon': "💳", 'index': 3};
+    // collection.doc('chuyenkhoan').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+    // myData = {'color': "0x5FFF5342", 'description': "Khác", 'icon': "?", 'index': 4};
+    // collection.doc('khac').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+    // myData = {'color': "0x5FFF5342", 'description': "Tạo", 'icon': "➕", 'index': 5};
+    // collection.doc('tao').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+
+
     FirebaseAuth.instance.userChanges().listen((user) async {
       if (user != null) {
         _loginState = ApplicationLoginState.loggedIn;
         final userRef =
-        FirebaseFirestore.instance.collection('userData').doc(user.uid);
+            FirebaseFirestore.instance.collection('userData').doc(user.uid);
         await userRef.get().then((docSnapshot) {
           print(docSnapshot);
           if (!docSnapshot.exists) {
@@ -94,7 +137,7 @@ class ApplicationState extends ChangeNotifier {
                     .doc(document.id)
                     .set(document.data())
                     .then((_) => print(
-                    'Added ${document.data()['description']} to ${user.uid}'))
+                        'Added ${document.data()['description']} to ${user.uid}'))
                     .catchError((error) => print('Add failed: $error'));
               }
             });
@@ -119,7 +162,7 @@ class ApplicationState extends ChangeNotifier {
         });
 
         _expenseCategorySubscription = FirebaseFirestore.instance
-            .collection('userData/${user.uid}/categories')
+            .collection('userData/${user.uid}/expenseCategories')
             .orderBy('index')
             .snapshots()
             .listen((snapshot) {
@@ -134,7 +177,7 @@ class ApplicationState extends ChangeNotifier {
           notifyListeners();
         });
         _incomeCategorySubscription = FirebaseFirestore.instance
-            .collection('userData/${user.uid}/expenseCategories')
+            .collection('userData/${user.uid}/incomeCategories')
             .orderBy('index')
             .snapshots()
             .listen((snapshot) {
@@ -177,12 +220,12 @@ class ApplicationState extends ChangeNotifier {
   List<Category> get incomeCategories => _incomeCategories;
 
   Future<void> verifyEmail(
-      String email,
-      void Function(FirebaseAuthException e) errorCallback,
-      ) async {
+    String email,
+    void Function(FirebaseAuthException e) errorCallback,
+  ) async {
     try {
       var methods =
-      await FirebaseAuth.instance.fetchSignInMethodsForEmail(email);
+          await FirebaseAuth.instance.fetchSignInMethodsForEmail(email);
       if (methods.contains('password')) {
         _loginState = ApplicationLoginState.password;
       } else {
@@ -196,10 +239,10 @@ class ApplicationState extends ChangeNotifier {
   }
 
   Future<void> signInWithEmailAndPassword(
-      String email,
-      String password,
-      void Function(FirebaseAuthException e) errorCallback,
-      ) async {
+    String email,
+    String password,
+    void Function(FirebaseAuthException e) errorCallback,
+  ) async {
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
@@ -234,6 +277,4 @@ class ApplicationState extends ChangeNotifier {
     GoogleSignIn().signOut();
     FacebookAuth.instance.logOut();
   }
-
 }
-
