@@ -9,8 +9,7 @@ void main() {
       WidgetsFlutterBinding.ensureInitialized();
       expect(ApplicationState().loginState, ApplicationLoginState.loggedOut);
       expect(ApplicationState().email, null);
-      expect(ApplicationState().categories, []);
+      expect(ApplicationState().expenseCategories, []);
     });
-
   });
 }
