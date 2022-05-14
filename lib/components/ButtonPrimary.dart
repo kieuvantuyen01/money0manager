@@ -13,9 +13,11 @@ class ButtonPrimary extends StatelessWidget {
       required this.radius,
       required this.weight,
       required this.height,
+      this.fontSize = 18,
       required this.screenName})
       : super(key: key);
 
+  double fontSize;
   String text;
   int r, g, b;
   double radius;
@@ -30,12 +32,6 @@ class ButtonPrimary extends StatelessWidget {
       height: this.height,
       child: RaisedButton(
         onPressed: () {
-          // if (this.screenName == 'CreateReminder') {
-          //   Navigator.push(
-          //       context,
-          //       MaterialPageRoute(
-          //           builder: (context) => Reminder()));
-          // }
           if(this.screenName == 'LoginScreen') {
             Navigator.push(
                 context,
@@ -46,7 +42,7 @@ class ButtonPrimary extends StatelessWidget {
         child: TitleText1(
             text: this.text,
             fontFamily: 'Inter',
-            fontSize: 18,
+            fontSize: this.fontSize,
             fontWeight: FontWeight.bold,
             r: 255,
             g: 255,

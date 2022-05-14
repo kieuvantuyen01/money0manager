@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../components/PlusButton.dart';
 import 'ButtonPrimary.dart';
-import 'DatePicker.dart';
+import 'DatePicker1.dart';
 import 'DateRangePicker.dart';
 import 'TitleText1.dart';
 
@@ -42,7 +42,7 @@ class BudgetTaskBar extends StatelessWidget {
               Center(
                 child: Column(
                   children: <Widget>[
-                    DatePicker(),
+                    DatePicker1(),
                     TitleText1(text: 'Tổng cộng: 2,000,000 đ', fontFamily: 'Inter', fontSize: 15, fontWeight: FontWeight.bold, r: 0, g: 0, b: 0),
                     Padding(
                       padding: EdgeInsets.only(left: 260, top: 280),

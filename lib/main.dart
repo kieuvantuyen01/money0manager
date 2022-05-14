@@ -6,6 +6,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:money_manager/screens/AccountDetailScreen.dart';
+import 'package:money_manager/screens/AddAccountScreen.dart';
+import 'package:money_manager/screens/AddTransactionScreen1.dart';
+import 'package:money_manager/screens/ContactScreen.dart';
 import 'package:provider/provider.dart';
 import 'components/Category.dart';
 import 'firebase_options.dart';
@@ -36,7 +40,7 @@ class MyApp extends StatelessWidget {
         const Locale('en', ''),
         const Locale('vi', ''),
       ],
-      home: HomePage(),
+      home: AddAccountScreen(title: ' '),
     );
   }
 }

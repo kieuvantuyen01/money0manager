@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'ButtonPrimary.dart';
-import 'DatePicker.dart';
+import 'DatePicker1.dart';
 import 'DateRangePicker.dart';
 import 'TitleText1.dart';
 
@@ -44,7 +44,7 @@ class ExpenseTabBar extends StatelessWidget {
                 Center(
                   child: Column(
                     children: <Widget>[
-                      DatePicker(),
+                      DatePicker1(),
                       TitleText1(
                           text: 'Tổng cộng: 2,000,000 đ',
                           fontFamily: 'Inter',
