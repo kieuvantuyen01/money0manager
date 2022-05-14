@@ -6,7 +6,7 @@ import 'package:money_manager/main1.dart';
 
 class ContentWithoutNoteWidget extends StatelessWidget {
   String categoryID;
-  String amount;
+  int amount;
   String accountID;
   bool hasImage;
 
@@ -36,7 +36,7 @@ class ContentWithoutNoteWidget extends StatelessWidget {
               width: 78.0,
               height: 20.0,
               child: Text(
-                this.amount,
+                this.amount.toString(),
                 overflow: TextOverflow.visible,
                 textAlign: TextAlign.right,
                 style: TextStyle(

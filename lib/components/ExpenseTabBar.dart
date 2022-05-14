@@ -1,4 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:money_manager/components/Transaction.dart';
+import 'package:money_manager/components/TransactionContentWidget.dart';
+import 'package:money_manager/main.dart';
+import 'package:provider/provider.dart';
 import 'ButtonPrimary.dart';
 import 'DatePicker1.dart';
 import 'DateRangePicker.dart';
@@ -53,22 +58,48 @@ class ExpenseTabBar extends StatelessWidget {
                           r: 0,
                           g: 0,
                           b: 0),
-                      Padding(
-                        padding: EdgeInsets.only(top: 280),
-                        child: SizedBox(
-                          width: 93,
-                          height: 51,
-                          child: ButtonPrimary(
-                              text: 'Thêm',
-                              r: 35,
-                              g: 111,
-                              b: 87,
-                              radius: 30,
-                              weight: 109,
-                              height: 51,
-                              screenName: 'ExpenseTabBar'),
-                        ),
-                      ),
+                      Expanded(
+                          child: ChangeNotifierProvider(
+                        create: (context) => ApplicationState(),
+                        builder: (context, _) => Consumer<ApplicationState>(
+                            builder: (context, appState, _) {
+                          DateTimeRange range =DateTimeRange(
+                              start: DateTime(2022, 05, 13),
+                              end: DateTime(2022, 05, 15));
+                          return StreamBuilder<QuerySnapshot>(
+                            stream: FirebaseFirestore.instance
+                                .collection('userData/${appState.user!.uid}/transactions')
+                                .where('isExpense', isEqualTo: true)
+                                .where('date', isGreaterThanOrEqualTo: range.start)
+                                .where('date', isLessThanOrEqualTo: range.end)
+                                .snapshots(),
+                            builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                              if (snapshot.hasError) {
+                                return Text('Something went wrong');
+                              }
+
+                              if (snapshot.connectionState == ConnectionState.waiting) {
+                                return Text("Loading");
+                              }
+
+                              return ListView(
+                                children: snapshot.data!.docs.map((QueryDocumentSnapshot document) {
+                                  return TransactionContentWidget(transaction: TransactionDetails(
+                                      categoryID: document['categoryID'],
+                                        accountID: document['accountID'],
+                                      isExpense: true,
+                                      currencyunit: document['currencyunit'],
+                                      value: document['value'],
+                                      date: document['date'],
+                                      description: document['description'],
+                                      )
+                                  );
+                                }).toList(),
+                              );
+                            },
+                          );
+                        }),
+                      ))
                     ],
                   ),
                 ),
@@ -111,22 +142,6 @@ class ExpenseTabBar extends StatelessWidget {
                           r: 0,
                           g: 0,
                           b: 0),
-                      Padding(
-                        padding: EdgeInsets.only(top: 280),
-                        child: SizedBox(
-                          width: 93,
-                          height: 51,
-                          child: ButtonPrimary(
-                              text: 'Thêm',
-                              r: 35,
-                              g: 111,
-                              b: 87,
-                              radius: 30,
-                              weight: 109,
-                              height: 51,
-                              screenName: 'ExpenseTabBar'),
-                        ),
-                      ),
                     ],
                   ),
                 ),

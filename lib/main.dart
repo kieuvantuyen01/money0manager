@@ -6,6 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:money_manager/components/Transaction.dart';
 import 'package:money_manager/screens/AccountDetailScreen.dart';
 import 'package:money_manager/screens/AddAccountScreen.dart';
 import 'package:money_manager/screens/AddTransactionScreen1.dart';
@@ -213,15 +214,14 @@ class ApplicationState extends ChangeNotifier {
             .where('visible', isEqualTo: true)
             .snapshots()
             .listen((snapshot) {
-          int remainingAmount =0;
+          int remainingAmount = 0;
           for (final document in snapshot.docs) {
-            remainingAmount+= document.data()['value'] as int ;
+            remainingAmount += document.data()['value'] as int;
             print(document.data()['value']);
           }
           _remainingAmount = remainingAmount;
           notifyListeners();
         });
-
       } else {
         _loginState = ApplicationLoginState.loggedOut;
       }
@@ -245,6 +245,10 @@ class ApplicationState extends ChangeNotifier {
 
   String? get email => _email;
 
+  List<TransactionDetails> _transactions = [];
+
+  List<TransactionDetails> get transactions => _transactions;
+
   List<Category> _expenseCategories = [];
 
   List<Category> get expenseCategories => _expenseCategories;
@@ -252,6 +256,32 @@ class ApplicationState extends ChangeNotifier {
   List<Category> _incomeCategories = [];
 
   List<Category> get incomeCategories => _incomeCategories;
+
+  void getTransactions(bool isExpense, DateTimeRange range) {
+    if (_user != null) {
+      FirebaseFirestore.instance
+          .collection('userData/${_user!.uid}/transactions')
+          .where('isExpense', isEqualTo: isExpense)
+          .where('date', isGreaterThanOrEqualTo: range.start)
+          .where('date', isLessThanOrEqualTo: range.end)
+          .snapshots()
+          .listen((snapshot) {
+        for (final document in snapshot.docs) {
+          _transactions.add(TransactionDetails(
+              categoryID: document.data()['categoryID'],
+              accountID: document.data()['accountID'],
+              isExpense: isExpense,
+              currencyunit: document.data()['currencyunit'],
+              value: document.data()['value'],
+              date: document.data()['date'],
+              description: document.data()['description'],
+              image1: document.data()['image1'],
+              image2: document.data()['image2']));
+        }
+        notifyListeners();
+      });
+    }
+  }
 
   Future<void> verifyEmail(
     String email,
