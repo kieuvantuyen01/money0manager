@@ -24,7 +24,7 @@ class UserPage extends StatelessWidget {
                   alignment: Alignment.topCenter,
                   child: CircleAvatar(
                     radius: 60,
-                    backgroundImage: AssetImage(urlImage),
+                    backgroundImage: NetworkImage(urlImage),
                   ),
                 ),
               ]))));

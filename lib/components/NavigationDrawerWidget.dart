@@ -1,6 +1,8 @@
 import 'dart:ui';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:money_manager/components/TitleText1.dart';
+import 'package:money_manager/main.dart';
 import 'package:money_manager/screens/ContactScreen.dart';
 import 'package:money_manager/screens/Currency.dart';
 import 'package:money_manager/screens/People.dart';
@@ -9,6 +11,7 @@ import 'package:money_manager/screens/CategoryScreen.dart';
 import 'package:money_manager/screens/ColumnChart.dart';
 import 'package:money_manager/screens/HomeScreen.dart';
 import 'package:money_manager/screens/Reminder.dart';
+import 'package:provider/provider.dart';
 import 'package:share/share.dart';
 
 import '../screens/Account.dart';
@@ -23,93 +26,113 @@ class NavigationDrawerWidget extends StatelessWidget {
         barrierDismissible: true, // set to false if you want to force a rating
         builder: (context) {
           return PopUpRatingApp();
-        }
-    );
+        });
   }
 
   @override
   Widget build(BuildContext context) {
-    final name = 'Kiều Văn Tuyên';
-    final balance = 'Số dư: 1000.000 đ';
-    final urlImage = 'assets/images/header_icon.png';
-    return Drawer(
-      child: Material(
-        color: const Color.fromRGBO(35, 111, 87, 1),
-        child: ListView(
-          children: <Widget>[
-            buildHeader(
-                urlImage: urlImage,
-                name: name,
-                balance: balance,
-                onClicked: () => Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) =>
-                        UserPage(name: name, urlImage: urlImage)))),
-            const Divider(
-              color: Colors.white70,
-            ),
-            buildMenuItem(
-              text: 'Ngân sách',
-              icon: Icons.account_balance_wallet,
-              onClicked: () => selectedItem(context, 0),
-            ),
-            buildMenuItem(
-              text: 'Tài khoản',
-              icon: Icons.account_balance,
-              onClicked: () => selectedItem(context, 1),
-            ),
-            buildMenuItem(
-              text: 'Biểu đồ',
-              icon: Icons.bar_chart,
-              onClicked: () => selectedItem(context, 2),
-            ),
-            buildMenuItem(
-              text: 'Danh mục',
-              icon: Icons.view_list,
-              onClicked: () => selectedItem(context, 3),
-            ),
-            buildMenuItem(
-              text: 'Thanh toán thông thường',
-              icon: Icons.paid,
-              onClicked: () => selectedItem(context, 4),
-            ),
-            buildMenuItem(
-              text: 'Nhắc nhở',
-              icon: Icons.notifications,
-              onClicked: () => selectedItem(context, 5),
-            ),
-            buildMenuItem(
-              text: 'Tiền tệ',
-              icon: Icons.euro,
-              onClicked: () => selectedItem(context, 6),
-            ),
-            buildMenuItem(
-              text: 'Cài đặt',
-              icon: Icons.settings,
-              onClicked: () => selectedItem(context, 7),
-            ),
-            buildMenuItem(
-              text: 'Tắt quảng cáo',
-              icon: Icons.app_blocking,
-              onClicked: () => selectedItem(context, 8),
-            ),
-            buildMenuItem(
-              text: 'Chia sẻ với bạn bè',
-              icon: Icons.share,
-              onClicked: () => selectedItem(context, 9),
-            ),
-            buildMenuItem(
-              text: 'Đánh giá ứng dụng',
-              icon: Icons.star,
-              onClicked: () => selectedItem(context, 10),
-            ),
-            buildMenuItem(
-              text: 'Liên hệ với nhóm hỗ trợ',
-              icon: Icons.contact_mail,
-              onClicked: () => selectedItem(context, 11),
-            ),
-          ],
-        ),
-      ),
+    return ChangeNotifierProvider(
+      create: (context) => ApplicationState(),
+      builder: (context, _) => Consumer<ApplicationState>(
+          builder: (context, appState, _) => Drawer(
+                child: Material(
+                  color: const Color.fromRGBO(35, 111, 87, 1),
+                  child: ListView(
+                    children: <Widget>[
+                      buildHeader(
+                          urlImage: (appState.user != null
+                              ? (appState.user!.photoURL != null
+                                  ? appState.user!.photoURL!
+                                  : 'https://play-lh.googleusercontent.com/d4Fk-bMcrn5Skoj35rHfBECn9MIdU6FagaI6upLBMltIqW5YkHVWSXCiTO5IlRLtoQ=s180-rw')
+                              : 'https://play-lh.googleusercontent.com/d4Fk-bMcrn5Skoj35rHfBECn9MIdU6FagaI6upLBMltIqW5YkHVWSXCiTO5IlRLtoQ=s180-rw'),
+                          name: (appState.user != null
+                              ? (appState.user!.displayName != null
+                                  ? appState.user!.displayName!
+                                  : '')
+                              : 'SOS'),
+                          balance: (appState.user != null
+                              ? 'Số dư: ${appState.remainingAmount} VNĐ'
+                              : 'SOS'),
+                          onClicked: () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                  builder: (context) => UserPage(
+                                      name: (appState.user != null
+                                          ? (appState.user!.displayName != null
+                                          ? appState.user!.displayName!
+                                          : '')
+                                          : 'SOS'),
+                                      urlImage: (appState.user != null
+                                          ? (appState.user!.photoURL != null
+                                          ? appState.user!.photoURL!
+                                          : 'https://play-lh.googleusercontent.com/d4Fk-bMcrn5Skoj35rHfBECn9MIdU6FagaI6upLBMltIqW5YkHVWSXCiTO5IlRLtoQ=s180-rw')
+                                          : 'https://play-lh.googleusercontent.com/d4Fk-bMcrn5Skoj35rHfBECn9MIdU6FagaI6upLBMltIqW5YkHVWSXCiTO5IlRLtoQ=s180-rw'))))),
+                      const Divider(
+                        color: Colors.white70,
+                      ),
+                      buildMenuItem(
+                        text: 'Ngân sách',
+                        icon: Icons.account_balance_wallet,
+                        onClicked: () => selectedItem(context, 0),
+                      ),
+                      buildMenuItem(
+                        text: 'Tài khoản',
+                        icon: Icons.account_balance,
+                        onClicked: () => selectedItem(context, 1),
+                      ),
+                      buildMenuItem(
+                        text: 'Biểu đồ',
+                        icon: Icons.bar_chart,
+                        onClicked: () => selectedItem(context, 2),
+                      ),
+                      buildMenuItem(
+                        text: 'Danh mục',
+                        icon: Icons.view_list,
+                        onClicked: () => selectedItem(context, 3),
+                      ),
+                      buildMenuItem(
+                        text: 'Thanh toán thông thường',
+                        icon: Icons.paid,
+                        onClicked: () => selectedItem(context, 4),
+                      ),
+                      buildMenuItem(
+                        text: 'Nhắc nhở',
+                        icon: Icons.notifications,
+                        onClicked: () => selectedItem(context, 5),
+                      ),
+                      buildMenuItem(
+                        text: 'Tiền tệ',
+                        icon: Icons.euro,
+                        onClicked: () => selectedItem(context, 6),
+                      ),
+                      buildMenuItem(
+                        text: 'Cài đặt',
+                        icon: Icons.settings,
+                        onClicked: () => selectedItem(context, 7),
+                      ),
+                      buildMenuItem(
+                        text: 'Tắt quảng cáo',
+                        icon: Icons.app_blocking,
+                        onClicked: () => selectedItem(context, 8),
+                      ),
+                      buildMenuItem(
+                        text: 'Chia sẻ với bạn bè',
+                        icon: Icons.share,
+                        onClicked: () => selectedItem(context, 9),
+                      ),
+                      buildMenuItem(
+                        text: 'Đánh giá ứng dụng',
+                        icon: Icons.star,
+                        onClicked: () => selectedItem(context, 10),
+                      ),
+                      buildMenuItem(
+                        text: 'Liên hệ với nhóm hỗ trợ',
+                        icon: Icons.contact_mail,
+                        onClicked: () => selectedItem(context, 11),
+                      ),
+                    ],
+                  ),
+                ),
+              )),
     );
   }
 
@@ -125,7 +148,7 @@ class NavigationDrawerWidget extends StatelessWidget {
           child: Row(children: [
             CircleAvatar(
               radius: 30,
-              backgroundImage: AssetImage(urlImage),
+              backgroundImage: NetworkImage(urlImage),
             ),
             const SizedBox(
               width: 16,
@@ -232,7 +255,8 @@ class NavigationDrawerWidget extends StatelessWidget {
         ));
         break;
       case 9:
-        Share.share('https://play.google.com/store/apps/details?id=ru.innim.my_finance');
+        Share.share(
+            'https://play.google.com/store/apps/details?id=ru.innim.my_finance');
         break;
       case 10:
         _showRatingDialog(context);

@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
         const Locale('en', ''),
         const Locale('vi', ''),
       ],
-      home: AddAccountScreen(title: ' '),
+      home: HomePage(),
     );
   }
 }
@@ -116,6 +116,7 @@ class ApplicationState extends ChangeNotifier {
 
     FirebaseAuth.instance.userChanges().listen((user) {
       if (user != null) {
+        _user = user;
         print('userChange');
         _loginState = ApplicationLoginState.loggedIn;
         final userRef =
@@ -178,24 +179,21 @@ class ApplicationState extends ChangeNotifier {
           }
         });
 
-        if (expenseCategories.isEmpty){
-          FirebaseFirestore.instance
-              .collection('userData/${user.uid}/expenseCategories')
-              .orderBy('index')
-              .snapshots()
-              .listen((snapshot) {
-            for (final document in snapshot.docs) {
-              _expenseCategories.add(Category(
-                  index: document.data()['index'] as int,
-                  icon: document.data()['icon'] as String,
-                  color: document.data()['color'] as String,
-                  description: document.data()['description'] as String));
-            }
-            print(_expenseCategories.length);
-            notifyListeners();
-          });
-        }
-        _incomeCategorySubscription = FirebaseFirestore.instance
+        FirebaseFirestore.instance
+            .collection('userData/${user.uid}/expenseCategories')
+            .orderBy('index')
+            .snapshots()
+            .listen((snapshot) {
+          for (final document in snapshot.docs) {
+            _expenseCategories.add(Category(
+                index: document.data()['index'] as int,
+                icon: document.data()['icon'] as String,
+                color: document.data()['color'] as String,
+                description: document.data()['description'] as String));
+          }
+          notifyListeners();
+        });
+        FirebaseFirestore.instance
             .collection('userData/${user.uid}/incomeCategories')
             .orderBy('index')
             .snapshots()
@@ -209,14 +207,35 @@ class ApplicationState extends ChangeNotifier {
           }
           notifyListeners();
         });
+
+        FirebaseFirestore.instance
+            .collection('userData/${user.uid}/accounts')
+            .where('visible', isEqualTo: true)
+            .snapshots()
+            .listen((snapshot) {
+          int remainingAmount =0;
+          for (final document in snapshot.docs) {
+            remainingAmount+= document.data()['value'] as int ;
+            print(document.data()['value']);
+          }
+          _remainingAmount = remainingAmount;
+          notifyListeners();
+        });
+
       } else {
         _loginState = ApplicationLoginState.loggedOut;
-        _expenseCategorySubscription?.cancel();
-        _incomeCategorySubscription?.cancel();
       }
       notifyListeners();
     });
   }
+
+  int? _remainingAmount;
+
+  int? get remainingAmount => _remainingAmount;
+
+  User? _user;
+
+  User? get user => _user;
 
   ApplicationLoginState _loginState = ApplicationLoginState.loggedOut;
 
@@ -225,18 +244,6 @@ class ApplicationState extends ChangeNotifier {
   String? _email;
 
   String? get email => _email;
-
-  Future<QuerySnapshot>? _futureExpenseCategory;
-
-  Future<QuerySnapshot>? _futureIncomeCategory;
-
-  Future<QuerySnapshot>? get futureExpenseCategory => _futureExpenseCategory;
-
-  Future<QuerySnapshot>? get futureIncomeCategory => _futureIncomeCategory;
-
-  StreamSubscription<QuerySnapshot>? _expenseCategorySubscription;
-
-  StreamSubscription<QuerySnapshot>? _incomeCategorySubscription;
 
   List<Category> _expenseCategories = [];
 
