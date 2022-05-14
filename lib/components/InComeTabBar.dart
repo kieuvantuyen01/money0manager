@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'ButtonPrimary.dart';
-import 'DatePicker.dart';
+import 'DatePicker1.dart';
 import 'DateRangePicker.dart';
 import 'TitleText1.dart';
 
@@ -41,7 +41,7 @@ class InComeTabBar extends StatelessWidget {
                 Center(
                   child: Column(
                     children: <Widget>[
-                      DatePicker(),
+                      DatePicker1(),
                       TitleText1(text: 'Tổng cộng: 2,000,000 đ', fontFamily: 'Inter', fontSize: 15, fontWeight: FontWeight.bold, r: 0, g: 0, b: 0),
                       Padding(
                         padding: EdgeInsets.only(top: 280),

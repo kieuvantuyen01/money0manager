@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'TitleText1.dart';
 
-class DatePicker extends StatefulWidget {
+class DatePicker1 extends StatefulWidget {
   @override
-  DatePickerState createState() => DatePickerState();
+  DatePicker1State createState() => DatePicker1State();
 }
 
-class DatePickerState extends State<DatePicker> {
+class DatePicker1State extends State<DatePicker1> {
   DateTime dateTime = DateTime.now();
   bool isFirstTime = true;
 
