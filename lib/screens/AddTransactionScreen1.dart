@@ -130,7 +130,7 @@ class AddTransactionScreen1State extends State<AddTransactionScreen1> {
                       TitleText1(
                           text: 'đ',
                           fontFamily: 'Inter',
-                          fontSize: 30,
+                          fontSize: 25,
                           fontWeight: FontWeight.bold,
                           r: 35,
                           g: 111,
@@ -257,7 +257,7 @@ class AddTransactionScreen1State extends State<AddTransactionScreen1> {
                       TitleText1(
                           text: 'đ',
                           fontFamily: 'Inter',
-                          fontSize: 30,
+                          fontSize: 25,
                           fontWeight: FontWeight.bold,
                           r: 35,
                           g: 111,

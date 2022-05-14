@@ -17,12 +17,6 @@ class InputText1 extends StatelessWidget {
     return TextField(
       decoration: InputDecoration(
         hintText: this.hintText,
-        // labelText: this.labelText,
-        // labelStyle: TextStyle(
-        //   fontSize: 18,
-        //   fontFamily: 'Inter',
-        //   color: Colors.black,
-        // ),
         hintStyle: TextStyle(
           fontSize: 18,
           fontFamily: 'Inter',
