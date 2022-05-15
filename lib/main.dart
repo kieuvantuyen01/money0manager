@@ -340,5 +340,6 @@ class ApplicationState extends ChangeNotifier {
     FirebaseAuth.instance.signOut();
     GoogleSignIn().signOut();
     FacebookAuth.instance.logOut();
+    print('signOut');
   }
 }
