@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
         const Locale('en', ''),
         const Locale('vi', ''),
       ],
-      home: AddAccountScreen(title: ' '),
+      home: HomePage(),
     );
   }
 }
