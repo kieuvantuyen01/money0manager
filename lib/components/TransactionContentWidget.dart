@@ -5,7 +5,7 @@ import 'package:money_manager/components/Transaction.dart';
 import 'Category.dart';
 
 class TransactionContentWidget extends StatelessWidget {
-  Transaction transaction;
+  TransactionDetails transaction;
 
   TransactionContentWidget({
     Key? key,
@@ -34,7 +34,7 @@ class TransactionContentWidget extends StatelessWidget {
                 child: ContentWithoutNoteWidget(
                   categoryID: this.transaction.categoryID,
                   accountID: this.transaction.accountID,
-                  amount: this.transaction.amount,
+                  amount: this.transaction.value,
                   hasImage: this.transaction.image1 != null,
                 ),
               ),
@@ -46,7 +46,7 @@ class TransactionContentWidget extends StatelessWidget {
                 width: 233.0,
                 height: 51.0,
                 child: Visibility(
-                  visible: (this.transaction.note != null ? true : false),
+                  visible: (this.transaction.description != null ? true : false),
                   child: ClipRRect(
                     borderRadius: BorderRadius.zero,
                     child: Container(
@@ -65,7 +65,7 @@ class TransactionContentWidget extends StatelessWidget {
                               width: 195.0,
                               height: 53.0,
                               child: Text(
-                                this.transaction.note!,
+                                this.transaction.description!,
                                 overflow: TextOverflow.visible,
                                 textAlign: TextAlign.left,
                                 style: TextStyle(

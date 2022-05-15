@@ -1,24 +1,30 @@
-class Transaction {
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+class TransactionDetails {
   final String categoryID;
   final String accountID;
-  final String amount;
-  final String date;
-  final String? note;
+  final int value;
+  final String currencyunit;
+  final Timestamp date;
+  final bool isExpense;
+  final String? description;
   final String? image1;
   final String? image2;
 
-  Transaction(this.categoryID, this.accountID, this.amount, this.date,
-      this.note, this.image1, this.image2);
+  TransactionDetails({required this.categoryID, required this.accountID, required this.isExpense, required this.currencyunit, required this.value, required this.date,
+    this.description, this.image1, this.image2});
 
-  factory Transaction.fromMap(Map<String, dynamic> json) {
-    return Transaction(
-      json['categoryID'],
-      json['accountID'],
-      json['amount'],
-      json['date'],
-      json['note'],
-      json['image1'],
-      json['image2'],
-    );
-  }
+  // factory TransactionDetails.fromMap(Map<String, dynamic> json) {
+  //   return TransactionDetails(
+  //     json['categoryID'],
+  //     json['accountID'],
+  //     json['value'],
+  //     json['isExpense'],
+  //     json['currencyunit'],
+  //     json['date'],
+  //     json['description'],
+  //     json['image1'],
+  //     json['image2'],
+  //   );
+  // }
 }

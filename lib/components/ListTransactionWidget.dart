@@ -3,7 +3,7 @@ import 'package:money_manager/components/Transaction.dart';
 import 'package:money_manager/components/TransactionContentWidget.dart';
 
 class ListTransactionWidget extends StatelessWidget {
-  final Future<List<Transaction>> transactions;
+  final Future<List<TransactionDetails>> transactions;
 
   ListTransactionWidget({Key? key, required this.transactions})
       : super(key: key);
@@ -13,7 +13,7 @@ class ListTransactionWidget extends StatelessWidget {
     return Container(
       width: 343.0,
       height: 310.0,
-      child: FutureBuilder<List<Transaction>>(
+      child: FutureBuilder<List<TransactionDetails>>(
         future: this.transactions,
         builder: (context, snapshot) {
           if (snapshot.hasData) {

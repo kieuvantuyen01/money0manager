@@ -1,8 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:money_manager/data.dart';
+import 'package:money_manager/main.dart';
 import 'package:money_manager/main1.dart';
 import 'package:money_manager/screens/Authentication.dart';
+import 'package:provider/provider.dart';
 import '../components/CategoryGridView.dart';
 import '../components/NavigationDrawerWidget.dart';
 import '../components/TitleText1.dart';
@@ -41,7 +42,14 @@ class CategoryScreen extends StatelessWidget {
           centerTitle: true,
           title: Padding(
             padding: EdgeInsets.only(top: 10),
-            child: TitleText1(text: 'Danh mục', fontFamily: 'Inter', fontSize: 25, fontWeight: FontWeight.bold, r: 255, g: 255, b: 255),
+            child: TitleText1(
+                text: 'Danh mục',
+                fontFamily: 'Inter',
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+                r: 255,
+                g: 255,
+                b: 255),
           ),
           backgroundColor: Colors.transparent,
           toolbarHeight: 100,
@@ -57,48 +65,67 @@ class CategoryScreen extends StatelessWidget {
               ),
             ),
           ),
-            flexibleSpace: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(25),
-                        bottomRight: Radius.circular(25)),
-                    gradient: LinearGradient(
-                      colors: [
-                        Color.fromARGB(255, 35, 111, 87),
-                        Color.fromARGB(255, 35, 111, 87),
-                      ],
-                      begin: Alignment.bottomCenter,
-                      end: Alignment.topCenter,
-                    ),
-                ),
-            ),
-            bottom: TabBar(
-              indicatorColor: Colors.white,
-              indicatorWeight: 3,
-              indicatorPadding: EdgeInsets.only(left: 50.0, right: 50.0, bottom: 2.0),
-              padding: EdgeInsets.only(bottom: 20.0),
-              tabs: [
-                Tab(
-                  child: TitleText1(text: 'Chi phí', fontFamily: 'Inter', fontSize: 18, fontWeight: FontWeight.bold, r: 255, g: 255, b: 255),
-                ),
-                Tab(
-                  child: TitleText1(text: 'Thu nhập', fontFamily: 'Inter', fontSize: 18, fontWeight: FontWeight.bold, r: 255, g: 255, b: 255),
-                ),
-              ],
-            ),
-        ),
-        body: Padding(
-          padding: EdgeInsets.only(top: 30),
-          child: TabBarView(
-            children: [
-              CategoryGridView(
-                categories: ApplicationState().expenseCategories,
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(25),
+                  bottomRight: Radius.circular(25)),
+              gradient: LinearGradient(
+                colors: [
+                  Color.fromARGB(255, 35, 111, 87),
+                  Color.fromARGB(255, 35, 111, 87),
+                ],
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
               ),
-              CategoryGridView(
-                categories: ApplicationState().incomeCategories,
-              )
+            ),
+          ),
+          bottom: TabBar(
+            indicatorColor: Colors.white,
+            indicatorWeight: 3,
+            indicatorPadding:
+                EdgeInsets.only(left: 50.0, right: 50.0, bottom: 2.0),
+            padding: EdgeInsets.only(bottom: 20.0),
+            tabs: [
+              Tab(
+                child: TitleText1(
+                    text: 'Chi phí',
+                    fontFamily: 'Inter',
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    r: 255,
+                    g: 255,
+                    b: 255),
+              ),
+              Tab(
+                child: TitleText1(
+                    text: 'Thu nhập',
+                    fontFamily: 'Inter',
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    r: 255,
+                    g: 255,
+                    b: 255),
+              ),
             ],
           ),
+        ),
+        body: ChangeNotifierProvider(
+          create: (context) => ApplicationState(),
+          builder: (context, _) => Consumer<ApplicationState>(
+              builder: (context, appState, _) => Padding(
+                    padding: EdgeInsets.only(top: 30),
+                    child: TabBarView(
+                      children: [
+                        CategoryGridView(
+                          categories: appState.expenseCategories,
+                        ),
+                        CategoryGridView(
+                          categories: appState.incomeCategories,
+                        )
+                      ],
+                    ),
+                  )),
         ),
       ),
     );
