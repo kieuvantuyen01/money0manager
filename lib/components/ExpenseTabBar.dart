@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:money_manager/components/Transaction.dart';
@@ -47,8 +49,10 @@ class ExpenseTabBar extends StatelessWidget {
               decoration: BoxDecoration(),
               child: TabBarView(children: <Widget>[
                 TransactionsWidget(
-                    dateTimeRange: DateTimeRange(
-                        start: DateTime.now(), end: DateTime.now())),
+                  dateTimeRange:
+                      DateTimeRange(start: DateTime.now(), end: DateTime.now()),
+                  tab: TAB.DATE,
+                ),
                 Center(
                     child: TitleText1(
                         text: 'Tab 2',
@@ -76,21 +80,22 @@ class ExpenseTabBar extends StatelessWidget {
                         r: 0,
                         g: 0,
                         b: 0)),
-                Center(
-                  child: Column(
-                    children: <Widget>[
-                      DateRangePicker(),
-                      TitleText1(
-                          text: 'Tổng cộng: 2,000,000 đ',
-                          fontFamily: 'Inter',
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          r: 0,
-                          g: 0,
-                          b: 0),
-                    ],
-                  ),
-                ),
+                TransactionsWidget(tab: TAB.RANGE),
+                // Center(
+                //   child: Column(
+                //     children: <Widget>[
+                //       DateRangePicker(),
+                //       TitleText1(
+                //           text: 'Tổng cộng: 2,000,000 đ',
+                //           fontFamily: 'Inter',
+                //           fontSize: 15,
+                //           fontWeight: FontWeight.bold,
+                //           r: 0,
+                //           g: 0,
+                //           b: 0),
+                //     ],
+                //   ),
+                // ),
               ]),
             ),
           ]),
@@ -98,21 +103,41 @@ class ExpenseTabBar extends StatelessWidget {
   }
 }
 
-class TransactionsWidget extends StatefulWidget {
-  DateTimeRange dateTimeRange;
+enum TAB { DATE, WEEK, MONTH, YEAR, RANGE }
 
-  TransactionsWidget({required this.dateTimeRange});
+class TransactionsWidget extends StatefulWidget {
+  DateTimeRange? dateTimeRange;
+  final tab;
+
+  TransactionsWidget({this.dateTimeRange, required this.tab});
 
   @override
-  _TransactionsState createState() =>
-      _TransactionsState(dateTimeRange: this.dateTimeRange);
+  _TransactionsState createState() {
+    if (dateTimeRange == null) {
+      dateTimeRange = DateTimeRange(
+          start: DateTime(DateTime.now().year, DateTime.now().month, 1),
+          end: DateTime(
+              DateTime.now().year, DateTime.now().month, DateTime.now().day));
+    }
+    return _TransactionsState(dateTimeRange: this.dateTimeRange!, tab: tab);
+  }
 }
 
 class _TransactionsState extends State<TransactionsWidget> {
   DateTimeRange dateTimeRange;
+  final tab;
   int _amount = 0;
 
-  _TransactionsState({required this.dateTimeRange});
+  _TransactionsState({required this.dateTimeRange,required this.tab});
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    if (dateTimeRange == null) {
+      selectRange();
+    }
+  }
 
   void _setDateTimeRange(DateTimeRange dateTimeRange) {
     setState(() {
@@ -132,23 +157,7 @@ class _TransactionsState extends State<TransactionsWidget> {
     return Center(
       child: Column(
         children: <Widget>[
-          TextButton(onPressed: () async {
-            final newDate = await showDatePicker(
-              context: context,
-              initialDate: DateTime.now(),
-              firstDate: DateTime(DateTime.now().year - 20),
-              lastDate: DateTime(DateTime.now().year + 1),
-              builder: (context, child) => Theme(
-                data: ThemeData.light().copyWith(
-                  colorScheme: ColorScheme.light(primary: Color.fromARGB(255, 35, 111, 87)),
-                ),
-                child: child as Widget,
-              ),
-            );
-            if (newDate != null) {
-              _setDateTimeRange(DateTimeRange(start: newDate, end: newDate));
-            }
-          }, child: Text('${dateTimeRange.start.day}/${dateTimeRange.start.month}/${dateTimeRange.start.year}')),
+          dateTimeRangeWidget(tab),
           TitleText1(
               text: 'Tổng cộng: ${_amount} VNĐ',
               fontFamily: 'Inter',
@@ -212,5 +221,124 @@ class _TransactionsState extends State<TransactionsWidget> {
         ],
       ),
     );
+  }
+
+  Widget dateTimeRangeWidget(TAB tab) {
+    DateTime start = DateTime(dateTimeRange.start.year,
+        dateTimeRange.start.month, dateTimeRange.start.day);
+    DateTime end = DateTime(dateTimeRange.end.year, dateTimeRange.end.month,
+        dateTimeRange.end.day);
+    DateTime now =
+        DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
+    switch (tab) {
+      case TAB.DATE:
+        Future<Function?> onPress() async {
+          final newDate = await showDatePicker(
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime(DateTime.now().year - 1),
+            lastDate: DateTime(
+                DateTime.now().year, DateTime.now().month, DateTime.now().day),
+            builder: (context, child) => Theme(
+              data: ThemeData.light().copyWith(
+                colorScheme: ColorScheme.light(
+                    primary: Color.fromARGB(255, 35, 111, 87)),
+              ),
+              child: child as Widget,
+            ),
+          );
+          if (newDate != null) {
+            _setDateTimeRange(DateTimeRange(start: newDate, end: newDate));
+          }
+        }
+        if (start.year == now.year) {
+          if (start.isAtSameMomentAs(now)) {
+            return TextButton(
+                onPressed: onPress,
+                child: Text('Hôm nay, ${start.day} tháng ${start.month}'));
+          } else if (start
+              .isAtSameMomentAs(now.subtract(const Duration(days: 1)))) {
+            return TextButton(
+                onPressed: onPress,
+                child: Text('Hôm qua, ${start.day} tháng ${start.month}'));
+          } else {
+            return TextButton(
+                onPressed: onPress,
+                child: Text('${start.day} tháng ${start.month}'));
+          }
+        } else {
+          return TextButton(
+              onPressed: onPress,
+              child: Text('${start.day} tháng ${start.month}, ${start.year}'));
+        }
+        break;
+      // case TAB.WEEK:
+      //   Future<Function?> onPress() async {
+      //     final newDate = await showDateRangePicker(
+      //       context: context,
+      //       initialDateRange: ,
+      //       firstDate: DateTime(DateTime.now().year - 1),
+      //       lastDate: DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day),
+      //       builder: (context, child) => Theme(
+      //         data: ThemeData.light().copyWith(
+      //           colorScheme: ColorScheme.light(primary: Color.fromARGB(255, 35, 111, 87)),
+      //         ),
+      //         child: child as Widget,
+      //       ),
+      //     );
+      //     if (newDate!= null){
+      //       _setDateTimeRange(DateTimeRange(start: newDate, end: newDate));
+      //     }
+      //   }
+      //   if (start.year == now.year){
+      //     if (start.isAtSameMomentAs(now)){
+      //       return TextButton(onPressed: onPress, child: Text('Hôm nay, ${start.day} tháng ${start.month}'));
+      //     } else if (start.isAtSameMomentAs(now.subtract(const Duration(days: 1)))){
+      //       return TextButton(onPressed: onPress, child: Text('Hôm qua, ${start.day} tháng ${start.month}'));
+      //     } else {
+      //       return TextButton(onPressed: onPress, child: Text('${start.day} tháng ${start.month}'));
+      //     }
+      //   } else {
+      //     return TextButton(onPressed: onPress, child: Text('${start.day} tháng ${start.month}, ${start.year}'));
+      //   }
+      case TAB.RANGE:
+        if (start.year == end.year) {
+          return TextButton(
+              onPressed: selectRange,
+              child: Text(
+                  'từ ${start.day}/${start.month} đến ${end.day}/${end.month}/${end.year}'));
+        } else {
+          return TextButton(
+              onPressed: selectRange,
+              child: Text(
+                  'từ ${start.day}/${start.month}/${start.year} đến ${end.day}/${end.month}/${end.year}'));
+        }
+      default:
+        return Text('ADU');
+    }
+  }
+
+  Future<Function?> selectRange() async {
+    final newDateRange = await showDateRangePicker(
+      context: context,
+      firstDate: DateTime(DateTime.now().year - 20),
+      lastDate: DateTime(
+          DateTime.now().year, DateTime.now().month, DateTime.now().day),
+      initialDateRange: DateTimeRange(
+          start: DateTime(DateTime.now().year, DateTime.now().month, 1),
+          end: DateTime(
+              DateTime.now().year, DateTime.now().month, DateTime.now().day)),
+      builder: (context, child) => Theme(
+        data: ThemeData.light().copyWith(
+          colorScheme:
+              ColorScheme.light(primary: Color.fromARGB(255, 35, 111, 87)),
+        ),
+        child: child as Widget,
+      ),
+    );
+    if (newDateRange != null) {
+      _setDateTimeRange(
+          DateTimeRange(start: newDateRange.start, end: newDateRange.end));
+    }
   }
 }
