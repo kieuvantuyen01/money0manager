@@ -128,7 +128,7 @@ class _TransactionsState extends State<TransactionsWidget> {
   final tab;
   int _amount = 0;
 
-  _TransactionsState({required this.dateTimeRange,required this.tab});
+  _TransactionsState({required this.dateTimeRange, required this.tab});
 
   @override
   void initState() {
@@ -183,6 +183,7 @@ class _TransactionsState extends State<TransactionsWidget> {
                     .where('date',
                         isLessThanOrEqualTo: DateTime(dateTimeRange.end.year,
                             dateTimeRange.end.month, dateTimeRange.end.day))
+                    // .orderBy('date', descending: true)
                     .snapshots(),
                 builder: (BuildContext context,
                     AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -194,24 +195,85 @@ class _TransactionsState extends State<TransactionsWidget> {
                     return Text("Loading");
                   }
                   int amount = 0;
+                  // Map<DateTime, List<TransactionDetails>> transactionsByDate =
+                  //     Map();
+                  // List<TransactionDetails> transactions = [];
                   for (DocumentSnapshot document in snapshot.data!.docs) {
                     amount += document['value'] as int;
+                    //   Timestamp time = document['date'];
+                    //   if (date.isAfter(time.toDate())) {
+                    //     if (transactions.isNotEmpty) {
+                    //       transactionsByDate
+                    //           .addEntries({date: transactions}.entries);
+                    //     }
+                    //     date = time.toDate();
+                    //     transactions = [];
+                    //   }
+                    //   transactions.add(TransactionDetails(
+                    //     categoryID: document['categoryID'],
+                    //     accountID: document['accountID'],
+                    //     isExpense: true,
+                    //     currencyunit: document['currencyunit'],
+                    //     value: document['value'],
+                    //     date: document['date'],
+                    //     description: document['description'],
+                    //   ));
                   }
+                  // if (transactions.isNotEmpty) {
+                  //   transactionsByDate.addEntries({date: transactions}.entries);
+                  // }
+                  // print(transactionsByDate);
                   _amount = amount;
-
+                  //
+                  // return ListView(
+                  //   children: transactionsByDate.entries.map((entry) {
+                  //     return Row(
+                  //       children: [
+                  //         Text(
+                  //             '${entry.key.day} tháng ${entry.key.month}, ${entry.key.year}'),
+                  //         ListView(
+                  //           children: entry.value.map((e) {
+                  //             return TransactionContentWidget(transaction: e);
+                  //           }).toList(),
+                  //         ),
+                  //       ],
+                  //     );
+                  //   }).toList(),
+                  // );
+                  DateTime date =
+                      dateTimeRange.end.add(const Duration(days: 1));
                   return ListView(
                     children:
                         snapshot.data!.docs.map((DocumentSnapshot document) {
-                      return TransactionContentWidget(
-                          transaction: TransactionDetails(
-                        categoryID: document['categoryID'],
-                        accountID: document['accountID'],
-                        isExpense: true,
-                        currencyunit: document['currencyunit'],
-                        value: document['value'],
-                        date: document['date'],
-                        description: document['description'],
-                      ));
+                      if (date.isAfter(document['date'].toDate())) {
+                        date = document['date'].toDate();
+                        return Column(
+                          children: [
+                            Text('${date.day} tháng ${date.month}, ${date.year}'),
+                            TransactionContentWidget(
+                                transaction: TransactionDetails(
+                                  categoryID: document['categoryID'],
+                                  accountID: document['accountID'],
+                                  isExpense: true,
+                                  currencyunit: document['currencyunit'],
+                                  value: document['value'],
+                                  date: document['date'],
+                                  description: document['description'],
+                                ))
+                          ],
+                        );
+                      } else {
+                        return TransactionContentWidget(
+                            transaction: TransactionDetails(
+                          categoryID: document['categoryID'],
+                          accountID: document['accountID'],
+                          isExpense: true,
+                          currencyunit: document['currencyunit'],
+                          value: document['value'],
+                          date: document['date'],
+                          description: document['description'],
+                        ));
+                      }
                     }).toList(),
                   );
                 },
@@ -226,8 +288,8 @@ class _TransactionsState extends State<TransactionsWidget> {
   Widget dateTimeRangeWidget(TAB tab) {
     DateTime start = DateTime(dateTimeRange.start.year,
         dateTimeRange.start.month, dateTimeRange.start.day);
-    DateTime end = DateTime(dateTimeRange.end.year, dateTimeRange.end.month,
-        dateTimeRange.end.day);
+    DateTime end = DateTime(
+        dateTimeRange.end.year, dateTimeRange.end.month, dateTimeRange.end.day);
     DateTime now =
         DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
     switch (tab) {
