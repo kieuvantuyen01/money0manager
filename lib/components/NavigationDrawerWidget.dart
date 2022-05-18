@@ -14,7 +14,7 @@ import 'package:money_manager/screens/Reminder.dart';
 import 'package:provider/provider.dart';
 import 'package:share/share.dart';
 
-import '../screens/Account.dart';
+import '../screens/AccountWidget.dart';
 import 'PopUpRatingApp.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
@@ -216,7 +216,7 @@ class NavigationDrawerWidget extends StatelessWidget {
         break;
       case 1:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => Account(title: 'Tài khoản'),
+          builder: (context) => AccountWidget(title: 'Tài khoản'),
         ));
         break;
       case 2:

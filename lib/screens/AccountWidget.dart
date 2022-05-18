@@ -7,8 +7,8 @@ import '../components/CategoryVWidget.dart';
 import '../components/NavigationDrawerWidget.dart';
 import '../components/TitleText1.dart';
 
-class Account extends StatelessWidget {
-  Account({Key? key, required this.title}) : super(key: key);
+class AccountWidget extends StatelessWidget {
+  AccountWidget({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
@@ -91,7 +91,10 @@ class Account extends StatelessWidget {
                 padding: EdgeInsets.only(left: 80, top: 15),
                 child: CategoryVWidget(
                     category: Category(
-                        icon: '⟲', description: 'Lịch sử', color: '0xFF46BF8C'),
+                        id: '',
+                        icon: '⟲',
+                        description: 'Lịch sử',
+                        color: '0xFF46BF8C'),
                     iconColor: '0xFFFFFFFF'),
               ),
             ),
@@ -100,6 +103,7 @@ class Account extends StatelessWidget {
                 padding: EdgeInsets.only(left: 80, top: 15),
                 child: CategoryVWidget(
                     category: Category(
+                        id: '',
                         icon: '⇄',
                         description: 'Chuyển tiền',
                         color: '0xFF46BF8C'),

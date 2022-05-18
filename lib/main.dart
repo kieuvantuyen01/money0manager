@@ -6,6 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:money_manager/components/Account.dart';
 import 'package:money_manager/components/Transaction.dart';
 import 'package:money_manager/screens/AccountDetailScreen.dart';
 import 'package:money_manager/screens/AddAccountScreen.dart';
@@ -187,6 +188,7 @@ class ApplicationState extends ChangeNotifier {
             .listen((snapshot) {
           for (final document in snapshot.docs) {
             _expenseCategories.add(Category(
+                id: document.id,
                 index: document.data()['index'] as int,
                 icon: document.data()['icon'] as String,
                 color: document.data()['color'] as String,
@@ -201,10 +203,31 @@ class ApplicationState extends ChangeNotifier {
             .listen((snapshot) {
           for (final document in snapshot.docs) {
             _incomeCategories.add(Category(
+                id: document.id,
                 index: document.data()['index'] as int,
                 icon: document.data()['icon'] as String,
                 color: document.data()['color'] as String,
                 description: document.data()['description'] as String));
+          }
+          notifyListeners();
+        });
+
+        FirebaseFirestore.instance
+            .collection('userData/${user.uid}/accounts')
+            .orderBy('index')
+            .snapshots()
+            .listen((snapshot) {
+          for (final document in snapshot.docs) {
+            _accounts.add(Account(
+              id: document.id,
+              index: document.data()['index'] as int,
+              icon: document.data()['icon'] as String,
+              color: document.data()['color'] as String,
+              description: document.data()['description'] as String,
+              currentunit: document.data()['currencyunit'] as String,
+              value: document.data()['value'] as int,
+              visible: document.data()['visible'] as bool,
+            ));
           }
           notifyListeners();
         });
@@ -244,6 +267,10 @@ class ApplicationState extends ChangeNotifier {
   String? _email;
 
   String? get email => _email;
+
+  List<Account> _accounts = [];
+
+  List<Account> get accounts => _accounts;
 
   List<TransactionDetails> _transactions = [];
 
@@ -340,5 +367,6 @@ class ApplicationState extends ChangeNotifier {
     FirebaseAuth.instance.signOut();
     GoogleSignIn().signOut();
     FacebookAuth.instance.logOut();
+    print('signOut');
   }
 }

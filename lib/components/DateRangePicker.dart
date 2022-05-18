@@ -12,16 +12,12 @@ class DateRangePickerState extends State<DateRangePicker> {
   bool isFirstTime2 = true;
 
   Future pickDateRange(BuildContext context) async {
-   final initialDateRange = DateTimeRange(
-       start: DateTime.now(), 
-       end: DateTime.now().add(Duration(hours: 24 * 3)),
-   );
 
    final newDateRange = await showDateRangePicker(
      context: context,
      firstDate: DateTime(DateTime.now().year - 20),
-     lastDate: DateTime(DateTime.now().year + 1),
-     initialDateRange: initialDateRange,
+     lastDate: DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day),
+     initialDateRange: DateTimeRange(start: DateTime(DateTime.now().year,DateTime.now().month,1), end: DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day)),
      builder: (context, child) => Theme(
        data: ThemeData.light().copyWith(
          colorScheme: ColorScheme.light(primary: Color.fromARGB(255, 35, 111, 87)),
