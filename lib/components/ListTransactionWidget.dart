@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:money_manager/components/Transaction.dart';
 import 'package:money_manager/components/TransactionContentWidget.dart';
 
@@ -11,8 +12,8 @@ class ListTransactionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 343.0,
-      height: 310.0,
+      width: 343.0.w,
+      height: 310.0.h,
       child: FutureBuilder<List<TransactionDetails>>(
         future: this.transactions,
         builder: (context, snapshot) {

@@ -36,8 +36,7 @@ class AddAccountScreen extends StatelessWidget {
           padding: EdgeInsets.only(left: 32),
           iconSize: 30,
           icon: Icon(Icons.arrow_back_sharp),
-          tooltip: 'Menu',
-          onPressed: () => {Scaffold.of(context).openDrawer()},
+          onPressed: () => {Navigator.of(context).pop()},
         ),
         flexibleSpace: Container(
           decoration: BoxDecoration(

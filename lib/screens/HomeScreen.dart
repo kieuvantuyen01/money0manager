@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:money_manager/main.dart';
 import 'package:provider/provider.dart';
 import '../components/BudgetTaskBar.dart';
@@ -31,7 +32,6 @@ class HomeScreenState extends State<HomeScreen> {
           builder: (context, appState, _) => Scaffold(
                 resizeToAvoidBottomInset: false,
                 drawer: NavigationDrawerWidget(),
-                // drawer: NavigationDrawerWidget(),
                 appBar: AppBar(
                   automaticallyImplyLeading: false,
                   centerTitle: true,
@@ -45,8 +45,8 @@ class HomeScreenState extends State<HomeScreen> {
                               builder: (context) => Container(
                                 child: IconButton(
                                   padding:
-                                      EdgeInsets.only(left: 10, bottom: 10),
-                                  iconSize: 30,
+                                      EdgeInsets.only(left: 10.w, bottom: 10.h, top: 1.h),
+                                  iconSize: 30.sp,
                                   icon: Icon(Icons.menu),
                                   tooltip: 'Menu',
                                   onPressed: () =>
@@ -55,7 +55,7 @@ class HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(left: 80, bottom: 10),
+                              padding: EdgeInsets.only(left: 80.w, bottom: 10.h, top: 1.h),
                               child: TitleText1(
                                   text: 'Ngân sách',
                                   fontFamily: 'Inter',
@@ -66,10 +66,9 @@ class HomeScreenState extends State<HomeScreen> {
                                   b: 255),
                             ),
                             IconButton(
-                              padding: EdgeInsets.only(left: 70, bottom: 10),
-                              iconSize: 35,
+                              padding: EdgeInsets.only(left: 60.w, bottom: 10.h, top: 1.h),
+                              iconSize: 35.sp,
                               icon: Image.asset("assets/ngansach.png"),
-                              tooltip: 'Tìm kiếm',
                               onPressed: () => {
                                 Navigator.push(
                                     context,
@@ -80,7 +79,7 @@ class HomeScreenState extends State<HomeScreen> {
                             ),
                           ]),
                       Padding(
-                        padding: EdgeInsets.only(left: 16, top: 20),
+                        padding: EdgeInsets.only(left: 16.w, top: 20.h),
                         child: TitleText1(
                             text: 'Hôm nay',
                             fontFamily: 'Inter',
@@ -91,7 +90,7 @@ class HomeScreenState extends State<HomeScreen> {
                             b: 198),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(left: 18, top: 25),
+                        padding: EdgeInsets.only(left: 18.w, top: 25.h),
                         child: TitleText1(
                             text: '–5,450,000 đ',
                             fontFamily: 'Inter',
@@ -102,10 +101,10 @@ class HomeScreenState extends State<HomeScreen> {
                             b: 255),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(left: 18, top: 10),
+                        padding: EdgeInsets.only(left: 18.w, top: 10.h),
                         child: TitleText1(
                             text: (appState.remainingAmount != null
-                                ? 'Số dư khả dụng: ${appState.remainingAmount} VNĐ'
+                                ? 'Số dư khả dụng: ${appState.remainingAmount} đ'
                                 : 'SOS'),
                             fontFamily: 'Inter',
                             fontSize: 18,
@@ -117,13 +116,13 @@ class HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   backgroundColor: Colors.transparent,
-                  toolbarHeight: 220,
+                  toolbarHeight: 220.h,
                   elevation: 0.0,
                   flexibleSpace: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(25),
-                          bottomRight: Radius.circular(25)),
+                          bottomLeft: Radius.circular(25.r),
+                          bottomRight: Radius.circular(25.r)),
                       gradient: LinearGradient(
                         colors: [
                           Color.fromARGB(255, 35, 111, 87),

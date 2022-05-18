@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:money_manager/screens/HomeScreen.dart';
 import '../screens/Reminder.dart';
 import 'TitleText1.dart';
@@ -28,8 +29,8 @@ class ButtonPrimary extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return SizedBox(
-      width: this.weight,
-      height: this.height,
+      width: this.weight.w,
+      height: this.height.h,
       child: RaisedButton(
         onPressed: () {
           if(this.screenName == 'LoginScreen') {
@@ -48,7 +49,7 @@ class ButtonPrimary extends StatelessWidget {
             g: 255,
             b: 255),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(this.radius)),
+          borderRadius: BorderRadius.all(Radius.circular(this.radius.r)),
         ),
         color: Color.fromARGB(255, this.r, this.g, this.b),
       ),

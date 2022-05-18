@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'ColumnChartModel.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ColumnChartGeneralTabBar extends StatelessWidget {
   final List<ColumnChartModel> dayData = [
@@ -87,13 +88,13 @@ class ColumnChartGeneralTabBar extends StatelessWidget {
         Container(
           child: TabBar(
             labelColor: Color.fromARGB(255, 35, 111, 87),
-            labelStyle: TextStyle(fontSize: 15, fontFamily: 'Inter', fontWeight: FontWeight.bold),
+            labelStyle: TextStyle(fontSize: 15.sp, fontFamily: 'Inter', fontWeight: FontWeight.bold),
             unselectedLabelColor: Colors.black,
-            indicatorWeight: 2.2,
+            indicatorWeight: 2.2.sp,
             indicatorColor: Color.fromARGB(255, 35, 111, 87),
-            padding: EdgeInsets.only(top: 10),
-            indicatorPadding: EdgeInsets.only(left: 25.0, bottom: 5.0, right: 0.0),
-            labelPadding: EdgeInsets.only(left: 23.0),
+            padding: EdgeInsets.only(top: 15.h, left: 0.w, right: 10.w),
+            indicatorPadding: EdgeInsets.only(left: 25.0.w, bottom: 5.0.h, right: 1.w),
+            labelPadding: EdgeInsets.only(top: 1.h, left: 23.w),
             isScrollable: true,
             tabs: [
               Tab(text: 'Ngày'),
@@ -105,13 +106,13 @@ class ColumnChartGeneralTabBar extends StatelessWidget {
           ),
         ),
         Container(
-          height: 400, //height of TabBarView
+          height: 400.h, //height of TabBarView
           decoration: BoxDecoration(
           ),
           child: TabBarView(
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.only(left: 15, top: 10, bottom: 100),
+                  padding: EdgeInsets.only(left: 15.w, top: 10.h, bottom: 100.h),
                   child: charts.BarChart(
                     daySeries,
                     animate: true,
@@ -121,7 +122,7 @@ class ColumnChartGeneralTabBar extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 15, top: 10, bottom: 100),
+                  padding: EdgeInsets.only(left: 15.w, top: 10.h, bottom: 100.h),
                   child: charts.BarChart(
                     monthSeries,
                     animate: true,
@@ -131,7 +132,7 @@ class ColumnChartGeneralTabBar extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 15, top: 10, bottom: 100),
+                  padding: EdgeInsets.only(left: 15.w, top: 10.h, bottom: 100.h),
                   child: charts.BarChart(
                     monthSeries,
                     animate: true,
@@ -141,7 +142,7 @@ class ColumnChartGeneralTabBar extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 15, top: 10, bottom: 100),
+                  padding: EdgeInsets.only(left: 15.w, top: 10.h, bottom: 100.h),
                   child: charts.BarChart(
                     yearSeries,
                     animate: true,
@@ -151,7 +152,7 @@ class ColumnChartGeneralTabBar extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 15, top: 10, bottom: 100),
+                  padding: EdgeInsets.only(left: 15.w, top: 10.h, bottom: 100.h),
                   child: charts.BarChart(
                     monthSeries,
                     animate: true,

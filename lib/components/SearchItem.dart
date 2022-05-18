@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomSearchDelegate extends SearchDelegate {
   List<String> searchItem = [
@@ -16,7 +17,7 @@ class CustomSearchDelegate extends SearchDelegate {
     // TODO: implement buildActions
     return [
       IconButton(
-        iconSize: 30,
+        iconSize: 30.sp,
         icon: Icon(Icons.clear),
         onPressed: () => {
           query = '',
@@ -29,7 +30,7 @@ class CustomSearchDelegate extends SearchDelegate {
   Widget? buildLeading(BuildContext context) {
     // TODO: implement buildLeading
     return IconButton(
-      iconSize: 30,
+      iconSize: 30.sp,
       icon: Icon(Icons.arrow_back),
       onPressed: () => {
         close(context, null),

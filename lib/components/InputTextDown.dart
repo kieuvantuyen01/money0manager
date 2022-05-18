@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class InputTextDown extends StatelessWidget {
   InputTextDown(
@@ -19,12 +20,12 @@ class InputTextDown extends StatelessWidget {
         hintText: this.hintText,
         labelText: this.labelText,
         labelStyle: TextStyle(
-          fontSize: 18,
+          fontSize: 18.sp,
           fontFamily: 'Inter',
           color: Colors.black,
         ),
         hintStyle: TextStyle(
-          fontSize: 18,
+          fontSize: 18.sp,
           fontFamily: 'Inter',
           color: Color.fromARGB(255, 189, 189, 189),
         ),

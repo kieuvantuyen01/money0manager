@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class InputText1 extends StatelessWidget {
   InputText1(
@@ -18,7 +19,7 @@ class InputText1 extends StatelessWidget {
       decoration: InputDecoration(
         hintText: this.hintText,
         hintStyle: TextStyle(
-          fontSize: 18,
+          fontSize: 18.sp,
           fontFamily: 'Inter',
           color: Color.fromARGB(255, 189, 189, 189),
         ),

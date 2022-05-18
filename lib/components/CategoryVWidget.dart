@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'Category.dart';
 import 'CategoryIconWidget.dart';
 import '../helpers/transform/transform.dart';
@@ -20,8 +21,8 @@ class CategoryVWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 70.0,
-      height: 70.0,
+      width: 70.0.w,
+      height: 70.0.h,
       child: Stack(
           fit: StackFit.expand,
           alignment: Alignment.center,
@@ -47,8 +48,8 @@ class CategoryVWidget extends StatelessWidget {
                       y: 0,
                       z: 0,
                       child: Container(
-                        width: width,
-                        height: height,
+                        width: width.w,
+                        height: height.h,
                         child: CategoryIconWidget(
                           icon: this.category.icon,
                           bgColor: this.category.color,
@@ -80,15 +81,15 @@ class CategoryVWidget extends StatelessWidget {
                       y: constraints.maxHeight * 0.7142857142857143,
                       z: 0,
                       child: Container(
-                        width: width,
-                        height: height,
+                        width: width.w,
+                        height: height.h,
                         child: Text(
                           this.category.description,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            height: 1.5384615384615385,
-                            fontSize: 13.0,
+                            height: 1.5384615384615385.h,
+                            fontSize: 13.0.sp,
                             fontFamily: 'Inter',
                             fontWeight: FontWeight.w400,
                             color: Color.fromARGB(255, 0, 16, 38),

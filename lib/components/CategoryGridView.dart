@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'CategoryVWidget.dart';
 import 'Category.dart';
 
@@ -13,8 +14,8 @@ class CategoryGridView extends StatelessWidget {
       borderRadius: BorderRadius.zero,
       child: GridView.count(
         crossAxisCount: 4,
-        crossAxisSpacing: 4.0,
-        mainAxisSpacing: 4.0,
+        crossAxisSpacing: 4.0.h,
+        mainAxisSpacing: 4.0.w,
         children: List.generate(categories.length,
             (index) => CategoryVWidget(category: categories[index])),
       ),
