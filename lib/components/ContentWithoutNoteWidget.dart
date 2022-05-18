@@ -22,8 +22,8 @@ class ContentWithoutNoteWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => ApplicationState(),
+    return ChangeNotifierProvider.value(
+      value: ApplicationState.getInstance,
       builder: (context, _) =>
           Consumer<ApplicationState>(builder: (context, appState, _) {
         Category category =

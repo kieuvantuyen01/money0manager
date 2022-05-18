@@ -4,7 +4,7 @@ import '../components/InComeTabBar.dart';
 import '../components/PopUpNotification1.dart';
 import '../components/SearchItem.dart';
 import '../components/TitleText1.dart';
-import 'HomeScreen.dart';
+import 'BudgetScreen.dart';
 
 class AddTransactionScreen extends StatelessWidget {
   AddTransactionScreen({Key? key, required this.title, required this.index}) : super(key: key);
@@ -49,10 +49,7 @@ class AddTransactionScreen extends StatelessWidget {
             icon: Icon(Icons.arrow_back_sharp),
             tooltip: 'Menu',
             onPressed: () => {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => HomeScreen(title: 'Ngân sách'))),
+              Navigator.pop(context),
             },
           ),
           actions: <Widget>[

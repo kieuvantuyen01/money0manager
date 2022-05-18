@@ -32,7 +32,7 @@ class UserPage extends StatelessWidget {
                     ),
                     ElevatedButton(onPressed: () {
                       Navigator.pop(context);
-                      ApplicationState().signOut();
+                      ApplicationState.getInstance.signOut();
                     }, child: Text('Đăng xuất'))
                   ]))));
 }

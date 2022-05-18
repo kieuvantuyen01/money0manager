@@ -110,8 +110,8 @@ class CategoryScreen extends StatelessWidget {
             ],
           ),
         ),
-        body: ChangeNotifierProvider(
-          create: (context) => ApplicationState(),
+        body: ChangeNotifierProvider.value(
+          value: ApplicationState.getInstance,
           builder: (context, _) => Consumer<ApplicationState>(
               builder: (context, appState, _) => Padding(
                     padding: EdgeInsets.only(top: 30),

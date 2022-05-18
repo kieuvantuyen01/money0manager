@@ -16,7 +16,7 @@ import 'package:money_manager/main1.dart';
 import 'package:money_manager/screens/CategoryScreen.dart';
 import 'package:money_manager/screens/ContactScreen.dart';
 import 'package:money_manager/screens/ExchangeMoney.dart';
-import 'package:money_manager/screens/HomeScreen.dart';
+import 'package:money_manager/screens/BudgetScreen.dart';
 import 'package:provider/provider.dart';
 
 void main() {

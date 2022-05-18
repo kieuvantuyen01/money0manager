@@ -2,12 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:money_manager/screens/CategoryScreen.dart';
+import 'package:money_manager/main.dart';
 import 'package:money_manager/screens/HomeScreen.dart';
-import 'package:money_manager/screens/RegisterScreen.dart';
-
-import '../components/ButtonPrimary.dart';
-import '../components/InputText1.dart';
+import 'package:provider/provider.dart';
 import '../components/TitleText1.dart';
 import '/src/widgets.dart';
 
@@ -32,21 +29,21 @@ class Authentication extends StatelessWidget {
   final ApplicationLoginState loginState;
   final String? email;
   final void Function(
-      String email,
-      void Function(Exception e) error,
-      ) verifyEmail;
+    String email,
+    void Function(Exception e) error,
+  ) verifyEmail;
   final void Function(
-      String email,
-      String password,
-      void Function(Exception e) error,
-      ) signInWithEmailAndPassword;
+    String email,
+    String password,
+    void Function(Exception e) error,
+  ) signInWithEmailAndPassword;
   final void Function() cancelRegistration;
   final void Function(
-      String email,
-      String displayName,
-      String password,
-      void Function(Exception e) error,
-      ) registerAccount;
+    String email,
+    String displayName,
+    String password,
+    void Function(Exception e) error,
+  ) registerAccount;
   final void Function() signOut;
 
   @override
@@ -54,10 +51,8 @@ class Authentication extends StatelessWidget {
     switch (loginState) {
       case ApplicationLoginState.loggedOut:
         return EmailForm(
-            callback: (email) =>
-                verifyEmail(
-                    email, (e) =>
-                    _showErrorDialog(context, 'Invalid email', e)));
+            callback: (email) => verifyEmail(
+                email, (e) => _showErrorDialog(context, 'Invalid email', e)));
       case ApplicationLoginState.password:
         return PasswordForm(
           email: email!,
@@ -75,9 +70,11 @@ class Authentication extends StatelessWidget {
           cancel: () {
             cancelRegistration();
           },
-          registerAccount: (email,
+          registerAccount: (
+              email,
               displayName,
-              password,) {
+              password,
+              ) {
             registerAccount(
                 email,
                 displayName,
@@ -87,7 +84,8 @@ class Authentication extends StatelessWidget {
           },
         );
       case ApplicationLoginState.loggedIn:
-        return HomeScreen(title: 'title');
+        return HomeScreen();
+        // return HomeScreen(title: 'title');
         // return Row(
         //   children: [
         //     Padding(
@@ -103,6 +101,7 @@ class Authentication extends StatelessWidget {
         //     ),
         //   ],
         // );
+        break;
       default:
         return Row(
           children: const [
@@ -118,7 +117,7 @@ class Authentication extends StatelessWidget {
 
     // Obtain the auth details from the request
     final GoogleSignInAuthentication? googleAuth =
-    await googleUser?.authentication;
+        await googleUser?.authentication;
 
     // Create a new credential
     final credential = GoogleAuthProvider.credential(
@@ -136,7 +135,7 @@ class Authentication extends StatelessWidget {
 
     // Create a credential from the access token
     final OAuthCredential facebookAuthCredential =
-    FacebookAuthProvider.credential(loginResult.accessToken!.token);
+        FacebookAuthProvider.credential(loginResult.accessToken!.token);
 
     // Once signed in, return the UserCredential
     return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
@@ -225,7 +224,7 @@ class _EmailFormState extends State<EmailForm> {
                 children: <Widget>[
                   Padding(
                     padding:
-                    const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
                     child: TextFormField(
                       controller: _controller,
                       decoration: CommonStyle.textFieldStyle(
@@ -316,7 +315,7 @@ class RegisterForm extends StatefulWidget {
 
   final String email;
   final void Function(String email, String displayName, String password)
-  registerAccount;
+      registerAccount;
   final void Function() cancel;
 
   @override
@@ -378,7 +377,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 children: <Widget>[
                   Padding(
                     padding:
-                    const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
                     child: TextFormField(
                       controller: _emailController,
                       decoration: CommonStyle.textFieldStyle(
@@ -393,7 +392,7 @@ class _RegisterFormState extends State<RegisterForm> {
                   ),
                   Padding(
                     padding:
-                    const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
                     child: TextFormField(
                       controller: _displayNameController,
                       decoration: CommonStyle.textFieldStyle(
@@ -408,7 +407,7 @@ class _RegisterFormState extends State<RegisterForm> {
                   ),
                   Padding(
                     padding:
-                    const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
                     child: TextFormField(
                       controller: _passwordController,
                       decoration: CommonStyle.passwordFieldStyle(
@@ -563,7 +562,7 @@ class _PasswordFormState extends State<PasswordForm> {
                 children: <Widget>[
                   Padding(
                     padding:
-                    const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
                     child: TextFormField(
                       controller: _emailController,
                       decoration: CommonStyle.textFieldStyle(
@@ -578,7 +577,7 @@ class _PasswordFormState extends State<PasswordForm> {
                   ),
                   Padding(
                     padding:
-                    const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
                     child: TextFormField(
                       controller: _passwordController,
                       decoration: CommonStyle.passwordFieldStyle(

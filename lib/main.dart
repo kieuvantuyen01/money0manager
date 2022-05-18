@@ -8,10 +8,6 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:money_manager/components/Account.dart';
 import 'package:money_manager/components/Transaction.dart';
-import 'package:money_manager/screens/AccountDetailScreen.dart';
-import 'package:money_manager/screens/AddAccountScreen.dart';
-import 'package:money_manager/screens/AddTransactionScreen1.dart';
-import 'package:money_manager/screens/ContactScreen.dart';
 import 'package:provider/provider.dart';
 import 'components/Category.dart';
 import 'firebase_options.dart';
@@ -19,12 +15,20 @@ import 'screens/Authentication.dart';
 import 'helpers/ChangeLanguage.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main() => runApp(
-      ChangeNotifierProvider(
-        create: (context) => ApplicationState(),
-        builder: (context, _) => MyApp(),
-      ),
-    );
+import 'screens/HomeScreen.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(
+    ChangeNotifierProvider.value(
+      value: ApplicationState.getInstance,
+      builder: (context, _) => MyApp(),
+    ),
+  );
+}
 
 class MyApp extends StatelessWidget {
 // This widget is the root of your application.
@@ -71,51 +75,12 @@ class ApplicationState extends ChangeNotifier {
     init();
   }
 
-  Future<void> init() async {
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
+  static ApplicationState instance = ApplicationState();
 
-    // var collection = FirebaseFirestore.instance.collection('expenseCategories');
-    // var myData = {'color': "0x1FB07553", 'description': "Kinh doanh", 'icon': "💼", 'index': 1};
-    // collection.doc('kinhdoanh').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
-    // myData = {'color': "0x5FFF5342", 'description': "Giải trí", 'icon': "🕹", 'index': 2};
-    // collection.doc('giaitri').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
-    // myData = {'color': "0x5FFFCF33", 'description': "Đi lại", 'icon': "🚖", 'index': 3};
-    // collection.doc('dilai').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
-    // myData = {'color': "0x5FFF5342", 'description': "Học tập", 'icon': "🎓", 'index': 4};
-    // collection.doc('hoctap').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
-    // myData = {'color': "0x5FFF5342", 'description': "Thực phẩm", 'icon': "🥕", 'index': 5};
-    // collection.doc('thucpham').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
-    // myData = {'color': "0x5FB07553", 'description': "Chuyển khoản", 'icon': "💳", 'index': 6};
-    // collection.doc('chuyenkhoan').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
-    // myData = {'color': "0x5FFF5342", 'description': "Quà tặng", 'icon': "🎁", 'index': 7};
-    // collection.doc('quatang').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
-    // myData = {'color': "0x5FFFA325", 'description': "Đồ ăn", 'icon': "🍔", 'index': 8};
-    // collection.doc('doan').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
-    // myData = {'color': "0x5FFFCF33", 'description': "Sức khoẻ", 'icon': "❤", 'index': 9};
-    // collection.doc('suckhoe').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
-    // myData = {'color': "0x5FFF5342", 'description': "Nhà ở", 'icon': "🏠", 'index': 10};
-    // collection.doc('nhao').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
-    // myData = {'color': "0x5FB07553", 'description': "Cà phê", 'icon': "☕", 'index': 11};
-    // collection.doc('caphe').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
-    // myData = {'color': "0x5FFFA325", 'description': "Mua sắm", 'icon': "🛒", 'index': 12};
-    // collection.doc('muasam').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
-    // myData = {'color': "0x5FB07553", 'description': "Thêm", 'icon': "➕", 'index': 13};
-    // collection.doc('them').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+  static ApplicationState get getInstance => instance;
 
-    // var collection = FirebaseFirestore.instance.collection('incomeCategories');
-    // var myData = {'color': "0x1FB07553", 'description': "Phiếu lương", 'icon': "💼", 'index': 1};
-    // collection.doc('phieuluong').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
-    // myData = {'color': "0x5FFF5342", 'description': "Quà tặng", 'icon': "🎁", 'index': 2};
-    // collection.doc('quatang').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
-    // myData = {'color': "0x5FFFCF33", 'description': "Chuyển khoản", 'icon': "💳", 'index': 3};
-    // collection.doc('chuyenkhoan').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
-    // myData = {'color': "0x5FFF5342", 'description': "Khác", 'icon': "?", 'index': 4};
-    // collection.doc('khac').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
-    // myData = {'color': "0x5FFF5342", 'description': "Tạo", 'icon': "➕", 'index': 5};
-    // collection.doc('tao').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
-
+  void init() {
+    // Firebase.initializeApp();
     FirebaseAuth.instance.userChanges().listen((user) {
       if (user != null) {
         _user = user;
@@ -231,7 +196,6 @@ class ApplicationState extends ChangeNotifier {
           }
           notifyListeners();
         });
-
         FirebaseFirestore.instance
             .collection('userData/${user.uid}/accounts')
             .where('visible', isEqualTo: true)
@@ -250,6 +214,46 @@ class ApplicationState extends ChangeNotifier {
       }
       notifyListeners();
     });
+
+    // var collection = FirebaseFirestore.instance.collection('expenseCategories');
+    // var myData = {'color': "0x1FB07553", 'description': "Kinh doanh", 'icon': "💼", 'index': 1};
+    // collection.doc('kinhdoanh').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+    // myData = {'color': "0x5FFF5342", 'description': "Giải trí", 'icon': "🕹", 'index': 2};
+    // collection.doc('giaitri').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+    // myData = {'color': "0x5FFFCF33", 'description': "Đi lại", 'icon': "🚖", 'index': 3};
+    // collection.doc('dilai').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+    // myData = {'color': "0x5FFF5342", 'description': "Học tập", 'icon': "🎓", 'index': 4};
+    // collection.doc('hoctap').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+    // myData = {'color': "0x5FFF5342", 'description': "Thực phẩm", 'icon': "🥕", 'index': 5};
+    // collection.doc('thucpham').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+    // myData = {'color': "0x5FB07553", 'description': "Chuyển khoản", 'icon': "💳", 'index': 6};
+    // collection.doc('chuyenkhoan').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+    // myData = {'color': "0x5FFF5342", 'description': "Quà tặng", 'icon': "🎁", 'index': 7};
+    // collection.doc('quatang').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+    // myData = {'color': "0x5FFFA325", 'description': "Đồ ăn", 'icon': "🍔", 'index': 8};
+    // collection.doc('doan').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+    // myData = {'color': "0x5FFFCF33", 'description': "Sức khoẻ", 'icon': "❤", 'index': 9};
+    // collection.doc('suckhoe').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+    // myData = {'color': "0x5FFF5342", 'description': "Nhà ở", 'icon': "🏠", 'index': 10};
+    // collection.doc('nhao').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+    // myData = {'color': "0x5FB07553", 'description': "Cà phê", 'icon': "☕", 'index': 11};
+    // collection.doc('caphe').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+    // myData = {'color': "0x5FFFA325", 'description': "Mua sắm", 'icon': "🛒", 'index': 12};
+    // collection.doc('muasam').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+    // myData = {'color': "0x5FB07553", 'description': "Thêm", 'icon': "➕", 'index': 13};
+    // collection.doc('them').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+
+    // var collection = FirebaseFirestore.instance.collection('incomeCategories');
+    // var myData = {'color': "0x1FB07553", 'description': "Phiếu lương", 'icon': "💼", 'index': 1};
+    // collection.doc('phieuluong').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+    // myData = {'color': "0x5FFF5342", 'description': "Quà tặng", 'icon': "🎁", 'index': 2};
+    // collection.doc('quatang').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+    // myData = {'color': "0x5FFFCF33", 'description': "Chuyển khoản", 'icon': "💳", 'index': 3};
+    // collection.doc('chuyenkhoan').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+    // myData = {'color': "0x5FFF5342", 'description': "Khác", 'icon': "?", 'index': 4};
+    // collection.doc('khac').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
+    // myData = {'color': "0x5FFF5342", 'description': "Tạo", 'icon': "➕", 'index': 5};
+    // collection.doc('tao').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
   }
 
   int? _remainingAmount;
@@ -260,9 +264,26 @@ class ApplicationState extends ChangeNotifier {
 
   User? get user => _user;
 
+  Screen _mainScreen = Screen.budget;
+
+  Screen get mainScreen => _mainScreen;
+
+  set mainScreen(Screen screen) {
+    _mainScreen = screen;
+    notifyListeners();
+  }
+
+  void setScreen(Screen screen) {
+    _mainScreen = screen;
+  }
+
   ApplicationLoginState _loginState = ApplicationLoginState.loggedOut;
 
   ApplicationLoginState get loginState => _loginState;
+
+  set loginState(ApplicationLoginState state) {
+    _loginState = state;
+  }
 
   String? _email;
 
@@ -367,6 +388,8 @@ class ApplicationState extends ChangeNotifier {
     FirebaseAuth.instance.signOut();
     GoogleSignIn().signOut();
     FacebookAuth.instance.logOut();
+    _loginState = ApplicationLoginState.loggedOut;
     print('signOut');
+    // notifyListeners();
   }
 }

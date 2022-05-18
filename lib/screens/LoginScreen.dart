@@ -4,7 +4,7 @@ import '../components/PasswordTextField.dart';
 import '../components/InputText1.dart';
 import '../components/ButtonPrimary.dart';
 import '../components/TitleText1.dart';
-import 'HomeScreen.dart';
+import 'BudgetScreen.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key, required this.title}) : super(key: key);

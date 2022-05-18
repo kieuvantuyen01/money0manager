@@ -5,7 +5,7 @@ import '../components/InComeTabBar.dart';
 import '../components/PopUpNotification1.dart';
 import '../components/SearchItem.dart';
 import '../components/TitleText1.dart';
-import 'HomeScreen.dart';
+import 'BudgetScreen.dart';
 
 class ExchangeMoney extends StatelessWidget {
   ExchangeMoney({Key? key, required this.title}) : super(key: key);
@@ -48,12 +48,7 @@ class ExchangeMoney extends StatelessWidget {
               iconSize: 30,
               icon: Icon(Icons.arrow_back_sharp),
               tooltip: 'Menu',
-              onPressed: () => {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => HomeScreen(title: 'Ngân sách'))),
-              },
+              onPressed: () => Navigator.pop(context),
             ),
             actions: <Widget>[
               IconButton(
