@@ -80,7 +80,6 @@ class ApplicationState extends ChangeNotifier {
   static ApplicationState get getInstance => instance;
 
   void init() {
-    // Firebase.initializeApp();
     FirebaseAuth.instance.userChanges().listen((user) {
       if (user != null) {
         _user = user;
@@ -271,10 +270,6 @@ class ApplicationState extends ChangeNotifier {
   set mainScreen(Screen screen) {
     _mainScreen = screen;
     notifyListeners();
-  }
-
-  void setScreen(Screen screen) {
-    _mainScreen = screen;
   }
 
   ApplicationLoginState _loginState = ApplicationLoginState.loggedOut;
