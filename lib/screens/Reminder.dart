@@ -1,5 +1,6 @@
 import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import '../components/ButtonPrimary.dart';
 import '../components/InputText1.dart';
@@ -41,11 +42,11 @@ class ReminderState extends State<Reminder> {
   Widget DateBar() {
     // TODO: implement build
     return Container(
-      margin: EdgeInsets.only(left: 32),
+      margin: EdgeInsets.only(left: 32.w),
       child: DatePicker(
         DateTime.now(),
-        height: 84,
-        width: 70,
+        height: 84.h,
+        width: 70.w,
         onDateChange: (val) {
           dayPicked = val.day;
           monthPicked = val.month;
@@ -56,7 +57,7 @@ class ReminderState extends State<Reminder> {
         selectionColor: Color.fromARGB(255, 35, 111, 87),
         selectedTextColor: Colors.white,
         dateTextStyle: TextStyle(
-          fontSize: 20,
+          fontSize: 20.sp,
           fontFamily: 'Nunito Sans',
           fontWeight: FontWeight.w600,
           color: Color.fromARGB(255, 37, 49, 65),
@@ -136,7 +137,7 @@ class ReminderState extends State<Reminder> {
               appBar: SmallHeader(
                   title: 'Tạo lời nhắc', icon: Icon(Icons.arrow_back_sharp)),
               body: Container(
-                  padding: EdgeInsets.only(left: 32, right: 32, bottom: 30),
+                  padding: EdgeInsets.only(left: 32.w, right: 32.w, bottom: 30.h),
                   decoration: BoxDecoration(
                     color: Color.fromRGBO(232, 236, 244, 1),
                   ),
@@ -144,7 +145,7 @@ class ReminderState extends State<Reminder> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
                       Padding(
-                        padding: EdgeInsets.only(top: 30),
+                        padding: EdgeInsets.only(top: 30.h),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
@@ -157,7 +158,7 @@ class ReminderState extends State<Reminder> {
                                 g: 49,
                                 b: 65),
                             Padding(
-                                padding: EdgeInsets.only(top: 10),
+                                padding: EdgeInsets.only(top: 10.h),
                                 child: Row(
                                   children: [
                                     Expanded(
@@ -168,7 +169,7 @@ class ReminderState extends State<Reminder> {
                                         decoration: InputDecoration(
                                           hintText: 'Tên lời nhắc',
                                           hintStyle: TextStyle(
-                                            fontSize: 18,
+                                            fontSize: 18.sp,
                                             fontFamily: 'Nunito Sans',
                                             color: Color.fromARGB(
                                                 255, 189, 189, 189),
@@ -200,7 +201,7 @@ class ReminderState extends State<Reminder> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 15),
+                        padding: EdgeInsets.only(top: 15.h),
                         child: InputTextField(
                           hintText: _selectedRemind,
                           labelText: 'Tần suất',
@@ -215,7 +216,7 @@ class ReminderState extends State<Reminder> {
                             },
                             icon: Icon(Icons.keyboard_arrow_down,
                                 color: Colors.grey),
-                            iconSize: 32,
+                            iconSize: 32.sp,
                             elevation: 4,
                             underline: Container(height: 0),
                             items: remindList
@@ -234,7 +235,7 @@ class ReminderState extends State<Reminder> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 15),
+                        padding: EdgeInsets.only(top: 15.h),
                         child: InputTextField(
                           hintText: DateFormat.yMd().format(selectedDate),
                           labelText: 'Chọn ngày',
@@ -249,7 +250,7 @@ class ReminderState extends State<Reminder> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 15),
+                        padding: EdgeInsets.only(top: 15.h),
                         child: InputTextField(
                           hintText: getTimeStringFormat(),
                           labelText: 'Chọn thời gian',
@@ -264,7 +265,7 @@ class ReminderState extends State<Reminder> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 15),
+                        padding: EdgeInsets.only(top: 15.h),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
@@ -277,7 +278,7 @@ class ReminderState extends State<Reminder> {
                                 g: 49,
                                 b: 65),
                             Padding(
-                                padding: EdgeInsets.only(top: 10),
+                                padding: EdgeInsets.only(top: 10.h),
                                 child: Row(
                                   children: [
                                     Expanded(
@@ -289,7 +290,7 @@ class ReminderState extends State<Reminder> {
                                         decoration: InputDecoration(
                                           hintText: 'Ghi chú',
                                           hintStyle: TextStyle(
-                                            fontSize: 18,
+                                            fontSize: 18.sp,
                                             fontFamily: 'Nunito Sans',
                                             color:
                                             Color.fromARGB(255, 189, 189, 189),
@@ -319,7 +320,7 @@ class ReminderState extends State<Reminder> {
                         ),
                       ),
                       Container(
-                        padding: EdgeInsets.only(top: 40),
+                        padding: EdgeInsets.only(top: 40.h),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: <Widget>[
@@ -331,11 +332,11 @@ class ReminderState extends State<Reminder> {
                                     decoration: BoxDecoration(
                                         color: Color.fromARGB(255, 35, 111, 87),
                                         borderRadius:
-                                            BorderRadius.circular(20)),
+                                            BorderRadius.circular(20.r)),
                                     child: Text(
                                       "Hủy",
                                       style: TextStyle(
-                                          fontSize: 20, color: Colors.white),
+                                          fontSize: 20.sp, color: Colors.white),
                                     ),
                                   ),
                                   onTap: () {
@@ -352,11 +353,11 @@ class ReminderState extends State<Reminder> {
                                     decoration: BoxDecoration(
                                         color: Color.fromARGB(255, 35, 111, 87),
                                         borderRadius:
-                                            BorderRadius.circular(20)),
+                                            BorderRadius.circular(20.r)),
                                     child: Text(
                                       "Đặt",
                                       style: TextStyle(
-                                          fontSize: 20, color: Colors.white),
+                                          fontSize: 20.sp, color: Colors.white),
                                     ),
                                   ),
                                   onTap: () {
@@ -383,7 +384,7 @@ class ReminderState extends State<Reminder> {
         resizeToAvoidBottomInset: false,
         appBar: SmallHeader(title: 'Nhắc nhở', icon: Icon(Icons.menu)),
         floatingActionButton: Padding(
-          padding: EdgeInsets.only(bottom: 50),
+          padding: EdgeInsets.only(bottom: 50.w),
           child: FloatingActionButton(
             tooltip: 'Add action',
             child: Icon(Icons.add),
@@ -397,7 +398,7 @@ class ReminderState extends State<Reminder> {
           scrollDirection: Axis.vertical,
           children: [
             Padding(
-                padding: EdgeInsets.only(top: 20),
+                padding: EdgeInsets.only(top: 20.h),
                 child: DateBar(),
             ),
             ListSchedule(

@@ -42,7 +42,7 @@ class CategoryScreen extends StatelessWidget {
           automaticallyImplyLeading: false,
           centerTitle: true,
           title: Padding(
-            padding: EdgeInsets.only(top: 10),
+            padding: EdgeInsets.only(top: 10.h),
             child: TitleText1(
                 text: 'Danh mục',
                 fontFamily: 'Inter',

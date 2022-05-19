@@ -52,10 +52,9 @@ class BudgetScreen extends StatelessWidget {
                                   b: 255),
                             ),
                             IconButton(
-                              padding: EdgeInsets.only(left: 70.w, bottom: 10.h),
+                              padding: EdgeInsets.only(left: 60.w, bottom: 10.h),
                               iconSize: 35.sp,
                               icon: Image.asset("assets/ngansach.png"),
-                              tooltip: 'Tìm kiếm',
                               onPressed: () => {
                                 Navigator.push(
                                     context,
