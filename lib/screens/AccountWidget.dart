@@ -4,6 +4,7 @@ import 'package:money_manager/screens/AddAccountScreen.dart';
 import 'package:money_manager/src/widgets.dart';
 import '../components/Category.dart';
 import '../components/CategoryVWidget.dart';
+import '../components/CustomPageRoute.dart';
 import '../components/NavigationDrawerWidget.dart';
 import '../components/TitleText1.dart';
 
@@ -146,12 +147,24 @@ class AccountWidget extends StatelessWidget {
               child: SizedBox(
                 width: 93.w,
                 height: 51.h,
-                child: StyledElevatedButton(
-                  child: Text('Thêm'),
-                  width: 109.w,
-                  height: 51.h,
-                  onPressed: () => Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => AddAccountScreen(title: '',))),
+                child: RaisedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(CustomPageRoute(
+                        direction: AxisDirection.up,
+                        child: AddAccountScreen(title: '')));
+                  },
+                  child: TitleText1(
+                      text: 'Thêm',
+                      fontFamily: 'Inter',
+                      fontSize: 15.sp,
+                      fontWeight: FontWeight.bold,
+                      r: 255,
+                      g: 255,
+                      b: 255),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(20.r)),
+                  ),
+                  color: Color.fromARGB(255, 35, 111, 87),
                 ),
               ),
             ),

@@ -45,10 +45,10 @@ class BudgetTaskBar extends StatelessWidget {
                   children: <Widget>[
                     DatePicker1(),
                     TitleText1(text: 'Tổng cộng: 2,000,000 đ', fontFamily: 'Inter', fontSize: 15, fontWeight: FontWeight.bold, r: 0, g: 0, b: 0),
-                    Padding(
-                      padding: EdgeInsets.only(left: 260.w, top: 280.h),
-                      child: PlusButton(),
-                    ),
+                    // Padding(
+                    //   padding: EdgeInsets.only(left: 260.w, top: 280.h),
+                    //   child: PlusButton(),
+                    // ),
                   ],
                 ),
               ),
@@ -60,10 +60,10 @@ class BudgetTaskBar extends StatelessWidget {
                   children: <Widget>[
                     DateRangePicker(),
                     TitleText1(text: 'Tổng cộng: 2,000,000 đ', fontFamily: 'Inter', fontSize: 15, fontWeight: FontWeight.bold, r: 0, g: 0, b: 0),
-                    Padding(
-                      padding: EdgeInsets.only(left: 260.w, top: 280.h, bottom: 1.h),
-                        child: PlusButton(),
-                    ),
+                    // Padding(
+                    //   padding: EdgeInsets.only(left: 260.w, top: 280.h, bottom: 1.h),
+                    //     child: PlusButton(),
+                    // ),
                   ],
                 ),
               ),

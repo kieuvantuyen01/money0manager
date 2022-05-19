@@ -238,7 +238,7 @@ class _TransactionsState extends State<TransactionsWidget> {
                             return Column(
                               children: [
                                 Text(
-                                    '${date.day} tháng ${date.month}, ${date.year}'),
+                                    '${date.day} tháng ${date.month}, ${date.year}', style: TextStyle(color: Colors.black)),
                                 TransactionContentWidget(
                                     transaction: TransactionDetails(
                                       categoryID: document['categoryID'],
@@ -311,21 +311,21 @@ class _TransactionsState extends State<TransactionsWidget> {
           if (start.isAtSameMomentAs(now)) {
             return TextButton(
                 onPressed: onPress,
-                child: Text('Hôm nay, ${start.day} tháng ${start.month}'));
+                child: Text('Hôm nay, ${start.day} tháng ${start.month}', style: TextStyle(color: Colors.black)));
           } else if (start
               .isAtSameMomentAs(now.subtract(const Duration(days: 1)))) {
             return TextButton(
                 onPressed: onPress,
-                child: Text('Hôm qua, ${start.day} tháng ${start.month}'));
+                child: Text('Hôm qua, ${start.day} tháng ${start.month}', style: TextStyle(color: Colors.black)));
           } else {
             return TextButton(
                 onPressed: onPress,
-                child: Text('${start.day} tháng ${start.month}'));
+                child: Text('${start.day} tháng ${start.month}', style: TextStyle(color: Colors.black)));
           }
         } else {
           return TextButton(
               onPressed: onPress,
-              child: Text('${start.day} tháng ${start.month}, ${start.year}'));
+              child: Text('${start.day} tháng ${start.month}, ${start.year}', style: TextStyle(color: Colors.black)));
         }
         break;
       // case TAB.WEEK:
@@ -362,12 +362,12 @@ class _TransactionsState extends State<TransactionsWidget> {
           return TextButton(
               onPressed: selectRange,
               child: Text(
-                  'từ ${start.day}/${start.month} đến ${end.day}/${end.month}/${end.year}'));
+                  'Từ ${start.day}/${start.month} đến ${end.day}/${end.month}/${end.year}', style: TextStyle(color: Colors.black)));
         } else {
           return TextButton(
               onPressed: selectRange,
               child: Text(
-                  'từ ${start.day}/${start.month}/${start.year} đến ${end.day}/${end.month}/${end.year}'));
+                  'Từ ${start.day}/${start.month}/${start.year} đến ${end.day}/${end.month}/${end.year}', style: TextStyle(color: Colors.black)));
         }
       default:
         return Text('ADU');

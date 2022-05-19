@@ -61,8 +61,7 @@ class AddTransactionScreen1State extends State<AddTransactionScreen1> {
             padding: EdgeInsets.only(left: 32.w, top: 10.h),
             iconSize: 30.sp,
             icon: Icon(Icons.arrow_back_sharp),
-            tooltip: 'Menu',
-            onPressed: () => {Scaffold.of(context).openDrawer()},
+            onPressed: () => {Navigator.pop(context)},
           ),
           flexibleSpace: Container(
             decoration: BoxDecoration(
@@ -357,7 +356,7 @@ class AddTransactionScreen1State extends State<AddTransactionScreen1> {
                             radius: 5,
                             weight: 80,
                             height: 80,
-                            screenName: 'ContactScreen',
+                            screenName: 'AddTransactionScreen',
                             fontSize: 50),
                       ),
                     ],
