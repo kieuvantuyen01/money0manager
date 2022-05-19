@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:money_manager/screens/HomeScreen.dart';
-import '../screens/Reminder.dart';
 import 'TitleText1.dart';
+import 'package:money_manager/screens/BudgetScreen.dart';
 
 class ButtonPrimary extends StatelessWidget {
   ButtonPrimary(
@@ -37,7 +36,7 @@ class ButtonPrimary extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => HomeScreen(title: 'Ngân sách')));
+                    builder: (context) => BudgetScreen()));
           }
         },
         child: TitleText1(

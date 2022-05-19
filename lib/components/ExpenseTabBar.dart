@@ -154,8 +154,8 @@ class _TransactionsState extends State<TransactionsWidget> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return ChangeNotifierProvider(
-      create: (context) => ApplicationState(),
+    return ChangeNotifierProvider.value(
+      value: ApplicationState.getInstance,
       builder: (context, _) =>
           Consumer<ApplicationState>(builder: (context, appState, _) {
             return Center(

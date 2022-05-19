@@ -1,146 +1,60 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:money_manager/main.dart';
 import 'package:provider/provider.dart';
-import '../components/BudgetTaskBar.dart';
-import '../components/NavigationDrawerWidget.dart';
-import '../components/TitleText1.dart';
-import 'ExchangeMoney.dart';
 
-class HomeScreen extends StatefulWidget {
-  final String title;
+import 'AccountWidget.dart';
+import 'BudgetScreen.dart';
+import 'CategoryScreen.dart';
+import 'ColumnChart.dart';
+import 'ContactScreen.dart';
+import 'Currency.dart';
+import 'People.dart';
+import 'Reminder.dart';
 
-  HomeScreen({
-    Key? key,
-    required this.title,
-  }) : super(key: key);
-
-  @override
-  HomeScreenState createState() => HomeScreenState(this.title);
+enum Screen {
+  budget,
+  account,
+  chart,
+  category,
+  payment,
+  reminder,
+  currency,
+  setting,
+  ads,
+  share,
+  rating,
+  contact,
 }
 
-class HomeScreenState extends State<HomeScreen> {
-  HomeScreenState(this.title);
-
-  final String title;
+class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => ApplicationState(),
-      builder: (context, _) => Consumer<ApplicationState>(
-          builder: (context, appState, _) => Scaffold(
-                resizeToAvoidBottomInset: false,
-                drawer: NavigationDrawerWidget(),
-                appBar: AppBar(
-                  automaticallyImplyLeading: false,
-                  centerTitle: true,
-                  title: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: <Widget>[
-                      Row(
-                          // mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Builder(
-                              builder: (context) => Container(
-                                child: IconButton(
-                                  padding:
-                                      EdgeInsets.only(left: 10.w, bottom: 10.h, top: 1.h),
-                                  iconSize: 30.sp,
-                                  icon: Icon(Icons.menu),
-                                  tooltip: 'Menu',
-                                  onPressed: () =>
-                                      {Scaffold.of(context).openDrawer()},
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 80.w, bottom: 10.h, top: 1.h),
-                              child: TitleText1(
-                                  text: 'Ngân sách',
-                                  fontFamily: 'Inter',
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.bold,
-                                  r: 255,
-                                  g: 255,
-                                  b: 255),
-                            ),
-                            IconButton(
-                              padding: EdgeInsets.only(left: 60.w, bottom: 10.h, top: 1.h),
-                              iconSize: 35.sp,
-                              icon: Image.asset("assets/ngansach.png"),
-                              onPressed: () => {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            ExchangeMoney(title: 'Giao dich'))),
-                              },
-                            ),
-                          ]),
-                      Padding(
-                        padding: EdgeInsets.only(left: 16.w, top: 20.h),
-                        child: TitleText1(
-                            text: 'Hôm nay',
-                            fontFamily: 'Inter',
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            r: 198,
-                            g: 198,
-                            b: 198),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 18.w, top: 25.h),
-                        child: TitleText1(
-                            text: '–5,450,000 đ',
-                            fontFamily: 'Inter',
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
-                            r: 255,
-                            g: 255,
-                            b: 255),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 18.w, top: 10.h),
-                        child: TitleText1(
-                            text: (appState.remainingAmount != null
-                                ? 'Số dư khả dụng: ${appState.remainingAmount} đ'
-                                : 'SOS'),
-                            fontFamily: 'Inter',
-                            fontSize: 18,
-                            fontWeight: FontWeight.normal,
-                            r: 255,
-                            g: 255,
-                            b: 255),
-                      ),
-                    ],
-                  ),
-                  backgroundColor: Colors.transparent,
-                  toolbarHeight: 220.h,
-                  elevation: 0.0,
-                  flexibleSpace: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(25.r),
-                          bottomRight: Radius.circular(25.r)),
-                      gradient: LinearGradient(
-                        colors: [
-                          Color.fromARGB(255, 35, 111, 87),
-                          Color.fromARGB(255, 35, 111, 87),
-                        ],
-                        begin: Alignment.bottomCenter,
-                        end: Alignment.topCenter,
-                      ),
-                    ),
-                  ),
-                ),
-                body: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    BudgetTaskBar(),
-                  ],
-                ),
-              )),
-    );
+    return ChangeNotifierProvider.value(value: ApplicationState.getInstance, builder: (context, _) => Consumer<ApplicationState>( builder: (context, appState, _){
+      switch (appState.mainScreen) {
+        case Screen.budget:
+          return BudgetScreen();
+        case Screen.account:
+          return AccountWidget(title: 'title');
+        case Screen.chart:
+          return ColumnChart(title: 'Biểu đồ');
+        case Screen.category:
+          return CategoryScreen(title: 'Danh mục');
+        case Screen.payment:
+          return PeoplePage();
+        case Screen.reminder:
+          return Reminder();
+        case Screen.currency:
+          return Currency(title: 'title');
+        case Screen.setting:
+          return PeoplePage();
+        case Screen.ads:
+          return PeoplePage();
+        case Screen.contact:
+          return ContactScreen(title: 'Liên hệ');
+        default:
+          return BudgetScreen();
+      }
+    }),);
   }
 }
