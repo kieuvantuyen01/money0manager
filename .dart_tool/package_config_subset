@@ -166,6 +166,10 @@ flutter_rating_bar
 2.14
 file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_rating_bar-4.0.1/
 file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_rating_bar-4.0.1/lib/
+flutter_screenutil
+2.12
+file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_screenutil-5.5.3+1/
+file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_screenutil-5.5.3+1/lib/
 flutter_svg
 2.12
 file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_svg-1.0.3/
@@ -436,6 +440,6 @@ file:///C:/flutter/packages/flutter_web_plugins/
 file:///C:/flutter/packages/flutter_web_plugins/lib/
 money_manager
 2.16
-file:///C:/flutterProj/money_manager/
-file:///C:/flutterProj/money_manager/lib/
+file:///D:/Computer_science/flutter/money_manager/
+file:///D:/Computer_science/flutter/money_manager/lib/
 2

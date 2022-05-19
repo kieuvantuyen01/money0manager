@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:money_manager/screens/AddAccount.dart';
 import 'package:money_manager/screens/AddAccountScreen.dart';
 import 'package:money_manager/src/widgets.dart';
-import '../components/ButtonPrimary.dart';
 import '../components/Category.dart';
 import '../components/CategoryVWidget.dart';
 import '../components/NavigationDrawerWidget.dart';

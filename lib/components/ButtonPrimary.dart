@@ -42,7 +42,7 @@ class ButtonPrimary extends StatelessWidget {
         child: TitleText1(
             text: this.text,
             fontFamily: 'Inter',
-            fontSize: this.fontSize,
+            fontSize: this.fontSize.sp,
             fontWeight: FontWeight.bold,
             r: 255,
             g: 255,

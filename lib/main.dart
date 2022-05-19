@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
           const Locale('en', ''),
           const Locale('vi', ''),
         ],
-        home: ColumnChart(title: 'a',),
+        home: HomePage(),
       ),
     );
   }

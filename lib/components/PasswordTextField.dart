@@ -43,7 +43,6 @@ class  PasswordTextFieldState extends State< PasswordTextField> {
         hintText: this.hintText,
         labelText: this.labelText,
         suffixIcon: IconButton(
-          // iconSize: 30,
           icon: Icon(Icons.visibility),
           color: Color.fromARGB(255, 35, 111, 87),
           onPressed: () => {

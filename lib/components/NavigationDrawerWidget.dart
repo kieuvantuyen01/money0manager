@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:money_manager/components/TitleText1.dart';
 import 'package:money_manager/main.dart';
 import 'package:money_manager/screens/Authentication.dart';
@@ -10,7 +11,7 @@ import '../screens/HomeScreen.dart';
 import 'PopUpRatingApp.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
-  final padding = EdgeInsets.symmetric(horizontal: 16);
+  final padding = EdgeInsets.symmetric(horizontal: 16.w);
 
   void _showRatingDialog(BuildContext context) {
     showDialog(
@@ -151,7 +152,7 @@ class NavigationDrawerWidget extends StatelessWidget {
           padding: padding.add(const EdgeInsets.symmetric(vertical: 16)),
           child: Row(children: [
             CircleAvatar(
-              radius: 30,
+              radius: 30.r,
               backgroundImage: NetworkImage(urlImage),
             ),
             const SizedBox(
@@ -203,7 +204,7 @@ class NavigationDrawerWidget extends StatelessWidget {
               color: color,
               fontFamily: 'Inter',
               fontWeight: FontWeight.normal,
-              fontSize: 16)),
+              fontSize: 16.sp)),
       hoverColor: hoverColor,
       onTap: onClicked,
     );
@@ -224,7 +225,6 @@ class NavigationDrawerWidget extends StatelessWidget {
       case Screen.ads:
       case Screen.contact:
         applicationState.mainScreen = screen;
-        applicationState.setScreen(screen);
         break;
       case Screen.share:
         Share.share(

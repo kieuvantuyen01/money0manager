@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../screens/Reminder.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'TitleText1.dart';
 
 class SmallHeader extends StatelessWidget with PreferredSizeWidget {
@@ -15,7 +15,7 @@ class SmallHeader extends StatelessWidget with PreferredSizeWidget {
       automaticallyImplyLeading: false,
       centerTitle: true,
       title: Padding(
-        padding: EdgeInsets.only(top: 10),
+        padding: EdgeInsets.only(top: 10.h),
         child: TitleText1(
             text: this.title,
             fontFamily: 'Inter',
@@ -30,8 +30,8 @@ class SmallHeader extends StatelessWidget with PreferredSizeWidget {
       flexibleSpace: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(25),
-              bottomRight: Radius.circular(25)),
+              bottomLeft: Radius.circular(25.r),
+              bottomRight: Radius.circular(25.r)),
           gradient: LinearGradient(
             colors: [
               Color.fromARGB(255, 35, 111, 87),
@@ -45,8 +45,8 @@ class SmallHeader extends StatelessWidget with PreferredSizeWidget {
       leading: Builder(
         builder: (context) => Container(
           child: IconButton(
-            padding: EdgeInsets.only(left: 32, top: 10),
-            iconSize: 30,
+            padding: EdgeInsets.only(left: 32.w, top: 10.h),
+            iconSize: 30.sp,
             alignment: Alignment.center,
             icon: this.icon,
             onPressed: () => {
@@ -67,5 +67,5 @@ class SmallHeader extends StatelessWidget with PreferredSizeWidget {
 
   @override
   // TODO: implement preferredSize
-  Size get preferredSize => Size.fromHeight(72);
+  Size get preferredSize => Size.fromHeight(72.h);
 }
