@@ -63,7 +63,7 @@ class BudgetScreen extends StatelessWidget {
                                   iconSize: 35.sp,
                                   icon: Image.asset("assets/ngansach.png"),
                                   onPressed: () => {
-                                  Navigator.of(context).push(CustomPageRoute(direction:AxisDirection.up, child: ExchangeMoney(title: 'Giao dich'))),
+                                  Navigator.of(context).push(CustomPageRoute(direction:AxisDirection.left, child: ExchangeMoney(title: 'Giao dich'))),
                                 },
                                 ),
                               ]),

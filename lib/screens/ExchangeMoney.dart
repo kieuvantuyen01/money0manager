@@ -124,7 +124,7 @@ class ExchangeMoney extends StatelessWidget {
                   int index = DefaultTabController.of(context)!.index;
                   print(index);
                   Navigator.of(context).push(CustomPageRoute(
-                      direction: AxisDirection.left,
+                      direction: AxisDirection.up,
                       child: AddTransactionScreen1()));
                 }),
             body: TabBarView(
