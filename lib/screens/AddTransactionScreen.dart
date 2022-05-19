@@ -7,7 +7,8 @@ import '../components/TitleText1.dart';
 import 'BudgetScreen.dart';
 
 class AddTransactionScreen extends StatelessWidget {
-  AddTransactionScreen({Key? key, required this.title, required this.index}) : super(key: key);
+  AddTransactionScreen({Key? key, required this.title, required this.index})
+      : super(key: key);
   final String title;
   final int index;
 
@@ -94,27 +95,40 @@ class AddTransactionScreen extends StatelessWidget {
             indicatorColor: Colors.white,
             indicatorWeight: 3,
             indicatorPadding:
-            EdgeInsets.only(left: 50.0, right: 50.0, bottom: 2.0),
+                EdgeInsets.only(left: 50.0, right: 50.0, bottom: 2.0),
             padding: EdgeInsets.only(bottom: 20.0),
             tabs: [
               Tab(
-                child: Text('Chi phí',
-                  style: Theme.of(context).textTheme.headline6!.apply(color: Colors.white),),
+                child: Text(
+                  'Chi phí',
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline6!
+                      .apply(color: Colors.white),
+                ),
               ),
               Tab(
-                  child: Text('Thu nhập',
-                    style: Theme.of(context).textTheme.headline6!.apply(color: Colors.white),)
-              ),
+                  child: Text(
+                'Thu nhập',
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6!
+                    .apply(color: Colors.white),
+              )),
             ],
           ),
         ),
         body: TabBarView(
           children: [
             Center(
-              child: ExpenseTabBar(),
+              child: ExpenseTabBar(
+                isExpense: true,
+              ),
             ),
             Center(
-              child: InComeTabBar(),
+              child: ExpenseTabBar(
+                isExpense: false,
+              ),
             ),
           ],
         ),

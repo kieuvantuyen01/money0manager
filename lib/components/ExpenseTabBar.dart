@@ -10,6 +10,9 @@ import 'package:provider/provider.dart';
 import 'TitleText1.dart';
 
 class ExpenseTabBar extends StatelessWidget {
+  const ExpenseTabBar({Key? key, required this.isExpense}) : super(key: key);
+
+  final bool isExpense;
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -50,6 +53,7 @@ class ExpenseTabBar extends StatelessWidget {
                   dateTimeRange:
                       DateTimeRange(start: DateTime.now(), end: DateTime.now()),
                   tab: TAB.DATE,
+                  isExpense: this.isExpense,
                 ),
                 Center(
                     child: TitleText1(
@@ -78,7 +82,7 @@ class ExpenseTabBar extends StatelessWidget {
                         r: 0,
                         g: 0,
                         b: 0)),
-                TransactionsWidget(tab: TAB.RANGE),
+                TransactionsWidget(tab: TAB.RANGE, isExpense: isExpense,),
                 // Center(
                 //   child: Column(
                 //     children: <Widget>[
@@ -104,10 +108,11 @@ class ExpenseTabBar extends StatelessWidget {
 enum TAB { DATE, WEEK, MONTH, YEAR, RANGE }
 
 class TransactionsWidget extends StatefulWidget {
+  final bool isExpense;
   DateTimeRange? dateTimeRange;
   final tab;
 
-  TransactionsWidget({this.dateTimeRange, required this.tab});
+  TransactionsWidget({this.dateTimeRange, required this.tab, required this.isExpense});
 
   @override
   _TransactionsState createState() {
@@ -117,16 +122,17 @@ class TransactionsWidget extends StatefulWidget {
           end: DateTime(
               DateTime.now().year, DateTime.now().month, DateTime.now().day));
     }
-    return _TransactionsState(dateTimeRange: this.dateTimeRange!, tab: tab);
+    return _TransactionsState(dateTimeRange: this.dateTimeRange!, tab: this.tab, isExpense: this.isExpense);
   }
 }
 
 class _TransactionsState extends State<TransactionsWidget> {
+  final bool isExpense;
   DateTimeRange dateTimeRange;
   final tab;
   int _amount = 0;
 
-  _TransactionsState({required this.dateTimeRange, required this.tab});
+  _TransactionsState({required this.dateTimeRange, required this.tab, required this.isExpense});
 
   @override
   void initState() {
@@ -163,7 +169,7 @@ class _TransactionsState extends State<TransactionsWidget> {
                   StreamBuilder<QuerySnapshot>(
                     stream: FirebaseFirestore.instance
                         .collection('userData/${appState.user!.uid}/transactions')
-                        .where('isExpense', isEqualTo: true)
+                        .where('isExpense', isEqualTo: isExpense)
                         .where('date',
                         isGreaterThanOrEqualTo: DateTime(
                             dateTimeRange.start.year,
