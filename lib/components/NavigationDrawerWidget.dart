@@ -224,7 +224,6 @@ class NavigationDrawerWidget extends StatelessWidget {
       case Screen.ads:
       case Screen.contact:
         applicationState.mainScreen = screen;
-        applicationState.setScreen(screen);
         break;
       case Screen.share:
         Share.share(
