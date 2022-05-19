@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../components/ButtonPrimary.dart';
 import '../components/DatePicker1.dart';
 import '../components/InputText1.dart';
@@ -17,16 +18,16 @@ class AddTransactionScreen1State extends State<AddTransactionScreen1> {
   Widget DateBar() {
     // TODO: implement build
     return Container(
-      margin: EdgeInsets.only(left: 16),
+      margin: EdgeInsets.only(left: 16.w),
       child: DatePicker(
         DateTime.now(),
-        height: 71,
-        width: 75,
+        height: 71.h,
+        width: 75.w,
         initialSelectedDate: DateTime.now(),
         selectionColor: Color.fromARGB(255, 35, 111, 87),
         selectedTextColor: Colors.white,
         dateTextStyle: TextStyle(
-          fontSize: 13,
+          fontSize: 13.sp,
           fontFamily: 'Nunito Sans',
           fontWeight: FontWeight.w600,
           color: Color.fromARGB(255, 37, 49, 65),
@@ -43,7 +44,7 @@ class AddTransactionScreen1State extends State<AddTransactionScreen1> {
         appBar: AppBar(
           centerTitle: true,
           title: Padding(
-            padding: EdgeInsets.only(top: 10),
+            padding: EdgeInsets.only(top: 10.h),
             child: TitleText1(
                 text: 'Thêm giao dịch',
                 fontFamily: 'Inter',
@@ -54,11 +55,11 @@ class AddTransactionScreen1State extends State<AddTransactionScreen1> {
                 b: 255),
           ),
           backgroundColor: Colors.transparent,
-          toolbarHeight: 100,
+          toolbarHeight: 100.h,
           elevation: 0.0,
           leading: IconButton(
-            padding: EdgeInsets.only(left: 32, top: 10),
-            iconSize: 30,
+            padding: EdgeInsets.only(left: 32.w, top: 10.h),
+            iconSize: 30.sp,
             icon: Icon(Icons.arrow_back_sharp),
             tooltip: 'Menu',
             onPressed: () => {Scaffold.of(context).openDrawer()},
@@ -66,8 +67,8 @@ class AddTransactionScreen1State extends State<AddTransactionScreen1> {
           flexibleSpace: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(25),
-                  bottomRight: Radius.circular(25)),
+                  bottomLeft: Radius.circular(25.r),
+                  bottomRight: Radius.circular(25.r)),
               gradient: LinearGradient(
                 colors: [
                   Color.fromARGB(255, 35, 111, 87),
@@ -80,10 +81,10 @@ class AddTransactionScreen1State extends State<AddTransactionScreen1> {
           ),
           bottom: TabBar(
             indicatorColor: Colors.white,
-            indicatorWeight: 3,
+            indicatorWeight: 3.sp,
             indicatorPadding:
-                EdgeInsets.only(left: 50.0, right: 50.0, bottom: 2.0),
-            padding: EdgeInsets.only(bottom: 20.0),
+                EdgeInsets.only(left: 50.0.w, right: 50.0.w, bottom: 2.0.h),
+            padding: EdgeInsets.only(bottom: 20.0.w),
             tabs: [
               Tab(
                 child: TitleText1(
@@ -118,11 +119,11 @@ class AddTransactionScreen1State extends State<AddTransactionScreen1> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
-                        width: 180,
-                        height: 100,
+                        width: 180.w,
+                        height: 100.h,
                         child: Padding(
                           padding:
-                              EdgeInsets.only(left: 16, right: 16, top: 20),
+                              EdgeInsets.only(left: 16.w, right: 16.r, top: 20.h),
                           child: InputText1(
                               hintText: money, labelText: '', maxLines: 1),
                         ),
@@ -138,7 +139,7 @@ class AddTransactionScreen1State extends State<AddTransactionScreen1> {
                     ],
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 16, top: 5),
+                    padding: EdgeInsets.only(left: 16.w, top: 5.h),
                     child: TitleText1(
                         text: 'Tài khoản',
                         fontFamily: 'Inter',
@@ -149,7 +150,7 @@ class AddTransactionScreen1State extends State<AddTransactionScreen1> {
                         b: 102),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 16, top: 10),
+                    padding: EdgeInsets.only(left: 16.w, top: 10.h),
                     child: TitleText1(
                         text: 'Chưa chọn',
                         fontFamily: 'Inter',
@@ -160,7 +161,7 @@ class AddTransactionScreen1State extends State<AddTransactionScreen1> {
                         b: 87),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 16, top: 25),
+                    padding: EdgeInsets.only(left: 16.w, top: 25.h),
                     child: TitleText1(
                         text: 'Danh mục',
                         fontFamily: 'Inter',
@@ -171,11 +172,11 @@ class AddTransactionScreen1State extends State<AddTransactionScreen1> {
                         b: 102),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 200),
+                    padding: EdgeInsets.only(top: 200.h),
                     child: DateBar(),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 16, top: 10),
+                    padding: EdgeInsets.only(left: 16.w, top: 10.h),
                     child: TitleText1(
                         text: 'Ghi chú',
                         fontFamily: 'Inter',
@@ -186,12 +187,12 @@ class AddTransactionScreen1State extends State<AddTransactionScreen1> {
                         b: 102),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 16, right: 16, top: 5),
+                    padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 5.h),
                     child: InputText1(
                         hintText: 'Ghi chú', labelText: '', maxLines: 1),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 16, top: 25),
+                    padding: EdgeInsets.only(left: 16.w, top: 25.h),
                     child: TitleText1(
                         text: 'Ảnh',
                         fontFamily: 'Inter',
@@ -206,7 +207,7 @@ class AddTransactionScreen1State extends State<AddTransactionScreen1> {
                     children: [
                       Padding(
                         padding: EdgeInsets.only(
-                            left: 16, right: 16, top: 20, bottom: 20),
+                            left: 16.w, right: 16.w, top: 20.h, bottom: 20.h),
                         child: ButtonPrimary(
                             text: '+',
                             r: 156,
@@ -245,11 +246,11 @@ class AddTransactionScreen1State extends State<AddTransactionScreen1> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
-                        width: 180,
-                        height: 100,
+                        width: 180.w,
+                        height: 100.h,
                         child: Padding(
                           padding:
-                          EdgeInsets.only(left: 16, right: 16, top: 20),
+                          EdgeInsets.only(left: 16.w, right: 16.w, top: 20.h),
                           child: InputText1(
                               hintText: money, labelText: '', maxLines: 1),
                         ),
@@ -265,7 +266,7 @@ class AddTransactionScreen1State extends State<AddTransactionScreen1> {
                     ],
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 16, top: 5),
+                    padding: EdgeInsets.only(left: 16.w, top: 5.h),
                     child: TitleText1(
                         text: 'Tài khoản',
                         fontFamily: 'Inter',
@@ -276,7 +277,7 @@ class AddTransactionScreen1State extends State<AddTransactionScreen1> {
                         b: 102),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 16, top: 10),
+                    padding: EdgeInsets.only(left: 16.w, top: 10.h),
                     child: TitleText1(
                         text: 'Chưa chọn',
                         fontFamily: 'Inter',
@@ -287,7 +288,7 @@ class AddTransactionScreen1State extends State<AddTransactionScreen1> {
                         b: 87),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 16, top: 25),
+                    padding: EdgeInsets.only(left: 16.w, top: 25.h),
                     child: TitleText1(
                         text: 'Danh mục',
                         fontFamily: 'Inter',
@@ -298,11 +299,11 @@ class AddTransactionScreen1State extends State<AddTransactionScreen1> {
                         b: 102),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 200),
+                    padding: EdgeInsets.only(top: 200.h),
                     child: DateBar(),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 16, top: 10),
+                    padding: EdgeInsets.only(left: 16.w, top: 10.h),
                     child: TitleText1(
                         text: 'Ghi chú',
                         fontFamily: 'Inter',
@@ -313,12 +314,12 @@ class AddTransactionScreen1State extends State<AddTransactionScreen1> {
                         b: 102),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 16, right: 16, top: 5),
+                    padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 5.h),
                     child: InputText1(
                         hintText: 'Ghi chú', labelText: '', maxLines: 1),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 16, top: 25),
+                    padding: EdgeInsets.only(left: 16.w, top: 25.h),
                     child: TitleText1(
                         text: 'Ảnh',
                         fontFamily: 'Inter',
@@ -333,7 +334,7 @@ class AddTransactionScreen1State extends State<AddTransactionScreen1> {
                     children: [
                       Padding(
                         padding: EdgeInsets.only(
-                            left: 16, right: 16, top: 20, bottom: 20),
+                            left: 16.w, right: 16.w, top: 20.h, bottom: 20.h),
                         child: ButtonPrimary(
                             text: '+',
                             r: 156,
@@ -347,7 +348,7 @@ class AddTransactionScreen1State extends State<AddTransactionScreen1> {
                       ),
                       Padding(
                         padding: EdgeInsets.only(
-                            left: 16, right: 16, top: 20, bottom: 20),
+                            left: 16.w, right: 16.w, top: 20.h, bottom: 20.h),
                         child: ButtonPrimary(
                             text: '+',
                             r: 156,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:money_manager/main.dart';
 
 class UserPage extends StatelessWidget {
@@ -26,13 +27,22 @@ class UserPage extends StatelessWidget {
                     Align(
                       alignment: Alignment.topCenter,
                       child: CircleAvatar(
-                        radius: 60,
+                        radius: 60.r,
                         backgroundImage: NetworkImage(urlImage),
                       ),
                     ),
-                    ElevatedButton(onPressed: () {
-                      Navigator.pop(context);
-                      ApplicationState.getInstance.signOut();
-                    }, child: Text('Đăng xuất'))
+                    Padding(
+                      padding: EdgeInsets.only(top: 20.h),
+                      child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                            ApplicationState.getInstance.signOut();
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: Color.fromARGB(255, 35, 111, 87),
+
+                          ),
+                          child: Text('Đăng xuất')),
+                    ),
                   ]))));
 }

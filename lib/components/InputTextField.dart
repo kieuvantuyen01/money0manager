@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'TitleText1.dart';
 
@@ -25,13 +26,13 @@ class InputTextField extends StatelessWidget {
         TitleText1(
             text: this.labelText,
             fontFamily: 'Nunito Sans',
-            fontSize: 15,
+            fontSize: 15.sp,
             fontWeight: FontWeight.normal,
             r: 37,
             g: 49,
             b: 65),
         Padding(
-            padding: EdgeInsets.only(top: 10),
+            padding: EdgeInsets.only(top: 10.h),
             child: Row(
               children: [
                 Expanded(
@@ -43,7 +44,7 @@ class InputTextField extends StatelessWidget {
                           widget == null ? null : Container(child: widget),
                       hintText: this.hintText,
                       hintStyle: TextStyle(
-                        fontSize: 18,
+                        fontSize: 18.sp,
                         fontFamily: 'Nunito Sans',
                         color: this.widget == null
                             ? Color.fromARGB(255, 189, 189, 189)

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../components/NavigationDrawerWidget.dart';
 import '../components/SmallHeader.dart';
 import '../components/TitleText1.dart';
@@ -17,7 +18,7 @@ class Currency extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.only(left: 16, right: 16, top: 36),
+            padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 36.h),
             child: TitleText1(
                 text: 'Chọn đơn vị tiền tệ mặc định',
                 fontFamily: 'Inter',
@@ -28,7 +29,7 @@ class Currency extends StatelessWidget {
                 b: 0),
           ),
           Padding(
-            padding: EdgeInsets.only(left: 16, right: 16, top: 16),
+            padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 16.h),
             child: TitleText1(
                 text: 'Đóng tiền điện nước',
                 fontFamily: 'Inter',

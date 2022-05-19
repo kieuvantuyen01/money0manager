@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:money_manager/screens/AddTransactionScreen.dart';
 import '../components/ExpenseTabBar.dart';
 import '../components/InComeTabBar.dart';
@@ -30,7 +31,7 @@ class ExchangeMoney extends StatelessWidget {
           appBar: AppBar(
             centerTitle: true,
             title: Padding(
-              padding: EdgeInsets.only(top: 10),
+              padding: EdgeInsets.only(top: 10.h),
               child: TitleText1(
                   text: 'Giao dịch',
                   fontFamily: 'Inter',
@@ -41,18 +42,18 @@ class ExchangeMoney extends StatelessWidget {
                   b: 255),
             ),
             backgroundColor: Colors.transparent,
-            toolbarHeight: 100,
+            toolbarHeight: 100.h,
             elevation: 0.0,
             leading: IconButton(
-              padding: EdgeInsets.only(left: 32, top: 10),
-              iconSize: 30,
+              padding: EdgeInsets.only(left: 32.w, top: 10.h),
+              iconSize: 30.sp,
               icon: Icon(Icons.arrow_back_sharp),
               tooltip: 'Menu',
               onPressed: () => Navigator.pop(context),
             ),
             actions: <Widget>[
               IconButton(
-                padding: EdgeInsets.only(right: 5, top: 10),
+                padding: EdgeInsets.only(right: 5.w, top: 10.h),
                 iconSize: 30,
                 icon: Icon(Icons.search),
                 tooltip: 'Tìm kiếm',
@@ -64,8 +65,8 @@ class ExchangeMoney extends StatelessWidget {
                 },
               ),
               IconButton(
-                padding: EdgeInsets.only(right: 20, top: 10),
-                iconSize: 30,
+                padding: EdgeInsets.only(right: 20.w, top: 10.h),
+                iconSize: 30.sp,
                 icon: Icon(Icons.download),
                 tooltip: 'Tải xuống',
                 onPressed: () => {
@@ -76,8 +77,8 @@ class ExchangeMoney extends StatelessWidget {
             flexibleSpace: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(25),
-                    bottomRight: Radius.circular(25)),
+                    bottomLeft: Radius.circular(25.r),
+                    bottomRight: Radius.circular(25.r)),
                 gradient: LinearGradient(
                   colors: [
                     Color.fromARGB(255, 35, 111, 87),
@@ -92,7 +93,7 @@ class ExchangeMoney extends StatelessWidget {
               indicatorColor: Colors.white,
               indicatorWeight: 3,
               indicatorPadding:
-              EdgeInsets.only(left: 50.0, right: 50.0, bottom: 2.0),
+              EdgeInsets.only(left: 50.0.w, right: 50.0.w, bottom: 2.0.h),
               padding: EdgeInsets.only(bottom: 20.0),
               tabs: [
                 Tab(

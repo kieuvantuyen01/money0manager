@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -8,6 +8,11 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:money_manager/components/Account.dart';
 import 'package:money_manager/components/Transaction.dart';
+import 'package:money_manager/screens/AccountDetailScreen.dart';
+import 'package:money_manager/screens/AddAccountScreen.dart';
+import 'package:money_manager/screens/AddTransactionScreen1.dart';
+import 'package:money_manager/screens/ColumnChart.dart';
+import 'package:money_manager/screens/ContactScreen.dart';
 import 'package:provider/provider.dart';
 import 'components/Category.dart';
 import 'firebase_options.dart';
@@ -34,19 +39,22 @@ class MyApp extends StatelessWidget {
 // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Money Manager',
-      localizationsDelegates: [
-        CustomLocalizationsDelegate(),
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate
-      ],
-      supportedLocales: [
-        const Locale('en', ''),
-        const Locale('vi', ''),
-      ],
-      home: HomePage(),
+    return ScreenUtilInit(
+      designSize: Size(375, 812),
+      builder: (BuildContext c, Widget) => MaterialApp(
+        title: 'Money Manager',
+        localizationsDelegates: [
+          CustomLocalizationsDelegate(),
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate
+        ],
+        supportedLocales: [
+          const Locale('en', ''),
+          const Locale('vi', ''),
+        ],
+        home: HomePage(),
+      ),
     );
   }
 }

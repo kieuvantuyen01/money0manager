@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:money_manager/screens/AddAccount.dart';
 import 'package:money_manager/src/widgets.dart';
 import '../components/ButtonPrimary.dart';
@@ -30,20 +31,19 @@ class AddAccountScreen extends StatelessWidget {
             g: 255,
             b: 255),
         backgroundColor: Colors.transparent,
-        toolbarHeight: 72,
+        toolbarHeight: 72.h,
         elevation: 0.0,
         leading: IconButton(
-          padding: EdgeInsets.only(left: 32),
-          iconSize: 30,
+          padding: EdgeInsets.only(left: 32.w),
+          iconSize: 30.sp,
           icon: Icon(Icons.arrow_back_sharp),
-          tooltip: 'Menu',
-          onPressed: () => {Scaffold.of(context).openDrawer()},
+          onPressed: () => {Navigator.of(context).pop()},
         ),
         flexibleSpace: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(25),
-                bottomRight: Radius.circular(25)),
+                bottomLeft: Radius.circular(25.r),
+                bottomRight: Radius.circular(25.r)),
             gradient: LinearGradient(
               colors: [
                 Color.fromARGB(255, 35, 111, 87),
@@ -63,16 +63,16 @@ class AddAccountScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  width: 180,
-                  height: 100,
+                  width: 180.w,
+                  height: 100.h,
                   child: Padding(
-                    padding: EdgeInsets.only(left: 16, right: 16, top: 30),
+                    padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 30.h),
                     child:
                         InputText1(hintText: money, labelText: '', maxLines: 1),
                   ),
                 ),
                 Padding(
-                    padding: EdgeInsets.only(top: 20),
+                    padding: EdgeInsets.only(top: 20.h),
                     child: TitleText1(
                         text: 'đ',
                         fontFamily: 'Inter',
@@ -84,7 +84,7 @@ class AddAccountScreen extends StatelessWidget {
               ],
             ),
             Padding(
-              padding: EdgeInsets.only(left: 16, top: 10),
+              padding: EdgeInsets.only(left: 16.w, top: 10.h),
               child: TitleText1(
                   text: 'Tên tài khoản',
                   fontFamily: 'Inter',
@@ -95,12 +95,12 @@ class AddAccountScreen extends StatelessWidget {
                   b: 102),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 16, right: 16, top: 5),
+              padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 5.h),
               child: InputText1(
                   hintText: 'Nhập tên tài khoản', labelText: '', maxLines: 1),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 16, top: 25),
+              padding: EdgeInsets.only(left: 16.w, top: 25.h),
               child: TitleText1(
                   text: 'Biểu tượng',
                   fontFamily: 'Inter',
@@ -111,7 +111,7 @@ class AddAccountScreen extends StatelessWidget {
                   b: 102),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 16, top: 300),
+              padding: EdgeInsets.only(left: 16.w, top: 300.h),
               child: TitleText1(
                   text: 'Màu sắc',
                   fontFamily: 'Inter',
@@ -122,7 +122,7 @@ class AddAccountScreen extends StatelessWidget {
                   b: 102),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 16, top: 70),
+              padding: EdgeInsets.only(left: 16.w, top: 70.h),
               child: TitleText1(
                   text: 'Chọn đơn vị tiền tệ',
                   fontFamily: 'Inter',
@@ -133,7 +133,7 @@ class AddAccountScreen extends StatelessWidget {
                   b: 102),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 16, top: 5),
+              padding: EdgeInsets.only(left: 16.w, top: 5.h),
               child: TitleText1(
                   text: 'đ',
                   fontFamily: 'Inter',
@@ -144,7 +144,7 @@ class AddAccountScreen extends StatelessWidget {
                   b: 87),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 16, top: 15),
+              padding: EdgeInsets.only(left: 16.w, top: 15.h),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -158,7 +158,7 @@ class AddAccountScreen extends StatelessWidget {
                       b: 0
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 120),
+                    padding: EdgeInsets.only(left: 120.w),
                     child: Icon(
                         Icons.album_outlined,
                         color: Color.fromARGB(255, 28, 169, 113)),
@@ -168,7 +168,7 @@ class AddAccountScreen extends StatelessWidget {
             ),
            Center(
              child: Padding(
-               padding: EdgeInsets.only(top: 30, bottom: 30),
+               padding: EdgeInsets.only(top: 30.h, bottom: 30.h),
                child: SizedBox (
                  width: 93,
                  height: 51,

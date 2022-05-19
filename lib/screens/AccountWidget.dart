@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:money_manager/screens/AddAccount.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:money_manager/screens/AddAccountScreen.dart';
 import 'package:money_manager/src/widgets.dart';
-import '../components/ButtonPrimary.dart';
 import '../components/Category.dart';
 import '../components/CategoryVWidget.dart';
 import '../components/NavigationDrawerWidget.dart';
@@ -28,13 +28,13 @@ class AccountWidget extends StatelessWidget {
             g: 255,
             b: 255),
         backgroundColor: Colors.transparent,
-        toolbarHeight: 72,
+        toolbarHeight: 72.h,
         elevation: 0.0,
         leading: Builder(
           builder: (context) => Container(
             child: IconButton(
-              padding: EdgeInsets.only(left: 32),
-              iconSize: 30,
+              padding: EdgeInsets.only(left: 32.w),
+              iconSize: 30.sp,
               icon: Icon(Icons.menu),
               tooltip: 'Menu',
               onPressed: () => {Scaffold.of(context).openDrawer()},
@@ -44,8 +44,8 @@ class AccountWidget extends StatelessWidget {
         flexibleSpace: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(25),
-                bottomRight: Radius.circular(25)),
+                bottomLeft: Radius.circular(25.r),
+                bottomRight: Radius.circular(25.r)),
             gradient: LinearGradient(
               colors: [
                 Color.fromARGB(255, 35, 111, 87),
@@ -61,7 +61,7 @@ class AccountWidget extends StatelessWidget {
         children: <Widget>[
           Center(
             child: Padding(
-              padding: EdgeInsets.only(top: 25),
+              padding: EdgeInsets.only(top: 25.h),
               child: TitleText1(
                   text: 'Tổng cộng',
                   fontFamily: 'Inter',
@@ -74,7 +74,7 @@ class AccountWidget extends StatelessWidget {
           ),
           Center(
             child: Padding(
-              padding: EdgeInsets.only(top: 10),
+              padding: EdgeInsets.only(top: 10.h),
               child: TitleText1(
                   text: '20,000,000 đ',
                   fontFamily: 'Inter',
@@ -88,7 +88,7 @@ class AccountWidget extends StatelessWidget {
           Row(children: [
             Center(
               child: Padding(
-                padding: EdgeInsets.only(left: 80, top: 15),
+                padding: EdgeInsets.only(left: 80.w, top: 15.h),
                 child: CategoryVWidget(
                     category: Category(
                         id: '',
@@ -100,7 +100,7 @@ class AccountWidget extends StatelessWidget {
             ),
             Center(
               child: Padding(
-                padding: EdgeInsets.only(left: 80, top: 15),
+                padding: EdgeInsets.only(left: 80.w, top: 15.h),
                 child: CategoryVWidget(
                     category: Category(
                         id: '',
@@ -113,10 +113,10 @@ class AccountWidget extends StatelessWidget {
           ]),
           Center(
             child: Padding(
-              padding: EdgeInsets.only(top: 30),
+              padding: EdgeInsets.only(top: 30.h),
               child: SizedBox(
-                width: 344,
-                height: 53,
+                width: 344.w,
+                height: 53.h,
                 child: RaisedButton.icon(
                   onPressed: () {
                     print('Raise button');
@@ -132,7 +132,7 @@ class AccountWidget extends StatelessWidget {
                       g: 130,
                       b: 103),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    borderRadius: BorderRadius.all(Radius.circular(15.r)),
                   ),
                   color: Color.fromARGB(255, 248, 248, 248),
                   elevation: 0.5,
@@ -142,16 +142,16 @@ class AccountWidget extends StatelessWidget {
           ),
           Center(
             child: Padding(
-              padding: EdgeInsets.only(top: 280),
+              padding: EdgeInsets.only(top: 280.h),
               child: SizedBox(
-                width: 93,
-                height: 51,
+                width: 93.w,
+                height: 51.h,
                 child: StyledElevatedButton(
                   child: Text('Thêm'),
-                  width: 109,
-                  height: 51,
+                  width: 109.w,
+                  height: 51.h,
                   onPressed: () => Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => AddAccount())),
+                      MaterialPageRoute(builder: (context) => AddAccountScreen(title: '',))),
                 ),
               ),
             ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ButtonWidget extends StatelessWidget {
   final IconData icon;
@@ -15,7 +16,7 @@ class ButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => ElevatedButton(
     style: ElevatedButton.styleFrom(
-      minimumSize: Size.fromHeight(50),
+      minimumSize: Size.fromHeight(50.h),
     ),
     child: buildContent(),
     onPressed: onClicked,
@@ -24,11 +25,11 @@ class ButtonWidget extends StatelessWidget {
   Widget buildContent() => Row(
     mainAxisSize: MainAxisSize.min,
     children: [
-      Icon(icon, size: 28),
-      SizedBox(width: 16),
+      Icon(icon, size: 28.sp),
+      SizedBox(width: 16.w),
       Text(
         text,
-        style: TextStyle(fontSize: 22, color: Colors.white),
+        style: TextStyle(fontSize: 22.sp, color: Colors.white),
       ),
     ],
   );

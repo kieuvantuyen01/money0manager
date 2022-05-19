@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../components/PlusButton.dart';
 import 'ButtonPrimary.dart';
 import 'DatePicker1.dart';
@@ -16,13 +17,13 @@ class BudgetTaskBar extends StatelessWidget {
         Container(
           child: TabBar(
             labelColor: Color.fromARGB(255, 35, 111, 87),
-            labelStyle: TextStyle(fontSize: 15, fontFamily: 'Inter', fontWeight: FontWeight.bold),
+            labelStyle: TextStyle(fontSize: 15.sp, fontFamily: 'Inter', fontWeight: FontWeight.bold),
             unselectedLabelColor: Colors.black,
-            indicatorWeight: 2.2,
+            indicatorWeight: 2.2.sp,
             indicatorColor: Color.fromARGB(255, 35, 111, 87),
-            padding: EdgeInsets.only(top: 10),
-            indicatorPadding: EdgeInsets.only(left: 25.0, bottom: 5.0, right: 0.0),
-            labelPadding: EdgeInsets.only(left: 23.0),
+            padding: EdgeInsets.only(top: 10.h, left: 0.w, right: 10.w),
+            indicatorPadding: EdgeInsets.only(left: 25.0.w, bottom: 5.0.h, right: 1.w),
+            labelPadding: EdgeInsets.only(left: 23.0.w),
             isScrollable: true,
             tabs: [
               Tab(text: 'Ngày'),
@@ -34,7 +35,7 @@ class BudgetTaskBar extends StatelessWidget {
           ),
         ),
         Container(
-          height: 400, //height of TabBarView
+          height: 400.h, //height of TabBarView
           decoration: BoxDecoration(
           ),
           child: TabBarView(
@@ -45,7 +46,7 @@ class BudgetTaskBar extends StatelessWidget {
                     DatePicker1(),
                     TitleText1(text: 'Tổng cộng: 2,000,000 đ', fontFamily: 'Inter', fontSize: 15, fontWeight: FontWeight.bold, r: 0, g: 0, b: 0),
                     Padding(
-                      padding: EdgeInsets.only(left: 260, top: 280),
+                      padding: EdgeInsets.only(left: 260.w, top: 280.h),
                       child: PlusButton(),
                     ),
                   ],
@@ -60,7 +61,7 @@ class BudgetTaskBar extends StatelessWidget {
                     DateRangePicker(),
                     TitleText1(text: 'Tổng cộng: 2,000,000 đ', fontFamily: 'Inter', fontSize: 15, fontWeight: FontWeight.bold, r: 0, g: 0, b: 0),
                     Padding(
-                      padding: EdgeInsets.only(left: 260, top: 280),
+                      padding: EdgeInsets.only(left: 260.w, top: 280.h, bottom: 1.h),
                         child: PlusButton(),
                     ),
                   ],

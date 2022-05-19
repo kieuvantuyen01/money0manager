@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../helpers/transform/transform.dart';
 
 class CategoryIconWidget extends StatelessWidget {
@@ -23,8 +24,8 @@ class CategoryIconWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: this.buttonSize,
-      height: this.buttonSize,
+      width: this.buttonSize.w,
+      height: this.buttonSize.h,
       child: Stack(
           fit: StackFit.expand,
           alignment: Alignment.center,
@@ -49,20 +50,20 @@ class CategoryIconWidget extends StatelessWidget {
                       y: 0,
                       z: 0,
                       child: Container(
-                        width: width,
-                        height: height,
+                        width: width.w,
+                        height: height.h,
                         child: Opacity(
                           opacity: 1.0,
                           child: Container(
-                            width: this.buttonSize,
-                            height: this.buttonSize,
+                            width: this.buttonSize.w,
+                            height: this.buttonSize.h,
                             decoration: BoxDecoration(
                               borderRadius:
-                                  BorderRadius.circular(this.borderRadius),
+                                  BorderRadius.circular(this.borderRadius.r),
                             ),
                             child: ClipRRect(
                               borderRadius:
-                                  BorderRadius.circular(this.borderRadius),
+                                  BorderRadius.circular(this.borderRadius.r),
                               child: Container(
                                 color: Color(int.parse(this.bgColor)),
                               ),
@@ -93,8 +94,8 @@ class CategoryIconWidget extends StatelessWidget {
                       y: 0,
                       z: 0,
                       child: Container(
-                        width: width,
-                        height: height,
+                        width: width.w,
+                        height: height.h,
                         child: Align(
                           alignment: Alignment.center,
                           child: Text(
@@ -102,8 +103,8 @@ class CategoryIconWidget extends StatelessWidget {
                             overflow: TextOverflow.visible,
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              height: 1.1666666666666667,
-                              fontSize: this.buttonSize/2,
+                              height: 1.1666666666666667.h,
+                              fontSize: this.buttonSize/2.sp,
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w400,
                               color: Color(int.parse(this.iconColor)),

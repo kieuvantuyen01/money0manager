@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'TitleText1.dart';
 
 class CreateButton extends StatelessWidget {
@@ -17,11 +18,11 @@ class CreateButton extends StatelessWidget {
           child: icon,
         ),
         Padding(
-          padding: EdgeInsets.only(left: 20, top: 0),
+          padding: EdgeInsets.only(left: 20.w, top: 0),
           child: TitleText1(
               text: 'TẠO',
               fontFamily: 'Inter',
-              fontSize: 16,
+              fontSize: 16.sp,
               fontWeight: FontWeight.bold,
               r: 0,
               g: 0,

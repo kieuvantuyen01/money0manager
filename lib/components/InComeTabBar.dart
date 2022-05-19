@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'ButtonPrimary.dart';
 import 'DatePicker1.dart';
 import 'DateRangePicker.dart';
@@ -15,13 +16,13 @@ class InComeTabBar extends StatelessWidget {
         Container(
           child: TabBar(
             labelColor: Color.fromARGB(255, 35, 111, 87),
-            labelStyle: TextStyle(fontSize: 15, fontFamily: 'Inter', fontWeight: FontWeight.bold),
+            labelStyle: TextStyle(fontSize: 15.sp, fontFamily: 'Inter', fontWeight: FontWeight.bold),
             unselectedLabelColor: Colors.black,
-            indicatorWeight: 2.2,
+            indicatorWeight: 2.2.sp,
             indicatorColor: Color.fromARGB(255, 35, 111, 87),
-            padding: EdgeInsets.only(top: 10),
-            indicatorPadding: EdgeInsets.only(left: 25.0, bottom: 5.0, right: 0.0),
-            labelPadding: EdgeInsets.only(left: 23.0),
+            padding: EdgeInsets.only(top: 10.h),
+            indicatorPadding: EdgeInsets.only(left: 25.0.w, bottom: 5.0.h, right: 0.0.w),
+            labelPadding: EdgeInsets.only(left: 23.0.w),
             isScrollable: true,
             tabs: [
               Tab(text: 'Ngày'),
@@ -33,7 +34,7 @@ class InComeTabBar extends StatelessWidget {
           ),
         ),
         Container(
-          height: 400, //height of TabBarView
+          height: 400.h, //height of TabBarView
           decoration: BoxDecoration(
           ),
           child: TabBarView(
@@ -46,8 +47,8 @@ class InComeTabBar extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(top: 280),
                         child: SizedBox (
-                          width: 93,
-                          height: 51,
+                          width: 93.w,
+                          height: 51.h,
                           child: ButtonPrimary(text: 'Thêm', r: 35, g: 111, b: 87, radius: 30, weight: 109, height: 51, screenName: 'InComeTabBar'),
                         ),
                       ),
@@ -65,8 +66,8 @@ class InComeTabBar extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(top: 280),
                         child: SizedBox (
-                          width: 93,
-                          height: 51,
+                          width: 93.w,
+                          height: 51.h,
                           child: ButtonPrimary(text: 'Thêm', r: 35, g: 111, b: 87, radius: 30, weight: 109, height: 51, screenName: 'InComeTabBar'),
                         ),
                       ),

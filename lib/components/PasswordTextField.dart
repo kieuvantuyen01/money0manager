@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class  PasswordTextField extends StatefulWidget {
 
@@ -42,7 +43,6 @@ class  PasswordTextFieldState extends State< PasswordTextField> {
         hintText: this.hintText,
         labelText: this.labelText,
         suffixIcon: IconButton(
-          // iconSize: 30,
           icon: Icon(Icons.visibility),
           color: Color.fromARGB(255, 35, 111, 87),
           onPressed: () => {
@@ -50,12 +50,12 @@ class  PasswordTextFieldState extends State< PasswordTextField> {
           },
         ),
         labelStyle: TextStyle(
-          fontSize: 18,
+          fontSize: 18.sp,
           fontFamily: 'Inter',
           color: Colors.black,
         ),
         hintStyle: TextStyle(
-          fontSize: 18,
+          fontSize: 18.sp,
           fontFamily: 'Inter',
           color: Color.fromARGB(255, 189, 189, 189),
         ),

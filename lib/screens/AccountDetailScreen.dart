@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:money_manager/screens/AddAccount.dart';
 import 'package:money_manager/src/widgets.dart';
 import '../components/ButtonPrimary.dart';
@@ -21,17 +22,17 @@ class AccountDetailScreen extends StatelessWidget {
         title: TitleText1(
             text: 'Chi tiết tài khoản',
             fontFamily: 'Inter',
-            fontSize: 25,
+            fontSize: 25.sp,
             fontWeight: FontWeight.bold,
             r: 255,
             g: 255,
             b: 255),
         backgroundColor: Colors.transparent,
-        toolbarHeight: 72,
+        toolbarHeight: 72.h,
         elevation: 0.0,
         leading: IconButton(
-          padding: EdgeInsets.only(left: 32),
-          iconSize: 30,
+          padding: EdgeInsets.only(left: 32.w),
+          iconSize: 30.sp,
           icon: Icon(Icons.arrow_back_sharp),
           tooltip: 'Menu',
           onPressed: () => {Scaffold.of(context).openDrawer()},
@@ -39,8 +40,8 @@ class AccountDetailScreen extends StatelessWidget {
         flexibleSpace: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(25),
-                bottomRight: Radius.circular(25)),
+                bottomLeft: Radius.circular(25.r),
+                bottomRight: Radius.circular(25.r)),
             gradient: LinearGradient(
               colors: [
                 Color.fromARGB(255, 35, 111, 87),
@@ -56,7 +57,7 @@ class AccountDetailScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.only(left: 16, top: 25),
+            padding: EdgeInsets.only(left: 16.w, top: 25.h),
             child: TitleText1(
                 text: 'Số tiền',
                 fontFamily: 'Inter',
@@ -67,7 +68,7 @@ class AccountDetailScreen extends StatelessWidget {
                 b: 102),
           ),
           Padding(
-            padding: EdgeInsets.only(left: 16, top: 5),
+            padding: EdgeInsets.only(left: 16.w, top: 5.h),
             child: TitleText1(
                 text: money + ' đ',
                 fontFamily: 'Inter',
@@ -78,7 +79,7 @@ class AccountDetailScreen extends StatelessWidget {
                 b: 0),
           ),
           Padding(
-            padding: EdgeInsets.only(left: 16, top: 20),
+            padding: EdgeInsets.only(left: 16.w, top: 20.h),
             child: TitleText1(
                 text: 'Tài khoản',
                 fontFamily: 'Inter',
@@ -89,7 +90,7 @@ class AccountDetailScreen extends StatelessWidget {
                 b: 102),
           ),
           Padding(
-            padding: EdgeInsets.only(left: 16, top: 5),
+            padding: EdgeInsets.only(left: 16.w, top: 5.h),
             child: TitleText1(
                 text: 'Chính',
                 fontFamily: 'Inter',
@@ -100,7 +101,7 @@ class AccountDetailScreen extends StatelessWidget {
                 b: 0),
           ),
           Padding(
-            padding: EdgeInsets.only(left: 16, top: 20),
+            padding: EdgeInsets.only(left: 16.w, top: 20.h),
             child: TitleText1(
                 text: 'Danh mục',
                 fontFamily: 'Inter',
@@ -111,7 +112,7 @@ class AccountDetailScreen extends StatelessWidget {
                 b: 102),
           ),
           Padding(
-            padding: EdgeInsets.only(left: 16, top: 5),
+            padding: EdgeInsets.only(left: 16.w, top: 5.h),
             child: TitleText1(
                 text: 'Giải trí',
                 fontFamily: 'Inter',
@@ -122,7 +123,7 @@ class AccountDetailScreen extends StatelessWidget {
                 b: 0),
           ),
           Padding(
-            padding: EdgeInsets.only(left: 16, top: 20),
+            padding: EdgeInsets.only(left: 16.w, top: 20.h),
             child: TitleText1(
                 text: 'Ngày',
                 fontFamily: 'Inter',
@@ -133,7 +134,7 @@ class AccountDetailScreen extends StatelessWidget {
                 b: 102),
           ),
           Padding(
-            padding: EdgeInsets.only(left: 16, top: 5),
+            padding: EdgeInsets.only(left: 16.w, top: 5.h),
             child: TitleText1(
                 text: date,
                 fontFamily: 'Inter',
@@ -144,7 +145,7 @@ class AccountDetailScreen extends StatelessWidget {
                 b: 0),
           ),
           Padding(
-            padding: EdgeInsets.only(left: 16, top: 20),
+            padding: EdgeInsets.only(left: 16.w, top: 20.h),
             child: TitleText1(
                 text: 'Ghi chú',
                 fontFamily: 'Inter',
@@ -155,7 +156,7 @@ class AccountDetailScreen extends StatelessWidget {
                 b: 102),
           ),
           Padding(
-            padding: EdgeInsets.only(left: 16, top: 5),
+            padding: EdgeInsets.only(left: 16.w, top: 5.h),
             child: TitleText1(
                 text: reminder,
                 fontFamily: 'Inter',
@@ -170,7 +171,7 @@ class AccountDetailScreen extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.only(
-                    left: 16, right: 16, top: 140),
+                    left: 16.w, right: 16.w, top: 140.h),
                 child: ButtonPrimary(
                     text: 'Xóa',
                     r: 255,
@@ -184,7 +185,7 @@ class AccountDetailScreen extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.only(
-                    left: 16, right: 16, top: 140),
+                    left: 16.w, right: 16.w, top: 140.h),
                 child: ButtonPrimary(
                     text: 'Chỉnh sửa',
                     r: 35,
