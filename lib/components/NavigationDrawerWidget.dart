@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:money_manager/components/CustomPageRoute.dart';
 import 'package:money_manager/components/TitleText1.dart';
 import 'package:money_manager/main.dart';
 import 'package:money_manager/screens/Authentication.dart';
@@ -47,8 +48,8 @@ class NavigationDrawerWidget extends StatelessWidget {
                     balance: (appState.user != null
                         ? 'Số dư: ${appState.remainingAmount} VNĐ'
                         : 'SOS'),
-                    onClicked: () => Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => UserPage(
+                    onClicked: () => Navigator.of(context).push(CustomPageRoute(
+                        child: UserPage(
                             name: (appState.user != null
                                 ? (appState.user!.displayName != null
                                     ? appState.user!.displayName!
