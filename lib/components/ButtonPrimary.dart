@@ -31,14 +31,7 @@ class ButtonPrimary extends StatelessWidget {
       width: this.weight.w,
       height: this.height.h,
       child: RaisedButton(
-        onPressed: () {
-          if(this.screenName == 'LoginScreen') {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => BudgetScreen()));
-          }
-        },
+        onPressed: () {},
         child: TitleText1(
             text: this.text,
             fontFamily: 'Inter',

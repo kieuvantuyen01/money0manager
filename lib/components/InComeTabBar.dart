@@ -63,14 +63,6 @@ class InComeTabBar extends StatelessWidget {
                     children: <Widget>[
                       DateRangePicker(),
                       TitleText1(text: 'Tổng cộng: 2,000,000 đ', fontFamily: 'Inter', fontSize: 15, fontWeight: FontWeight.bold, r: 0, g: 0, b: 0),
-                      Padding(
-                        padding: EdgeInsets.only(top: 280),
-                        child: SizedBox (
-                          width: 93.w,
-                          height: 51.h,
-                          child: ButtonPrimary(text: 'Thêm', r: 35, g: 111, b: 87, radius: 30, weight: 109, height: 51, screenName: 'InComeTabBar'),
-                        ),
-                      ),
                     ],
                   ),
                 ),

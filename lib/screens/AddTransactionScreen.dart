@@ -47,7 +47,6 @@ class AddTransactionScreen extends StatelessWidget {
             padding: EdgeInsets.only(left: 32, top: 10),
             iconSize: 30,
             icon: Icon(Icons.arrow_back_sharp),
-            tooltip: 'Menu',
             onPressed: () => {
               Navigator.pop(context),
             },
