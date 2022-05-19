@@ -1,23 +1,44 @@
 import 'package:flutter/material.dart';
-import '../components/ExpenseTabBar.dart';
-import '../components/InComeTabBar.dart';
-import '../components/PopUpNotification1.dart';
-import '../components/SearchItem.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../components/ButtonPrimary.dart';
+import '../components/DatePicker1.dart';
+import '../components/InputText1.dart';
 import '../components/TitleText1.dart';
-import 'BudgetScreen.dart';
+import 'package:date_picker_timeline/date_picker_timeline.dart';
+import 'package:date_picker_timeline/date_picker_widget.dart';
 
-class AddTransactionScreen extends StatelessWidget {
-  AddTransactionScreen({Key? key, required this.title, required this.index})
-      : super(key: key);
-  final String title;
+class AddTransactionScreen extends StatefulWidget {
+  const AddTransactionScreen({Key? key, required this.index}) : super(key: key);
+
+  final int index;
+  @override
+  AddTransactionScreenState createState() => AddTransactionScreenState(index: this.index);
+}
+
+class AddTransactionScreenState extends State<AddTransactionScreen> {
+  AddTransactionScreenState({required this.index});
+
+  static String money = '0';
   final int index;
 
-  void _showDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return PopUpNotification1();
-      },
+  Widget DateBar() {
+    // TODO: implement build
+    return Container(
+      margin: EdgeInsets.only(left: 16.w),
+      child: DatePicker(
+        DateTime.now(),
+        height: 71.h,
+        width: 75.w,
+        initialSelectedDate: DateTime.now(),
+        selectionColor: Color.fromARGB(255, 35, 111, 87),
+        selectedTextColor: Colors.white,
+        dateTextStyle: TextStyle(
+          fontSize: 13.sp,
+          fontFamily: 'Nunito Sans',
+          fontWeight: FontWeight.w600,
+          color: Color.fromARGB(255, 37, 49, 65),
+        ),
+      ),
     );
   }
 
@@ -25,13 +46,12 @@ class AddTransactionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
-      initialIndex: index,
+      initialIndex: this.index,
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           centerTitle: true,
           title: Padding(
-            padding: EdgeInsets.only(top: 10),
+            padding: EdgeInsets.only(top: 10.h),
             child: TitleText1(
                 text: 'Thêm giao dịch',
                 fontFamily: 'Inter',
@@ -42,44 +62,19 @@ class AddTransactionScreen extends StatelessWidget {
                 b: 255),
           ),
           backgroundColor: Colors.transparent,
-          toolbarHeight: 100,
+          toolbarHeight: 100.h,
           elevation: 0.0,
           leading: IconButton(
-            padding: EdgeInsets.only(left: 32, top: 10),
-            iconSize: 30,
+            padding: EdgeInsets.only(left: 32.w, top: 10.h),
+            iconSize: 30.sp,
             icon: Icon(Icons.arrow_back_sharp),
-            onPressed: () => {
-              Navigator.pop(context),
-            },
+            onPressed: () => {Navigator.pop(context)},
           ),
-          actions: <Widget>[
-            IconButton(
-              padding: EdgeInsets.only(right: 5, top: 10),
-              iconSize: 30,
-              icon: Icon(Icons.search),
-              tooltip: 'Tìm kiếm',
-              onPressed: () => {
-                showSearch(
-                  context: context,
-                  delegate: CustomSearchDelegate(),
-                )
-              },
-            ),
-            IconButton(
-              padding: EdgeInsets.only(right: 20, top: 10),
-              iconSize: 30,
-              icon: Icon(Icons.download),
-              tooltip: 'Tải xuống',
-              onPressed: () => {
-                _showDialog(context),
-              },
-            ),
-          ],
           flexibleSpace: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(25),
-                  bottomRight: Radius.circular(25)),
+                  bottomLeft: Radius.circular(25.r),
+                  bottomRight: Radius.circular(25.r)),
               gradient: LinearGradient(
                 colors: [
                   Color.fromARGB(255, 35, 111, 87),
@@ -92,41 +87,288 @@ class AddTransactionScreen extends StatelessWidget {
           ),
           bottom: TabBar(
             indicatorColor: Colors.white,
-            indicatorWeight: 3,
+            indicatorWeight: 3.sp,
             indicatorPadding:
-                EdgeInsets.only(left: 50.0, right: 50.0, bottom: 2.0),
-            padding: EdgeInsets.only(bottom: 20.0),
+                EdgeInsets.only(left: 50.0.w, right: 50.0.w, bottom: 2.0.h),
+            padding: EdgeInsets.only(bottom: 20.0.w),
             tabs: [
               Tab(
-                child: Text(
-                  'Chi phí',
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline6!
-                      .apply(color: Colors.white),
-                ),
+                child: TitleText1(
+                    text: 'Chi phí',
+                    fontFamily: 'Inter',
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    r: 255,
+                    g: 255,
+                    b: 255),
               ),
               Tab(
-                  child: Text(
-                'Thu nhập',
-                style: Theme.of(context)
-                    .textTheme
-                    .headline6!
-                    .apply(color: Colors.white),
-              )),
+                child: TitleText1(
+                    text: 'Thu nhập',
+                    fontFamily: 'Inter',
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    r: 255,
+                    g: 255,
+                    b: 255),
+              ),
             ],
           ),
         ),
         body: TabBarView(
           children: [
-            Center(
-              child: ExpenseTabBar(
-                isExpense: true,
+            SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 180.w,
+                        height: 100.h,
+                        child: Padding(
+                          padding:
+                              EdgeInsets.only(left: 16.w, right: 16.r, top: 20.h),
+                          child: InputText1(
+                              hintText: money, labelText: '', maxLines: 1),
+                        ),
+                      ),
+                      TitleText1(
+                          text: 'đ',
+                          fontFamily: 'Inter',
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          r: 35,
+                          g: 111,
+                          b: 87)
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 16.w, top: 5.h),
+                    child: TitleText1(
+                        text: 'Tài khoản',
+                        fontFamily: 'Inter',
+                        fontSize: 15,
+                        fontWeight: FontWeight.normal,
+                        r: 102,
+                        g: 102,
+                        b: 102),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 16.w, top: 10.h),
+                    child: TitleText1(
+                        text: 'Chưa chọn',
+                        fontFamily: 'Inter',
+                        fontSize: 19,
+                        fontWeight: FontWeight.normal,
+                        r: 35,
+                        g: 111,
+                        b: 87),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 16.w, top: 25.h),
+                    child: TitleText1(
+                        text: 'Danh mục',
+                        fontFamily: 'Inter',
+                        fontSize: 15,
+                        fontWeight: FontWeight.normal,
+                        r: 102,
+                        g: 102,
+                        b: 102),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 200.h),
+                    child: DateBar(),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 16.w, top: 10.h),
+                    child: TitleText1(
+                        text: 'Ghi chú',
+                        fontFamily: 'Inter',
+                        fontSize: 15,
+                        fontWeight: FontWeight.normal,
+                        r: 102,
+                        g: 102,
+                        b: 102),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 5.h),
+                    child: InputText1(
+                        hintText: 'Ghi chú', labelText: '', maxLines: 1),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 16.w, top: 25.h),
+                    child: TitleText1(
+                        text: 'Ảnh',
+                        fontFamily: 'Inter',
+                        fontSize: 15,
+                        fontWeight: FontWeight.normal,
+                        r: 102,
+                        g: 102,
+                        b: 102),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: 16.w, right: 16.w, top: 20.h, bottom: 20.h),
+                        child: ButtonPrimary(
+                            text: '+',
+                            r: 156,
+                            g: 172,
+                            b: 171,
+                            radius: 5,
+                            weight: 80,
+                            height: 80,
+                            screenName: 'ContactScreen',
+                            fontSize: 50),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: 16, right: 16, top: 20, bottom: 20),
+                        child: ButtonPrimary(
+                            text: '+',
+                            r: 156,
+                            g: 172,
+                            b: 171,
+                            radius: 5,
+                            weight: 80,
+                            height: 80,
+                            screenName: 'ContactScreen',
+                            fontSize: 50),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
-            Center(
-              child: ExpenseTabBar(
-                isExpense: false,
+            SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 180.w,
+                        height: 100.h,
+                        child: Padding(
+                          padding:
+                          EdgeInsets.only(left: 16.w, right: 16.w, top: 20.h),
+                          child: InputText1(
+                              hintText: money, labelText: '', maxLines: 1),
+                        ),
+                      ),
+                      TitleText1(
+                          text: 'đ',
+                          fontFamily: 'Inter',
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          r: 35,
+                          g: 111,
+                          b: 87)
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 16.w, top: 5.h),
+                    child: TitleText1(
+                        text: 'Tài khoản',
+                        fontFamily: 'Inter',
+                        fontSize: 15,
+                        fontWeight: FontWeight.normal,
+                        r: 102,
+                        g: 102,
+                        b: 102),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 16.w, top: 10.h),
+                    child: TitleText1(
+                        text: 'Chưa chọn',
+                        fontFamily: 'Inter',
+                        fontSize: 19,
+                        fontWeight: FontWeight.normal,
+                        r: 35,
+                        g: 111,
+                        b: 87),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 16.w, top: 25.h),
+                    child: TitleText1(
+                        text: 'Danh mục',
+                        fontFamily: 'Inter',
+                        fontSize: 15,
+                        fontWeight: FontWeight.normal,
+                        r: 102,
+                        g: 102,
+                        b: 102),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 200.h),
+                    child: DateBar(),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 16.w, top: 10.h),
+                    child: TitleText1(
+                        text: 'Ghi chú',
+                        fontFamily: 'Inter',
+                        fontSize: 15,
+                        fontWeight: FontWeight.normal,
+                        r: 102,
+                        g: 102,
+                        b: 102),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 5.h),
+                    child: InputText1(
+                        hintText: 'Ghi chú', labelText: '', maxLines: 1),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 16.w, top: 25.h),
+                    child: TitleText1(
+                        text: 'Ảnh',
+                        fontFamily: 'Inter',
+                        fontSize: 15,
+                        fontWeight: FontWeight.normal,
+                        r: 102,
+                        g: 102,
+                        b: 102),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: 16.w, right: 16.w, top: 20.h, bottom: 20.h),
+                        child: ButtonPrimary(
+                            text: '+',
+                            r: 156,
+                            g: 172,
+                            b: 171,
+                            radius: 5,
+                            weight: 80,
+                            height: 80,
+                            screenName: 'ContactScreen',
+                            fontSize: 50),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: 16.w, right: 16.w, top: 20.h, bottom: 20.h),
+                        child: ButtonPrimary(
+                            text: '+',
+                            r: 156,
+                            g: 172,
+                            b: 171,
+                            radius: 5,
+                            weight: 80,
+                            height: 80,
+                            screenName: 'AddTransactionScreen',
+                            fontSize: 50),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ],

@@ -10,14 +10,17 @@ import 'package:provider/provider.dart';
 import 'TitleText1.dart';
 
 class ExpenseTabBar extends StatelessWidget {
-  const ExpenseTabBar({Key? key, required this.isExpense}) : super(key: key);
-
+  const ExpenseTabBar({Key? key, required this.isExpense, required this.tab})
+      : super(key: key);
+  final TAB tab;
   final bool isExpense;
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return DefaultTabController(
       length: 5, // length of tabs
+      initialIndex: ApplicationState.getInstance.timeTab,
       child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
@@ -50,8 +53,11 @@ class ExpenseTabBar extends StatelessWidget {
               decoration: BoxDecoration(),
               child: TabBarView(children: <Widget>[
                 TransactionsWidget(
-                  dateTimeRange:
-                      DateTimeRange(start: DateTime.now(), end: DateTime.now()),
+                  dateTimeRange: DateTimeRange(
+                      start: DateTime(DateTime.now().year, DateTime.now().month,
+                          DateTime.now().day),
+                      end: DateTime(DateTime.now().year, DateTime.now().month,
+                          DateTime.now().day)),
                   tab: TAB.DATE,
                   isExpense: this.isExpense,
                 ),
@@ -82,7 +88,10 @@ class ExpenseTabBar extends StatelessWidget {
                         r: 0,
                         g: 0,
                         b: 0)),
-                TransactionsWidget(tab: TAB.RANGE, isExpense: isExpense,),
+                TransactionsWidget(
+                  tab: TAB.RANGE,
+                  isExpense: isExpense,
+                ),
                 // Center(
                 //   child: Column(
                 //     children: <Widget>[
@@ -112,7 +121,8 @@ class TransactionsWidget extends StatefulWidget {
   DateTimeRange? dateTimeRange;
   final tab;
 
-  TransactionsWidget({this.dateTimeRange, required this.tab, required this.isExpense});
+  TransactionsWidget(
+      {this.dateTimeRange, required this.tab, required this.isExpense});
 
   @override
   _TransactionsState createState() {
@@ -122,7 +132,10 @@ class TransactionsWidget extends StatefulWidget {
           end: DateTime(
               DateTime.now().year, DateTime.now().month, DateTime.now().day));
     }
-    return _TransactionsState(dateTimeRange: this.dateTimeRange!, tab: this.tab, isExpense: this.isExpense);
+    return _TransactionsState(
+        dateTimeRange: this.dateTimeRange!,
+        tab: this.tab,
+        isExpense: this.isExpense);
   }
 }
 
@@ -132,7 +145,10 @@ class _TransactionsState extends State<TransactionsWidget> {
   final tab;
   int _amount = 0;
 
-  _TransactionsState({required this.dateTimeRange, required this.tab, required this.isExpense});
+  _TransactionsState(
+      {required this.dateTimeRange,
+      required this.tab,
+      required this.isExpense});
 
   @override
   void initState() {
@@ -162,121 +178,121 @@ class _TransactionsState extends State<TransactionsWidget> {
       value: ApplicationState.getInstance,
       builder: (context, _) =>
           Consumer<ApplicationState>(builder: (context, appState, _) {
-            return Center(
-              child: Column(
-                children: <Widget>[
-                  dateTimeRangeWidget(tab),
-                  StreamBuilder<QuerySnapshot>(
-                    stream: FirebaseFirestore.instance
-                        .collection('userData/${appState.user!.uid}/transactions')
-                        .where('isExpense', isEqualTo: isExpense)
-                        .where('date',
+        return Center(
+          child: Column(
+            children: <Widget>[
+              dateTimeRangeWidget(tab),
+              StreamBuilder<QuerySnapshot>(
+                stream: FirebaseFirestore.instance
+                    .collection('userData/${appState.user!.uid}/transactions')
+                    .where('isExpense', isEqualTo: isExpense)
+                    .where('date',
                         isGreaterThanOrEqualTo: DateTime(
                             dateTimeRange.start.year,
                             dateTimeRange.start.month,
                             dateTimeRange.start.day))
-                        .where('date',
+                    .where('date',
                         isLessThanOrEqualTo: DateTime(dateTimeRange.end.year,
                             dateTimeRange.end.month, dateTimeRange.end.day))
                     // .orderBy('date', descending: true)
-                        .snapshots(),
-                    builder: (BuildContext context,
-                        AsyncSnapshot<QuerySnapshot> snapshot) {
-                      if (snapshot.hasError) {
-                        return Text('Something went wrong');
-                      }
+                    .snapshots(),
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (snapshot.hasError) {
+                    return Text('Something went wrong');
+                  }
 
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Text("Loading");
-                      }
-                      int amount = 0;
-                      for (DocumentSnapshot doc in snapshot.data!.docs){
-                        amount+=doc['value'] as int;
-                      }
-                      _amount = amount;
-                      return TitleText1(
-                          text: 'Tổng cộng: ${_amount} VNĐ',
-                          fontFamily: 'Inter',
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          r: 0,
-                          g: 0,
-                          b: 0);
-
-                    },
-                  ),
-                  Expanded(child: StreamBuilder<QuerySnapshot>(
-                    stream: FirebaseFirestore.instance
-                        .collection('userData/${appState.user!.uid}/transactions')
-                        .where('isExpense', isEqualTo: true)
-                        .where('date',
-                        isGreaterThanOrEqualTo: DateTime(
-                            dateTimeRange.start.year,
-                            dateTimeRange.start.month,
-                            dateTimeRange.start.day))
-                        .where('date',
-                        isLessThanOrEqualTo: DateTime(dateTimeRange.end.year,
-                            dateTimeRange.end.month, dateTimeRange.end.day))
-                    // .orderBy('date', descending: true)
-                        .snapshots(),
-                    builder: (BuildContext context,
-                        AsyncSnapshot<QuerySnapshot> snapshot) {
-                      if (snapshot.hasError) {
-                        return Text('Something went wrong');
-                      }
-
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Text("Loading");
-                      }
-                      DateTime date =
-                      dateTimeRange.end.add(const Duration(days: 1));
-                      return ListView(
-                        children:
-                        snapshot.data!.docs.reversed.map((DocumentSnapshot document) {
-                          if (date.isAfter(document['date'].toDate())) {
-                            date = document['date'].toDate();
-                            return Column(
-                              children: [
-                                Text(
-                                    '${date.day} tháng ${date.month}, ${date.year}', style: TextStyle(color: Colors.black)),
-                                TransactionContentWidget(
-                                    transaction: TransactionDetails(
-                                      categoryID: document['categoryID'],
-                                      accountID: document['accountID'],
-                                      isExpense: true,
-                                      currencyunit: document['currencyunit'],
-                                      value: document['value'],
-                                      date: document['date'],
-                                      description: document['description'],
-                                    ))
-                              ],
-                            );
-                          } else {
-                            return Column(
-                              children: [
-                                TransactionContentWidget(
-                                    transaction: TransactionDetails(
-                                      categoryID: document['categoryID'],
-                                      accountID: document['accountID'],
-                                      isExpense: true,
-                                      currencyunit: document['currencyunit'],
-                                      value: document['value'],
-                                      date: document['date'],
-                                      description: document['description'],
-                                    ))
-                              ],
-                            );
-                          }
-                        }).toList(),
-                      );
-                    },
-                  ))
-                ],
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Text("Loading");
+                  }
+                  int amount = 0;
+                  for (DocumentSnapshot doc in snapshot.data!.docs) {
+                    amount += doc['value'] as int;
+                  }
+                  _amount = amount;
+                  return TitleText1(
+                      text: 'Tổng cộng: ${_amount} VNĐ',
+                      fontFamily: 'Inter',
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      r: 0,
+                      g: 0,
+                      b: 0);
+                },
               ),
-            );
-          }),
-    );
+              Expanded(
+                  child: StreamBuilder<QuerySnapshot>(
+                stream: FirebaseFirestore.instance
+                    .collection('userData/${appState.user!.uid}/transactions')
+                    .where('isExpense', isEqualTo: isExpense)
+                    .where('date',
+                        isGreaterThanOrEqualTo: DateTime(
+                            dateTimeRange.start.year,
+                            dateTimeRange.start.month,
+                            dateTimeRange.start.day))
+                    .where('date',
+                        isLessThanOrEqualTo: DateTime(dateTimeRange.end.year,
+                            dateTimeRange.end.month, dateTimeRange.end.day))
+                    // .orderBy('date', descending: true)
+                    .snapshots(),
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (snapshot.hasError) {
+                    return Text('Something went wrong');
+                  }
 
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Text("Loading");
+                  }
+                  DateTime date =
+                      dateTimeRange.end.add(const Duration(days: 1));
+                  return ListView(
+                    children: snapshot.data!.docs.reversed
+                        .map((DocumentSnapshot document) {
+                      if (date.isAfter(document['date'].toDate())) {
+                        date = document['date'].toDate();
+                        return Column(
+                          children: [
+                            Text(
+                                '${date.day} tháng ${date.month}, ${date.year}',
+                                style: TextStyle(color: Colors.black)),
+                            TransactionContentWidget(
+                                transaction: TransactionDetails(
+                              categoryID: document['categoryID'],
+                              accountID: document['accountID'],
+                              isExpense: true,
+                              currencyunit: document['currencyunit'],
+                              value: document['value'],
+                              date: document['date'],
+                              description: document['description'],
+                            ))
+                          ],
+                        );
+                      } else {
+                        return Column(
+                          children: [
+                            TransactionContentWidget(
+                                transaction: TransactionDetails(
+                              categoryID: document['categoryID'],
+                              accountID: document['accountID'],
+                              isExpense: true,
+                              currencyunit: document['currencyunit'],
+                              value: document['value'],
+                              date: document['date'],
+                              description: document['description'],
+                            ))
+                          ],
+                        );
+                      }
+                    }).toList(),
+                  );
+                },
+              ))
+            ],
+          ),
+        );
+      }),
+    );
   }
 
   Widget dateTimeRangeWidget(TAB tab) {
@@ -311,21 +327,25 @@ class _TransactionsState extends State<TransactionsWidget> {
           if (start.isAtSameMomentAs(now)) {
             return TextButton(
                 onPressed: onPress,
-                child: Text('Hôm nay, ${start.day} tháng ${start.month}', style: TextStyle(color: Colors.black)));
+                child: Text('Hôm nay, ${start.day} tháng ${start.month}',
+                    style: TextStyle(color: Colors.black)));
           } else if (start
               .isAtSameMomentAs(now.subtract(const Duration(days: 1)))) {
             return TextButton(
                 onPressed: onPress,
-                child: Text('Hôm qua, ${start.day} tháng ${start.month}', style: TextStyle(color: Colors.black)));
+                child: Text('Hôm qua, ${start.day} tháng ${start.month}',
+                    style: TextStyle(color: Colors.black)));
           } else {
             return TextButton(
                 onPressed: onPress,
-                child: Text('${start.day} tháng ${start.month}', style: TextStyle(color: Colors.black)));
+                child: Text('${start.day} tháng ${start.month}',
+                    style: TextStyle(color: Colors.black)));
           }
         } else {
           return TextButton(
               onPressed: onPress,
-              child: Text('${start.day} tháng ${start.month}, ${start.year}', style: TextStyle(color: Colors.black)));
+              child: Text('${start.day} tháng ${start.month}, ${start.year}',
+                  style: TextStyle(color: Colors.black)));
         }
         break;
       // case TAB.WEEK:
@@ -362,12 +382,14 @@ class _TransactionsState extends State<TransactionsWidget> {
           return TextButton(
               onPressed: selectRange,
               child: Text(
-                  'Từ ${start.day}/${start.month} đến ${end.day}/${end.month}/${end.year}', style: TextStyle(color: Colors.black)));
+                  'Từ ${start.day}/${start.month} đến ${end.day}/${end.month}/${end.year}',
+                  style: TextStyle(color: Colors.black)));
         } else {
           return TextButton(
               onPressed: selectRange,
               child: Text(
-                  'Từ ${start.day}/${start.month}/${start.year} đến ${end.day}/${end.month}/${end.year}', style: TextStyle(color: Colors.black)));
+                  'Từ ${start.day}/${start.month}/${start.year} đến ${end.day}/${end.month}/${end.year}',
+                  style: TextStyle(color: Colors.black)));
         }
       default:
         return Text('ADU');

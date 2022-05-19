@@ -10,7 +10,7 @@ import 'package:money_manager/components/Account.dart';
 import 'package:money_manager/components/Transaction.dart';
 import 'package:money_manager/screens/AccountDetailScreen.dart';
 import 'package:money_manager/screens/AddAccountScreen.dart';
-import 'package:money_manager/screens/AddTransactionScreen1.dart';
+import 'package:money_manager/screens/AddTransactionScreen.dart';
 import 'package:money_manager/screens/ColumnChart.dart';
 import 'package:money_manager/screens/ContactScreen.dart';
 import 'package:provider/provider.dart';
@@ -91,7 +91,7 @@ class ApplicationState extends ChangeNotifier {
     FirebaseAuth.instance.userChanges().listen((user) {
       if (user != null) {
         _user = user;
-        print('userChange');
+        _timeTab = 0;
         _loginState = ApplicationLoginState.loggedIn;
         final userRef =
             FirebaseFirestore.instance.collection('userData').doc(user.uid);
@@ -189,6 +189,7 @@ class ApplicationState extends ChangeNotifier {
             .orderBy('index')
             .snapshots()
             .listen((snapshot) {
+              _accounts = [];
           for (final document in snapshot.docs) {
             _accounts.add(Account(
               id: document.id,
@@ -263,6 +264,14 @@ class ApplicationState extends ChangeNotifier {
     // collection.doc('tao').set(myData).then((_) => print('Added')).catchError((error) => print('Add failed: $error'));
   }
 
+  int _timeTab = 0;
+
+  int get timeTab => _timeTab;
+
+  set timeTab(int tab) {
+    _timeTab = tab;
+  }
+
   int? _remainingAmount;
 
   int? get remainingAmount => _remainingAmount;
@@ -295,6 +304,16 @@ class ApplicationState extends ChangeNotifier {
   List<Account> _accounts = [];
 
   List<Account> get accounts => _accounts;
+
+  int getTotalAmount() {
+    int sum = 0;
+    for (Account acc in _accounts) {
+      if (acc.visible) {
+        sum += acc.value;
+      }
+    }
+    return sum;
+  }
 
   List<TransactionDetails> _transactions = [];
 
@@ -385,6 +404,18 @@ class ApplicationState extends ChangeNotifier {
     } on FirebaseAuthException catch (e) {
       errorCallback(e);
     }
+  }
+
+  Category? getCategory(String categoryID) {
+    List<Category> categories = [];
+    categories.addAll(_expenseCategories);
+    categories.addAll(_incomeCategories);
+    for (Category category in categories) {
+      if (categoryID == category.id) {
+        return category;
+      }
+    }
+    return null;
   }
 
   void signOut() {

@@ -7,11 +7,13 @@ import '../components/InComeTabBar.dart';
 import '../components/PopUpNotification1.dart';
 import '../components/SearchItem.dart';
 import '../components/TitleText1.dart';
-import 'AddTransactionScreen1.dart';
+import 'AddTransactionScreen.dart';
 
 class ExchangeMoney extends StatelessWidget {
-  ExchangeMoney({Key? key, required this.title}) : super(key: key);
-  final String title;
+  ExchangeMoney({Key? key, required this.typeIndex, required this.timeIndex})
+      : super(key: key);
+  final int typeIndex;
+  final int timeIndex;
 
   void _showDialog(BuildContext context) {
     showDialog(
@@ -26,6 +28,7 @@ class ExchangeMoney extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultTabController(
         length: 2,
+        initialIndex: this.typeIndex,
         child: Builder(builder: (BuildContext context) {
           return Scaffold(
             resizeToAvoidBottomInset: false,
@@ -121,19 +124,25 @@ class ExchangeMoney extends StatelessWidget {
                 child: Icon(Icons.add),
                 backgroundColor: Color.fromARGB(255, 35, 111, 87),
                 onPressed: () {
-                  int index = DefaultTabController.of(context)!.index;
-                  print(index);
                   Navigator.of(context).push(CustomPageRoute(
                       direction: AxisDirection.up,
-                      child: AddTransactionScreen1()));
+                      child: AddTransactionScreen(
+                        index: DefaultTabController.of(context)!.index,
+                      )));
                 }),
             body: TabBarView(
               children: [
                 Center(
-                  child: ExpenseTabBar(),
+                  child: ExpenseTabBar(
+                    isExpense: true,
+                    tab: TAB.values.elementAt(this.timeIndex),
+                  ),
                 ),
                 Center(
-                  child: InComeTabBar(),
+                  child: ExpenseTabBar(
+                    isExpense: false,
+                    tab: TAB.values.elementAt(this.timeIndex),
+                  ),
                 ),
               ],
             ),
