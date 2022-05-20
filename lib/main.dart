@@ -189,7 +189,7 @@ class ApplicationState extends ChangeNotifier {
             .orderBy('index')
             .snapshots()
             .listen((snapshot) {
-              _accounts = [];
+          _accounts = [];
           for (final document in snapshot.docs) {
             _accounts.add(Account(
               id: document.id,
