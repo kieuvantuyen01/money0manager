@@ -27,9 +27,9 @@ class CategoryIconWidget extends StatelessWidget {
       width: this.buttonSize.w,
       height: this.buttonSize.h,
       child: Stack(
+          clipBehavior: Clip.none,
           fit: StackFit.expand,
           alignment: Alignment.center,
-          overflow: Overflow.visible,
           children: [
             Positioned(
               left: 0.0,
@@ -104,7 +104,7 @@ class CategoryIconWidget extends StatelessWidget {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               height: 1.1666666666666667.h,
-                              fontSize: this.buttonSize/2.sp,
+                              fontSize: this.buttonSize / 2.sp,
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w400,
                               color: Color(int.parse(this.iconColor)),

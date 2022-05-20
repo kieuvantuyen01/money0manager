@@ -24,9 +24,9 @@ class CategoryVWidget extends StatelessWidget {
       width: 70.0.w,
       height: 70.0.h,
       child: Stack(
+          clipBehavior: Clip.none,
           fit: StackFit.expand,
           alignment: Alignment.center,
-          overflow: Overflow.visible,
           children: [
             Positioned(
               left: 0.0,

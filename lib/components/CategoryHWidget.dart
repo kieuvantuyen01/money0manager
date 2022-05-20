@@ -8,7 +8,8 @@ class CategoryHWidget extends StatelessWidget {
   Category category;
   bool hasImage;
 
-  CategoryHWidget({Key? key, required this.category, this.hasImage = false}) : super(key: key);
+  CategoryHWidget({Key? key, required this.category, this.hasImage = false})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +19,9 @@ class CategoryHWidget extends StatelessWidget {
         width: 188.0.w,
         height: 30.0.h,
         child: Stack(
+            clipBehavior: Clip.none,
             fit: StackFit.expand,
             alignment: Alignment.center,
-            overflow: Overflow.visible,
             children: [
               Positioned(
                 left: 0.0.w,
@@ -59,8 +60,7 @@ class CategoryHWidget extends StatelessWidget {
 
                         /* letterSpacing: 0.0, */
                       ),
-                    )
-                ),
+                    )),
               ),
               Positioned(
                 left: 22.0.w,

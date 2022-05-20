@@ -48,9 +48,9 @@ class ContentWithoutNoteWidget extends StatelessWidget {
           width: 323.0,
           height: 42.0,
           child: Stack(
+              clipBehavior: Clip.none,
               fit: StackFit.expand,
               alignment: Alignment.center,
-              overflow: Overflow.visible,
               children: [
                 Positioned(
                   left: null,

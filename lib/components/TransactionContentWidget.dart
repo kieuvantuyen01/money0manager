@@ -21,9 +21,9 @@ class TransactionContentWidget extends StatelessWidget {
         width: 343.0.w,
         height: 62.0.h,
         child: Stack(
+            clipBehavior: Clip.none,
             fit: StackFit.expand,
             alignment: Alignment.center,
-            overflow: Overflow.visible,
             children: [
               Positioned(
                 left: 10.0.w,
@@ -47,16 +47,17 @@ class TransactionContentWidget extends StatelessWidget {
                 width: 233.0.w,
                 height: 51.0.h,
                 child: Visibility(
-                  visible: (this.transaction.description != null ? true : false),
+                  visible:
+                      (this.transaction.description != null ? true : false),
                   child: ClipRRect(
                     borderRadius: BorderRadius.zero,
                     child: Container(
                       width: 233.0.w,
                       height: 51.0.h,
                       child: Stack(
+                          clipBehavior: Clip.none,
                           fit: StackFit.expand,
                           alignment: Alignment.center,
-                          overflow: Overflow.visible,
                           children: [
                             Positioned(
                               left: 40.0.w,
