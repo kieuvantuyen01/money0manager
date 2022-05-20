@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:money_manager/main.dart';
 import 'package:money_manager/screens/HomeScreen.dart';
@@ -161,15 +162,25 @@ class Authentication extends StatelessWidget {
             ),
           ),
           actions: <Widget>[
-            StyledElevatedButton(
-              width: 343,
-              height: 51,
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text(
-                'OK',
-                style: TextStyle(color: Colors.deepPurple),
+            SizedBox(
+              width: 300.w,
+              height: 51.h,
+              child: RaisedButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: TitleText1(
+                    text: 'OK',
+                    fontFamily: 'Inter',
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.bold,
+                    r: 255,
+                    g: 255,
+                    b: 255),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20.r)),
+                ),
+                color: Color.fromARGB(255, 35, 111, 87),
               ),
             ),
           ],
@@ -227,8 +238,29 @@ class _EmailFormState extends State<EmailForm> {
                         const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
                     child: TextFormField(
                       controller: _controller,
-                      decoration: CommonStyle.textFieldStyle(
-                          labelText: 'Email', hintText: 'Nhập email của bạn'),
+                      decoration: InputDecoration(
+                        hintText: 'Nhập email của bạn',
+                        labelText: 'Email',
+                        labelStyle: TextStyle(
+                          fontSize: 18,
+                          fontFamily: 'Inter',
+                          color: Colors.black,
+                        ),
+                        hintStyle: TextStyle(
+                          fontSize: 18,
+                          fontFamily: 'Inter',
+                          color: Color.fromARGB(255, 189, 189, 189),
+                        ),
+                        border: OutlineInputBorder(),
+                        enabledBorder: const OutlineInputBorder(
+                          borderSide: const BorderSide(
+                              color: Color.fromARGB(255, 189, 189, 189), width: 1.0),
+                        ),
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide: const BorderSide(
+                              color: Color.fromARGB(255, 35, 111, 87), width: 2.0),
+                        ),
+                      ),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Nhập địa chỉ email của bạn để tiếp tục';
@@ -239,15 +271,28 @@ class _EmailFormState extends State<EmailForm> {
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 20, horizontal: 24),
-                    child: StyledElevatedButton(
-                      width: 343,
-                      height: 51,
-                      onPressed: () async {
-                        if (_formKey.currentState!.validate()) {
-                          widget.callback(_controller.text);
-                        }
-                      },
-                      child: const Text('Tiếp tục'),
+                    child: SizedBox(
+                      width: 343.w,
+                      height: 51.h,
+                      child: RaisedButton(
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            widget.callback(_controller.text);
+                          }
+                        },
+                        child: TitleText1(
+                            text: 'Tiếp tục',
+                            fontFamily: 'Inter',
+                            fontSize: 15.sp,
+                            fontWeight: FontWeight.normal,
+                            r: 255,
+                            g: 255,
+                            b: 255),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30.r)),
+                        ),
+                        color: Color.fromARGB(255, 35, 111, 87),
+                      ),
                     ),
                   ),
                 ],
@@ -255,20 +300,20 @@ class _EmailFormState extends State<EmailForm> {
             ),
           ),
           Padding(
-              padding: EdgeInsets.only(top: 15),
+              padding: EdgeInsets.only(top: 1.sp),
               child: StyledTextButton(
                   onPressed: () async {},
                   child: Text(
                     'Quên mật khẩu?',
                     style: TextStyle(
+                      color: Colors.black,
                       fontFamily: 'Inter',
                       fontSize: 17,
                       fontWeight: FontWeight.normal,
-                      // color: Color.fromARGB(255, 35, 111, 87),
                     ),
                   ))),
           Padding(
-            padding: EdgeInsets.only(top: 80),
+            padding: EdgeInsets.only(top: 100.sp),
             child: TitleText1(
                 text: 'Đăng nhập với',
                 fontFamily: 'Inter',
@@ -363,7 +408,7 @@ class _RegisterFormState extends State<RegisterForm> {
         toolbarHeight: 100,
         elevation: 0.0,
         actions: [
-          StyledTextButton(onPressed: widget.cancel, child: Text('Quay lại'))
+          StyledTextButton(onPressed: widget.cancel, child: Text('Quay lại', style: TextStyle(color: Color.fromARGB(255, 35, 111, 87))))
         ],
       ),
       body: Column(
@@ -380,8 +425,29 @@ class _RegisterFormState extends State<RegisterForm> {
                         const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
                     child: TextFormField(
                       controller: _emailController,
-                      decoration: CommonStyle.textFieldStyle(
-                          labelText: 'Email', hintText: 'Nhập email của bạn'),
+                      decoration: InputDecoration(
+                        hintText: 'Nhập email của bạn',
+                        labelText: 'Email',
+                        labelStyle: TextStyle(
+                          fontSize: 18,
+                          fontFamily: 'Inter',
+                          color: Colors.black,
+                        ),
+                        hintStyle: TextStyle(
+                          fontSize: 18,
+                          fontFamily: 'Inter',
+                          color: Color.fromARGB(255, 189, 189, 189),
+                        ),
+                        border: OutlineInputBorder(),
+                        enabledBorder: const OutlineInputBorder(
+                          borderSide: const BorderSide(
+                              color: Color.fromARGB(255, 189, 189, 189), width: 1.0),
+                        ),
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide: const BorderSide(
+                              color: Color.fromARGB(255, 35, 111, 87), width: 2.0),
+                        ),
+                      ),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Nhập địa chỉ email của bạn để tiếp tục';
@@ -395,8 +461,29 @@ class _RegisterFormState extends State<RegisterForm> {
                         const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
                     child: TextFormField(
                       controller: _displayNameController,
-                      decoration: CommonStyle.textFieldStyle(
-                          labelText: 'Họ và tên', hintText: 'Nhập họ và tên'),
+                      decoration: InputDecoration(
+                        hintText: 'Nhập họ và tên',
+                        labelText: 'Họ và tên',
+                        labelStyle: TextStyle(
+                          fontSize: 18,
+                          fontFamily: 'Inter',
+                          color: Colors.black,
+                        ),
+                        hintStyle: TextStyle(
+                          fontSize: 18,
+                          fontFamily: 'Inter',
+                          color: Color.fromARGB(255, 189, 189, 189),
+                        ),
+                        border: OutlineInputBorder(),
+                        enabledBorder: const OutlineInputBorder(
+                          borderSide: const BorderSide(
+                              color: Color.fromARGB(255, 189, 189, 189), width: 1.0),
+                        ),
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide: const BorderSide(
+                              color: Color.fromARGB(255, 35, 111, 87), width: 2.0),
+                        ),
+                      ),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return null;
@@ -425,19 +512,32 @@ class _RegisterFormState extends State<RegisterForm> {
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 20, horizontal: 24),
-                    child: StyledElevatedButton(
-                      width: 343,
-                      height: 51,
-                      onPressed: () async {
-                        if (_formKey.currentState!.validate()) {
-                          widget.registerAccount(
-                            _emailController.text,
-                            _displayNameController.text,
-                            _passwordController.text,
-                          );
-                        }
-                      },
-                      child: const Text('Đăng ký'),
+                    child: SizedBox(
+                      width: 343.w,
+                      height: 51.h,
+                      child: RaisedButton(
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            widget.registerAccount(
+                              _emailController.text,
+                              _displayNameController.text,
+                              _passwordController.text,
+                            );
+                          }
+                        },
+                        child: TitleText1(
+                            text: 'Đăng ký',
+                            fontFamily: 'Inter',
+                            fontSize: 15.sp,
+                            fontWeight: FontWeight.normal,
+                            r: 255,
+                            g: 255,
+                            b: 255),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30.r)),
+                        ),
+                        color: Color.fromARGB(255, 35, 111, 87),
+                      ),
                     ),
                   ),
                 ],
@@ -451,6 +551,7 @@ class _RegisterFormState extends State<RegisterForm> {
                   child: Text(
                     'Quên mật khẩu?',
                     style: TextStyle(
+                      color: Colors.black,
                       fontFamily: 'Inter',
                       fontSize: 17,
                       fontWeight: FontWeight.normal,
@@ -548,7 +649,7 @@ class _PasswordFormState extends State<PasswordForm> {
         toolbarHeight: 100,
         elevation: 0.0,
         actions: [
-          StyledTextButton(onPressed: widget.cancel, child: Text('Quay lại'))
+          StyledTextButton(onPressed: widget.cancel, child: Text('Quay lại', style: TextStyle(color: Color.fromARGB(255, 35, 111, 87)))),
         ],
       ),
       body: Column(
@@ -565,8 +666,29 @@ class _PasswordFormState extends State<PasswordForm> {
                         const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
                     child: TextFormField(
                       controller: _emailController,
-                      decoration: CommonStyle.textFieldStyle(
-                          labelText: 'Email', hintText: 'Nhập email của bạn'),
+                      decoration: InputDecoration(
+                        hintText: 'Nhập email của bạn',
+                        labelText: 'Email',
+                        labelStyle: TextStyle(
+                          fontSize: 18,
+                          fontFamily: 'Inter',
+                          color: Colors.black,
+                        ),
+                        hintStyle: TextStyle(
+                          fontSize: 18,
+                          fontFamily: 'Inter',
+                          color: Color.fromARGB(255, 189, 189, 189),
+                        ),
+                        border: OutlineInputBorder(),
+                        enabledBorder: const OutlineInputBorder(
+                          borderSide: const BorderSide(
+                              color: Color.fromARGB(255, 189, 189, 189), width: 1.0),
+                        ),
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide: const BorderSide(
+                              color: Color.fromARGB(255, 35, 111, 87), width: 2.0),
+                        ),
+                      ),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Nhập địa chỉ email của bạn để tiếp tục';
@@ -595,18 +717,31 @@ class _PasswordFormState extends State<PasswordForm> {
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 20, horizontal: 24),
-                    child: StyledElevatedButton(
-                      width: 343,
-                      height: 51,
-                      onPressed: () async {
-                        if (_formKey.currentState!.validate()) {
-                          widget.login(
-                            _emailController.text,
-                            _passwordController.text,
-                          );
-                        }
-                      },
-                      child: const Text('Đăng nhập'),
+                    child: SizedBox(
+                      width: 343.w,
+                      height: 51.h,
+                      child: RaisedButton(
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            widget.login(
+                              _emailController.text,
+                              _passwordController.text,
+                            );
+                          }
+                        },
+                        child: TitleText1(
+                            text: 'Đăng nhập',
+                            fontFamily: 'Inter',
+                            fontSize: 15.sp,
+                            fontWeight: FontWeight.normal,
+                            r: 255,
+                            g: 255,
+                            b: 255),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30.r)),
+                        ),
+                        color: Color.fromARGB(255, 35, 111, 87),
+                      ),
                     ),
                   ),
                 ],
@@ -620,6 +755,7 @@ class _PasswordFormState extends State<PasswordForm> {
                   child: Text(
                     'Quên mật khẩu?',
                     style: TextStyle(
+                      color: Colors.black,
                       fontFamily: 'Inter',
                       fontSize: 17,
                       fontWeight: FontWeight.normal,

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:money_manager/components/Account.dart';
+import 'package:money_manager/main.dart';
 import 'package:money_manager/screens/AddAccountScreen.dart';
 import 'package:money_manager/src/widgets.dart';
 import '../components/Category.dart';
+import '../components/CategoryHWidget.dart';
 import '../components/CategoryVWidget.dart';
+import '../components/CustomPageRoute.dart';
 import '../components/NavigationDrawerWidget.dart';
 import '../components/TitleText1.dart';
 
@@ -76,7 +80,7 @@ class AccountWidget extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.only(top: 10.h),
               child: TitleText1(
-                  text: '20,000,000 đ',
+                  text: '${ApplicationState.getInstance.getTotalAmount()} ₫',
                   fontFamily: 'Inter',
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
@@ -111,32 +115,48 @@ class AccountWidget extends StatelessWidget {
               ),
             ),
           ]),
+          // Center(
+          //   child: Padding(
+          //     padding: EdgeInsets.only(top: 30.h),
+          //     child: SizedBox(
+          //       width: 344.w,
+          //       height: 53.h,
+          //       child: RaisedButton.icon(
+          //         onPressed: () {
+          //           print('Raise button');
+          //         },
+          //         icon: Icon(Icons.attach_money,
+          //             color: Color.fromARGB(255, 127, 130, 103)),
+          //         label: TitleText1(
+          //             text: 'Chính            20,000,000 đ',
+          //             fontFamily: 'Inter',
+          //             fontSize: 18,
+          //             fontWeight: FontWeight.bold,
+          //             r: 127,
+          //             g: 130,
+          //             b: 103),
+          //         shape: RoundedRectangleBorder(
+          //           borderRadius: BorderRadius.all(Radius.circular(15.r)),
+          //         ),
+          //         color: Color.fromARGB(255, 248, 248, 248),
+          //         elevation: 0.5,
+          //       ),
+          //     ),
+          //   ),
+          // ),
           Center(
             child: Padding(
               padding: EdgeInsets.only(top: 30.h),
               child: SizedBox(
                 width: 344.w,
                 height: 53.h,
-                child: RaisedButton.icon(
-                  onPressed: () {
-                    print('Raise button');
-                  },
-                  icon: Icon(Icons.attach_money,
-                      color: Color.fromARGB(255, 127, 130, 103)),
-                  label: TitleText1(
-                      text: 'Chính            20,000,000 đ',
-                      fontFamily: 'Inter',
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      r: 127,
-                      g: 130,
-                      b: 103),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15.r)),
-                  ),
-                  color: Color.fromARGB(255, 248, 248, 248),
-                  elevation: 0.5,
-                ),
+                child: ListView.builder(
+                    itemCount: ApplicationState.getInstance.accounts.length,
+                    itemBuilder: (BuildContext context,int index) {
+                      return AccountInfo(
+                          account:
+                              ApplicationState.getInstance.accounts[index]);
+                    }),
               ),
             ),
           ),
@@ -146,16 +166,59 @@ class AccountWidget extends StatelessWidget {
               child: SizedBox(
                 width: 93.w,
                 height: 51.h,
-                child: StyledElevatedButton(
-                  child: Text('Thêm'),
-                  width: 109.w,
-                  height: 51.h,
-                  onPressed: () => Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => AddAccountScreen(title: '',))),
+                child: RaisedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(CustomPageRoute(
+                        direction: AxisDirection.up,
+                        child: AddAccountScreen(title: '')));
+                  },
+                  child: TitleText1(
+                      text: 'Thêm',
+                      fontFamily: 'Inter',
+                      fontSize: 15.sp,
+                      fontWeight: FontWeight.bold,
+                      r: 255,
+                      g: 255,
+                      b: 255),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(20.r)),
+                  ),
+                  color: Color.fromARGB(255, 35, 111, 87),
                 ),
               ),
             ),
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class AccountInfo extends StatelessWidget {
+  const AccountInfo({Key? key, required this.account, this.onPress})
+      : super(key: key);
+
+  final Account account;
+  final Function()? onPress;
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return GestureDetector(
+      onTap: onPress,
+      child: Row(
+        children: [
+          CategoryHWidget(
+            category: Category(
+                index: account.index,
+                icon: account.icon,
+                id: account.id,
+                color: account.color,
+                description: account.description),
+            hasImage: false,
+          ),
+          (account.visible ? Text('') : Text(':)')),
+          Text('${account.value} VNĐ'),
         ],
       ),
     );
